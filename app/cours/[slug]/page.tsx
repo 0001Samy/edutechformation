@@ -1,4 +1,4 @@
-import { Clock, Users, Star, CheckCircle, ArrowRight } from 'lucide-react';
+/*import { Clock, Users, Star, CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 // Liste des formations disponibles
@@ -235,6 +235,42 @@ export default function CourseDetailPage({
           </div>
         </div>
       </section>
+    </div>
+  );
+}
+*/
+import { client } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+
+export async function generateStaticParams() {
+  const slugs = await client.fetch(
+    groq`*[_type == "formation" && defined(slug.current)]{
+      "slug": slug.current
+    }`
+  );
+
+  return slugs.map((slug: { slug: string }) => ({ slug: slug.slug }));
+}
+
+export default async function CoursePage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+
+  const course = await client.fetch(
+    groq`
+      *[_type == "formation" && slug.current == $slug][0]
+    `,
+    { slug }
+  );
+
+  if (!course) {
+    return <div>Formation introuvable</div>;
+  }
+
+  return (
+    <div>
+      <h1>{course.title}</h1>
+      <p>{course.description}</p>
+      {/* Ton UI */}
     </div>
   );
 }
