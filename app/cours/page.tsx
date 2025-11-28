@@ -70,7 +70,7 @@ export default function CoursPage() {
             {formations.map((formation: any) => (
               <Link
                 key={formation._id}
-                href={`/cours/${formation._id}`}
+                href={`/cours/${formation.slug.current}`}
                 className='course-card group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2'
               >
                 <div className='h-48 flex items-center justify-center relative overflow-hidden'>

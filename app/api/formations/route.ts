@@ -7,8 +7,14 @@ export async function GET() {
       _id,
       titre,
       description,
+      duree,
+      etudiants,
+      note,
       prix,
+      modules,
+      objectifs,
       lien,
+      slug,
       "imageUrl": image.asset->url
     }
   `);
