@@ -67,7 +67,13 @@ export default function CoursPage() {
             ref={cardsRef}
             className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
           >
-            {formations.map((formation: any) => (
+            {formations.map((formation: any) => {
+              // Skip formations without slug
+              if (!formation.slug || !formation.slug.current) {
+                return null;
+              }
+              
+              return (
               <Link
                 key={formation._id}
                 href={`/cours/${formation.slug.current}`}
@@ -109,7 +115,8 @@ export default function CoursPage() {
 
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
