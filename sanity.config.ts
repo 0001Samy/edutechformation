@@ -12,7 +12,7 @@ export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
-
+  
   schema: {
     types: schemaTypes,
   },
