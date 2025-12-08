@@ -177,10 +177,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className='font-semibold mb-1'>Email</h3>
                       <a
-                        href='mailto:contact@edutechformation.com'
+                        href='mailto:edutech.formations@gmail.com'
                         className='text-primary hover:underline'
                       >
-                        contact@edutechformation.com
+                        edutech.formations@gmail.com
                       </a>
                     </div>
                   </div>
@@ -192,10 +192,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className='font-semibold mb-1'>Téléphone</h3>
                       <a
-                        href='tel:+33123456789'
+                        href='tel:+33662091892'
                         className='text-primary hover:underline'
                       >
-                        +33 1 23 45 67 89
+                        +33 6 62 09 18 92
                       </a>
                       <p className='text-sm text-gray-600 mt-1'>
                         Lun - Ven : 9h00 - 18h00

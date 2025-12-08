@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
@@ -22,9 +23,16 @@ export default function Header() {
           {/* Logo */}
           <Link
             href='/'
-            className='text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity'
+            className='hover:opacity-80 transition-opacity'
           >
-            EduTech Formation
+            <Image
+              src="/logo.png"
+              alt="EduTech Formation"
+              width={180}
+              height={50}
+              className="h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
