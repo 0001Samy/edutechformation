@@ -30,7 +30,7 @@ export default function Header() {
               alt="EduTech Formation"
               width={180}
               height={50}
-              className="h-12 w-auto"
+              className="h-40 w-auto"
               priority
             />
           </Link>
