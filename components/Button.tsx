@@ -19,9 +19,9 @@ export default function Button({
   const baseClasses = 'px-6 py-3 rounded-lg font-semibold transition-colors';
 
   const variantClasses = {
-    primary: 'bg-primary text-white hover:bg-blue-700',
+    primary: 'bg-primary text-white hover:bg-purple-700',
     secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
-    accent: 'bg-accent text-gray-900 hover:bg-yellow-300',
+    accent: 'bg-accent text-gray-900 hover:bg-orange-400',
   };
 
   const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;

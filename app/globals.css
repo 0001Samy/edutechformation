@@ -3,8 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #010101;
-  --primary: #274bec;
-  --accent: #fad02e;
+  --primary: #7c3aed;
+  --accent: #f97316;
 }
 
 @theme inline {
@@ -38,12 +38,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #274bec;
+  background: var(--primary);
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1e3bb8;
+  background: #6d28d9;
 }
 
 /* Focus styles */

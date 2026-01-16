@@ -47,7 +47,7 @@ export default function CoursPage() {
 
   return (
     <div className='bg-gradient-to-b from-gray-50 to-white'>
-      <section className='relative bg-gradient-to-br from-primary via-blue-600 to-blue-800 text-white py-24 overflow-hidden'>
+      <section className='relative bg-gradient-to-br from-primary via-purple-600 to-purple-800 text-white py-24 overflow-hidden'>
         <div className='absolute inset-0 opacity-10'>
           <div className='absolute top-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl'></div>
         </div>
@@ -55,7 +55,7 @@ export default function CoursPage() {
           <h1 className='text-5xl md:text-6xl font-bold mb-6'>
             Nos Formations
           </h1>
-          <p className='text-xl md:text-2xl text-blue-50 max-w-2xl'>
+          <p className='text-xl md:text-2xl text-purple-50 max-w-2xl'>
             Choisissez la formation parfaite et développez vos compétences.
           </p>
         </div>

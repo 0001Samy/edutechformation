@@ -86,13 +86,13 @@ export default function TemoignagesPage() {
 
   return (
     <div className='bg-gradient-to-b from-gray-50 to-white'>
-      <section className='relative bg-gradient-to-br from-primary via-blue-600 to-blue-800 text-white py-24 overflow-hidden'>
+      <section className='relative bg-gradient-to-br from-primary via-purple-600 to-purple-800 text-white py-24 overflow-hidden'>
         <div className='absolute inset-0 opacity-10'>
           <div className='absolute top-20 left-10 w-96 h-96 bg-accent rounded-full blur-3xl'></div>
         </div>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
           <h1 className='text-5xl md:text-6xl font-bold mb-6'>Témoignages</h1>
-          <p className='text-xl md:text-2xl text-blue-50 max-w-2xl'>
+          <p className='text-xl md:text-2xl text-purple-50 max-w-2xl'>
             Découvrez ce que nos étudiants pensent de nos formations et comment
             elles ont transformé leur carrière
           </p>
@@ -131,7 +131,7 @@ export default function TemoignagesPage() {
                   size={64}
                 />
                 <div className='flex items-center gap-4 mb-4 relative z-10'>
-                  <div className='w-14 h-14 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md'>
+                  <div className='w-14 h-14 bg-gradient-to-br from-primary to-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md'>
                     {testimonial.avatar}
                   </div>
                   <div>
@@ -178,7 +178,7 @@ export default function TemoignagesPage() {
           </p>
           <a
             href='/cours'
-            className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all hover:scale-105 shadow-lg'
+            className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-orange-400 transition-all hover:scale-105 shadow-lg'
           >
             Voir nos formations
           </a>
