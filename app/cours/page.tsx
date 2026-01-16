@@ -99,18 +99,24 @@ export default function CoursPage() {
                   </p>
 
                   <div className='flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-100'>
-                    <div className='flex items-center gap-1'>
-                      <Clock size={16} className='text-primary' />
-                      <span>10 semaines</span>
-                    </div>
-                    <div className='flex items-center gap-1'>
-                      <Users size={16} className='text-primary' />
-                      <span>200 élèves</span>
-                    </div>
-                    <div className='flex items-center gap-1'>
-                      <Star size={16} className='fill-accent text-accent' />
-                      <span className='font-semibold'>4.8</span>
-                    </div>
+                    {formation.duree && (
+                      <div className='flex items-center gap-1'>
+                        <Clock size={16} className='text-primary' />
+                        <span>{formation.duree}</span>
+                      </div>
+                    )}
+                    {formation.etudiants && (
+                      <div className='flex items-center gap-1'>
+                        <Users size={16} className='text-primary' />
+                        <span>{formation.etudiants} élèves</span>
+                      </div>
+                    )}
+                    {formation.note && (
+                      <div className='flex items-center gap-1'>
+                        <Star size={16} className='fill-accent text-accent' />
+                        <span className='font-semibold'>{formation.note}/5</span>
+                      </div>
+                    )}
                   </div>
 
                 </div>
