@@ -26,11 +26,11 @@ export default function Header() {
             className='hover:opacity-80 transition-opacity'
           >
             <Image
-              src="/logo.png"
+              src="/edutech-logo.svg"
               alt="EduTech Formation"
               width={180}
               height={50}
-              className="h-40 w-auto"
+              className="h-16 w-auto"
               priority
             />
           </Link>

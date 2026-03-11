@@ -32,7 +32,7 @@ export default function ContactPage() {
 
   return (
     <div className='bg-gradient-to-b from-gray-50 to-white'>
-      <section className='relative bg-gradient-to-br from-primary via-purple-600 to-purple-800 text-white py-24 overflow-hidden'>
+      <section className='relative bg-gradient-to-br from-primary via-teal-600 to-teal-800 text-white py-24 overflow-hidden'>
         <div className='absolute inset-0 opacity-10'>
           <div className='absolute top-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl'></div>
         </div>
@@ -40,7 +40,7 @@ export default function ContactPage() {
           <h1 className='text-5xl md:text-6xl font-bold mb-6'>
             Contactez-nous
           </h1>
-          <p className='text-xl md:text-2xl text-purple-50 max-w-2xl'>
+          <p className='text-xl md:text-2xl text-teal-50 max-w-2xl'>
             Une question ? Besoin d'informations ? Notre équipe est là pour vous
             accompagner
           </p>
@@ -157,7 +157,7 @@ export default function ContactPage() {
 
                 <button
                   type='submit'
-                  className='w-full bg-gradient-to-r from-primary to-purple-600 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2'
+                  className='w-full bg-gradient-to-r from-primary to-teal-600 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2'
                 >
                   Envoyer le message
                   <Send size={20} />
@@ -171,7 +171,7 @@ export default function ContactPage() {
                 <h2 className='text-3xl font-bold mb-8'>Nos coordonnées</h2>
                 <div className='space-y-6'>
                   <div className='flex items-start gap-4 group'>
-                    <div className='w-14 h-14 bg-gradient-to-br from-primary to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md'>
+                    <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md'>
                       <Mail className='text-white' size={24} />
                     </div>
                     <div>
@@ -186,7 +186,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className='flex items-start gap-4 group'>
-                    <div className='w-14 h-14 bg-gradient-to-br from-primary to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md'>
+                    <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md'>
                       <Phone className='text-white' size={24} />
                     </div>
                     <div>
@@ -204,7 +204,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className='flex items-start gap-4 group'>
-                    <div className='w-14 h-14 bg-gradient-to-br from-primary to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md'>
+                    <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md'>
                       <MapPin className='text-white' size={24} />
                     </div>
                     <div>
@@ -219,7 +219,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className='bg-gradient-to-br from-primary to-purple-700 text-white rounded-2xl p-8 shadow-xl'>
+              <div className='bg-gradient-to-br from-primary to-teal-700 text-white rounded-2xl p-8 shadow-xl'>
                 <h3 className='text-2xl font-bold mb-6'>
                   Horaires d'ouverture
                 </h3>

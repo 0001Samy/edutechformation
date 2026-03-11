@@ -72,7 +72,7 @@ export default function Home() {
   return (
     <div className='bg-gradient-to-b from-gray-50 to-white'>
       {/* Hero Section */}
-      <section className='relative bg-gradient-to-br from-primary via-purple-600 to-purple-800 text-white py-32 overflow-hidden'>
+      <section className='relative bg-gradient-to-br from-primary via-teal-600 to-teal-800 text-white py-32 overflow-hidden'>
         {/* Decorative elements */}
         <div className='absolute inset-0 opacity-10'>
           <div className='absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl'></div>
@@ -91,14 +91,14 @@ export default function Home() {
               Transformez votre <span className='text-accent'>carrière</span>{' '}
               avec nos formations
             </h1>
-            <p className='text-xl md:text-2xl mb-10 text-purple-50 leading-relaxed'>
+            <p className='text-xl md:text-2xl mb-10 text-teal-50 leading-relaxed'>
               Rejoignez plus de 10,000 professionnels qui ont accéléré leur
               carrière grâce à nos formations expertes
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <Link
                 href='/cours'
-                className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-orange-400 transition-all hover:scale-105 shadow-lg hover:shadow-xl'
+                className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg hover:shadow-xl'
               >
                 Découvrir nos formations
                 <ArrowRight size={20} />
@@ -162,7 +162,7 @@ export default function Home() {
             className='grid grid-cols-1 md:grid-cols-3 gap-8'
           >
             <div className='feature-card group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2'>
-              <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-purple-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform'>
+              <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-teal-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform'>
                 <BookOpen className='text-white' size={32} />
               </div>
               <h3 className='text-2xl font-bold mb-4 text-gray-900'>
@@ -174,7 +174,7 @@ export default function Home() {
               </p>
             </div>
             <div className='feature-card group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2'>
-              <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-purple-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform'>
+              <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-teal-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform'>
                 <Users className='text-white' size={32} />
               </div>
               <h3 className='text-2xl font-bold mb-4 text-gray-900'>
@@ -186,7 +186,7 @@ export default function Home() {
               </p>
             </div>
             <div className='feature-card group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2'>
-              <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-purple-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform'>
+              <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-teal-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform'>
                 <Award className='text-white' size={32} />
               </div>
               <h3 className='text-2xl font-bold mb-4 text-gray-900'>
@@ -222,7 +222,7 @@ export default function Home() {
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <Link
               href='/cours'
-              className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-orange-400 transition-all hover:scale-105 shadow-lg'
+              className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg'
             >
               Voir les formations
               <ArrowRight size={20} />

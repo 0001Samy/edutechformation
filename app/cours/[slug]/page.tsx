@@ -59,7 +59,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl font-bold mb-4">{course.titre}</h1>
-              <p className="text-xl text-purple-100 mb-6">
+              <p className="text-xl text-teal-100 mb-6">
                 {course.description}
               </p>
               <div className="flex items-center gap-6 text-sm mb-6">
@@ -84,7 +84,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               </div>
               <Link
                 href={course.lien || "/contact"}
-                className="inline-flex items-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-orange-400 transition-colors"
+                className="inline-flex items-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-colors"
               >
                 S&apos;inscrire maintenant
                 <ArrowRight size={20} />
@@ -93,7 +93,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-4">Tarif de la formation</h3>
               <p className="text-5xl font-bold mb-6">{course.prix}€</p>
-              <ul className="space-y-3 text-purple-100">
+              <ul className="space-y-3 text-teal-100">
                 <li className="flex items-center gap-2">
                   <CheckCircle size={20} />
                   <span>Accès illimité aux cours</span>
@@ -163,7 +163,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 </p>
                 <Link
                   href={course.lien || "/contact"}
-                  className="inline-flex items-center gap-2 bg-accent text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-orange-400 transition-colors"
+                  className="inline-flex items-center gap-2 bg-accent text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition-colors"
                 >
                   Contactez-nous
                   <ArrowRight size={20} />

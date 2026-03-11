@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Target, Users, TrendingUp } from 'lucide-react';
 
 export const metadata = {
@@ -11,7 +12,7 @@ export default function AboutPage() {
       <section className='bg-primary text-white py-16'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <h1 className='text-5xl font-bold mb-4'>À propos de nous</h1>
-          <p className='text-xl text-purple-100'>
+          <p className='text-xl text-teal-100'>
             Notre mission : rendre la formation professionnelle accessible à
             tous
           </p>
@@ -34,8 +35,13 @@ export default function AboutPage() {
                 carrière.
               </p>
             </div>
-            <div className='bg-primary/10 h-96 rounded-lg flex items-center justify-center'>
-              <p className='text-gray-500'>[Image placeholder]</p>
+            <div className='bg-primary/10 h-96 rounded-lg flex items-center justify-center relative overflow-hidden shadow-lg'>
+              <Image
+                src="/about-team.jpg"
+                alt="Groupe de personnes en formation"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
 
