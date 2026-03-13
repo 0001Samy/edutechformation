@@ -54,7 +54,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-primary text-white py-16">
+      <section className="bg-gradient-to-r from-primary via-teal-700 to-teal-900 text-white py-16 shadow-inner">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -124,7 +124,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                   <ul className="space-y-3">
                     {course.modules.map((module: string, index: number) => (
                       <li key={index} className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                        <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary to-teal-900 text-white rounded-full flex items-center justify-center font-semibold text-sm shadow-md border border-teal-600/30">
                           {index + 1}
                         </div>
                         <span className="pt-1">{module}</span>
@@ -156,9 +156,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 </>
               )}
 
-              <div className="bg-primary text-white rounded-lg p-6 mt-6">
-                <h3 className="text-2xl font-bold mb-4">Prêt à commencer ?</h3>
-                <p className="mb-4">
+              <div className="bg-gradient-to-br from-primary via-teal-700 to-teal-900 text-white rounded-lg p-6 mt-6 shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-teal-400/20 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                <h3 className="text-2xl font-bold mb-4 relative z-10">Prêt à commencer ?</h3>
+                <p className="mb-4 relative z-10">
                   Inscrivez-vous dès maintenant et commencez votre apprentissage
                 </p>
                 <Link

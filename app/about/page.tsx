@@ -9,7 +9,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className='bg-gray-50'>
-      <section className='bg-primary text-white py-16'>
+      <section className='bg-gradient-to-r from-primary via-teal-700 to-teal-900 text-white py-16 shadow-inner'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <h1 className='text-5xl font-bold mb-4'>À propos de nous</h1>
           <p className='text-xl text-teal-100'>
@@ -35,7 +35,7 @@ export default function AboutPage() {
                 carrière.
               </p>
             </div>
-            <div className='bg-primary/10 h-96 rounded-lg flex items-center justify-center relative overflow-hidden shadow-lg'>
+            <div className='bg-gradient-to-br from-primary/30 to-teal-900/30 h-96 rounded-lg flex items-center justify-center relative overflow-hidden shadow-lg border border-teal-100'>
               <Image
                 src="/about-team.jpg"
                 alt="Groupe de personnes en formation"

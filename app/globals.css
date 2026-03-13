@@ -2,9 +2,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #272a5f; /* Used dark blue from logo for foreground/text */
-  --primary: #08b0a0;   /* Teal from logo */
-  --accent: #fbba00;    /* Yellow from logo */
+  --foreground: #272a5f;
+  /* Used dark blue from logo for foreground/text */
+  --primary: #08b0a0;
+  /* Teal from logo */
+  --accent: #fbba00;
+  /* Yellow from logo */
 }
 
 @theme inline {
@@ -43,7 +46,8 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #068a7d; /* Darker teal for hover */
+  background: #068a7d;
+  /* Darker teal for hover */
 }
 
 /* Focus styles */

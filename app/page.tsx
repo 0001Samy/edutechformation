@@ -119,25 +119,25 @@ export default function Home() {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div ref={statsRef} className='grid grid-cols-2 md:grid-cols-4 gap-8'>
             <div className='text-center'>
-              <div className='text-4xl md:text-5xl font-bold text-primary mb-2'>
+              <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
                 10K+
               </div>
               <div className='text-gray-600'>Étudiants formés</div>
             </div>
             <div className='text-center'>
-              <div className='text-4xl md:text-5xl font-bold text-primary mb-2'>
+              <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
                 95%
               </div>
               <div className='text-gray-600'>Taux de satisfaction</div>
             </div>
             <div className='text-center'>
-              <div className='text-4xl md:text-5xl font-bold text-primary mb-2'>
+              <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
                 50+
               </div>
               <div className='text-gray-600'>Formations</div>
             </div>
             <div className='text-center'>
-              <div className='text-4xl md:text-5xl font-bold text-primary mb-2'>
+              <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
                 100+
               </div>
               <div className='text-gray-600'>Experts formateurs</div>
