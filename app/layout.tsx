@@ -18,6 +18,14 @@ export const metadata: Metadata = {
   title: 'EduTech Formation - Formations professionnelles',
   description:
     'Développez vos compétences avec nos formations professionnelles de qualité',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({

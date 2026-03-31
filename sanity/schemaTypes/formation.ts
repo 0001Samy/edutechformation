@@ -4,17 +4,29 @@ export default defineType({
   name: "formation",
   title: "Formations",
   type: "document",
+  groups: [
+    { name: "general", title: "Informations générales", default: true },
+    { name: "modalites", title: "Modalités pratiques" },
+    { name: "pedagogie", title: "Contenu pédagogique" },
+    { name: "evaluation", title: "Évaluation & suivi" },
+    { name: "encadrement", title: "Encadrement" },
+    { name: "autre", title: "Autre" },
+  ],
   fields: [
+    // ━━━ INFORMATIONS GÉNÉRALES ━━━
     defineField({
       name: "titre",
-      title: "Titre",
+      title: "Intitulé de la formation",
       type: "string",
+      group: "general",
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
+      group: "general",
       options: {
         source: "titre",
         maxLength: 96,
@@ -25,34 +37,104 @@ export default defineType({
       name: "description",
       title: "Description",
       type: "text",
+      group: "general",
+      description: "Description courte affichée sur la carte de la formation",
+    }),
+
+    defineField({
+      name: "publicConcerne",
+      title: "Public concerné",
+      type: "text",
+      group: "general",
+      description: "Décrivez le public visé par cette formation",
+    }),
+
+    defineField({
+      name: "prerequis",
+      title: "Prérequis",
+      type: "array",
+      of: [{ type: "string" }],
+      group: "general",
+      description: "Liste des prérequis pour cette formation (saisie libre)",
+    }),
+
+    defineField({
+      name: "image",
+      title: "Image",
+      type: "image",
+      group: "general",
+      options: { hotspot: true },
+    }),
+
+    // ━━━ MODALITÉS PRATIQUES ━━━
+    defineField({
+      name: "modalitesAcces",
+      title: "Modalités et délais d'accès",
+      type: "text",
+      group: "modalites",
+      description: "Décrivez les modalités et délais d'accès à la formation",
     }),
 
     defineField({
       name: "duree",
-      title: "Durée",
+      title: "Durée (en heures)",
+      type: "number",
+      group: "modalites",
+      description: "Nombre d'heures de la formation",
+      validation: (Rule) => Rule.min(1).positive(),
+    }),
+
+    defineField({
+      name: "horaires",
+      title: "Horaires",
       type: "string",
-      description: "Ex: 12 semaines",
-    }),
-
-    defineField({
-      name: "etudiants",
-      title: "Nombre d'étudiants",
-      type: "number",
-      description: "Ex: 1250",
-    }),
-
-    defineField({
-      name: "note",
-      title: "Note (sur 5)",
-      type: "number",
-      description: "Ex: 4.8",
-      validation: (Rule) => Rule.min(0).max(5),
+      group: "modalites",
+      description: 'Ex: "De 9h00 à 12h30 et de 13h30 à 17h00"',
     }),
 
     defineField({
       name: "prix",
-      title: "Prix",
+      title: "Tarif (exonéré de TVA)",
       type: "number",
+      group: "modalites",
+      description:
+        "Montant en euros — Exonérée de TVA — Art. 261.4.4 a du CGI",
+    }),
+
+    defineField({
+      name: "participantsMin",
+      title: "Nombre minimum de participants",
+      type: "number",
+      group: "modalites",
+      description: "Nombre minimum de participants requis",
+      validation: (Rule) => Rule.min(1).positive(),
+    }),
+
+    defineField({
+      name: "participantsMax",
+      title: "Nombre maximum de participants",
+      type: "number",
+      group: "modalites",
+      description: "Nombre maximum de participants autorisés",
+      validation: (Rule) => Rule.min(1).positive(),
+    }),
+
+    // ━━━ CONTENU PÉDAGOGIQUE ━━━
+    defineField({
+      name: "objectifs",
+      title: "Objectifs de la formation et compétences visées",
+      type: "array",
+      of: [{ type: "string" }],
+      group: "pedagogie",
+      description: "Liste des objectifs pédagogiques et compétences visées",
+    }),
+
+    defineField({
+      name: "contenuFormation",
+      title: "Contenu de la formation",
+      type: "text",
+      group: "pedagogie",
+      description: "Description détaillée du contenu de la formation",
     }),
 
     defineField({
@@ -60,28 +142,86 @@ export default defineType({
       title: "Modules du programme",
       type: "array",
       of: [{ type: "string" }],
-      description: "Liste des modules de la formation",
+      group: "pedagogie",
+      description: "Liste des modules de la formation (optionnel, pour un programme détaillé)",
+    }),
+
+    // ━━━ ÉVALUATION & SUIVI ━━━
+    defineField({
+      name: "modalitesEvaluation",
+      title: "Modalités d'évaluation",
+      type: "array",
+      of: [{ type: "string" }],
+      group: "evaluation",
+      description: "Liste des modalités d'évaluation (saisie libre)",
     }),
 
     defineField({
-      name: "objectifs",
-      title: "Objectifs de la formation",
+      name: "suiviExecution",
+      title: "Suivi de l'exécution",
       type: "array",
       of: [{ type: "string" }],
-      description: "Liste des objectifs pédagogiques",
+      group: "evaluation",
+      description: "Liste des éléments de suivi de l'exécution (saisie libre)",
     }),
 
+    defineField({
+      name: "appreciationResultats",
+      title: "Appréciation des résultats",
+      type: "array",
+      of: [{ type: "string" }],
+      group: "evaluation",
+      description: "Liste des éléments d'appréciation des résultats (saisie libre)",
+    }),
+
+    // ━━━ ENCADREMENT ━━━
+    defineField({
+      name: "moyensPedagogiques",
+      title: "Moyens pédagogiques et techniques d'encadrement des formations",
+      type: "text",
+      group: "encadrement",
+      description: "Décrivez les moyens pédagogiques et techniques mis en œuvre",
+    }),
+
+    defineField({
+      name: "profilFormateur",
+      title: "Profil du formateur",
+      type: "text",
+      group: "encadrement",
+      description: "Décrivez le profil et les qualifications du formateur",
+    }),
+
+    // ━━━ AUTRE ━━━
     defineField({
       name: "lien",
       title: "Lien d'inscription",
       type: "url",
+      group: "autre",
     }),
 
     defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: { hotspot: true },
+      name: "etudiants",
+      title: "Nombre d'étudiants (affichage)",
+      type: "number",
+      group: "autre",
+      description: "Nombre d'étudiants ayant suivi la formation (pour affichage)",
+    }),
+
+    defineField({
+      name: "note",
+      title: "Note (sur 5)",
+      type: "number",
+      group: "autre",
+      description: "Ex: 4.8",
+      validation: (Rule) => Rule.min(0).max(5),
     }),
   ],
+
+  preview: {
+    select: {
+      title: "titre",
+      subtitle: "description",
+      media: "image",
+    },
+  },
 });

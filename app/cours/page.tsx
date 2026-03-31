@@ -102,7 +102,7 @@ export default function CoursPage() {
                       {formation.duree && (
                         <div className='flex items-center gap-1'>
                           <Clock size={16} className='text-primary' />
-                          <span>{formation.duree}</span>
+                          <span>{formation.duree}h</span>
                         </div>
                       )}
                       {formation.etudiants && (
@@ -118,6 +118,13 @@ export default function CoursPage() {
                         </div>
                       )}
                     </div>
+
+                    {formation.prix != null && (
+                      <div className='mt-4 pt-4 border-t border-gray-100'>
+                        <span className='text-xl font-bold text-primary'>{formation.prix}€</span>
+                        <span className='text-xs text-gray-400 ml-2'>exo. TVA</span>
+                      </div>
+                    )}
 
                   </div>
                 </Link>
