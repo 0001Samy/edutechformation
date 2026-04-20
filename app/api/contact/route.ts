@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 const SUBJECT_LABELS: Record<string, string> = {
   info: "Demande d'information",
@@ -22,14 +23,17 @@ export async function POST(request: Request) {
       );
     }
 
+    const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.CONTACT_EMAIL_TO;
-    if (!to) {
+    if (!apiKey || !to) {
+      console.error('Contact API misconfigured: missing RESEND_API_KEY or CONTACT_EMAIL_TO');
       return NextResponse.json(
-        { error: 'Adresse de destination non configurée' },
+        { error: 'Service email non configuré' },
         { status: 500 }
       );
     }
 
+    const resend = new Resend(apiKey);
     const subjectLabel = SUBJECT_LABELS[subject] ?? subject;
 
     const { error } = await resend.emails.send({
