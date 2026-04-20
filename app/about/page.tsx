@@ -3,9 +3,16 @@ import { ShieldCheck, Users, TrendingUp, ArrowRight, Sparkles } from 'lucide-rea
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'À propos - EduTech Formation',
+  title: 'À propos',
   description:
-    'Un organisme certifié Qualiopi, engagé pour des formations professionnelles concrètes et de qualité.',
+    "Découvrez EduTech Formation : organisme certifié Qualiopi, engagé pour des formations professionnelles concrètes, accessibles à tous et finançables (CPF, OPCO).",
+  alternates: { canonical: '/about' },
+  openGraph: {
+    title: 'À propos | EduTech Formation',
+    description:
+      "Organisme de formation certifié Qualiopi, engagé pour la qualité et l'accessibilité.",
+    url: 'https://edutechformations.com/about',
+  },
 };
 
 export default function AboutPage() {

@@ -10,9 +10,16 @@ import {
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Certification Qualiopi - EduTech Formation',
+  title: 'Certification Qualiopi',
   description:
-    'Notre engagement qualité, reconnu par une certification nationale Qualiopi.',
+    "EduTech Formation est certifié Qualiopi, gage de qualité reconnu par l'État. Découvrez ce que cette certification implique pour vos formations.",
+  alternates: { canonical: '/qualiopi' },
+  openGraph: {
+    title: 'Certification Qualiopi | EduTech Formation',
+    description:
+      'Organisme de formation certifié Qualiopi : qualité reconnue par une certification nationale.',
+    url: 'https://edutechformations.com/qualiopi',
+  },
 };
 
 export default function QualiopiPage() {

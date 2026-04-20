@@ -1,8 +1,15 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Mentions légales - EduTech Formation',
-  description: 'Mentions légales du site edutechformations.com.',
+  title: 'Mentions légales',
+  description:
+    'Mentions légales du site edutechformations.com : éditeur, hébergeur, propriété intellectuelle et coordonnées de contact.',
+  alternates: { canonical: '/mentions-legales' },
+  openGraph: {
+    title: 'Mentions légales | EduTech Formation',
+    description: 'Mentions légales du site edutechformations.com.',
+    url: 'https://edutechformations.com/mentions-legales',
+  },
 };
 
 export default function MentionsLegalesPage() {

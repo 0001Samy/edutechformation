@@ -11,9 +11,16 @@ import {
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Financer votre formation - EduTech Formation',
+  title: 'Financer votre formation : CPF, OPCO, France Travail',
   description:
-    'Découvrez les dispositifs de financement pour votre formation professionnelle : CPF, OPCO, France Travail.',
+    'Comment financer votre formation professionnelle ? CPF, OPCO, France Travail, plan de développement des compétences : tous les dispositifs expliqués par EduTech Formation.',
+  alternates: { canonical: '/financement' },
+  openGraph: {
+    title: 'Financer votre formation | EduTech Formation',
+    description:
+      'Tous les dispositifs de financement pour votre formation professionnelle : CPF, OPCO, France Travail.',
+    url: 'https://edutechformations.com/financement',
+  },
 };
 
 export default function FinancementPage() {

@@ -10,9 +10,16 @@ import {
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Accessibilité et Handicap - EduTech Formation',
+  title: 'Accessibilité et Handicap',
   description:
-    "Notre engagement pour l'accueil de tous les apprenants, y compris les personnes en situation de handicap.",
+    "EduTech Formation s'engage à rendre ses formations accessibles à tous, y compris aux personnes en situation de handicap. Référent handicap : Olivier Gil.",
+  alternates: { canonical: '/accessibilite' },
+  openGraph: {
+    title: 'Accessibilité et Handicap | EduTech Formation',
+    description:
+      "Notre engagement pour l'accueil des apprenants en situation de handicap.",
+    url: 'https://edutechformations.com/accessibilite',
+  },
 };
 
 export default function AccessibilitePage() {

@@ -1,9 +1,15 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Règlement intérieur - EduTech Formation',
+  title: 'Règlement intérieur',
   description:
-    'Règlement intérieur applicable aux stagiaires des formations Edutech Formations.',
+    'Règlement intérieur applicable aux stagiaires des formations EduTech : règles de vie, sécurité, hygiène, discipline et droits des stagiaires.',
+  alternates: { canonical: '/reglement' },
+  openGraph: {
+    title: 'Règlement intérieur | EduTech Formation',
+    description: 'Règlement intérieur applicable aux stagiaires des formations EduTech.',
+    url: 'https://edutechformations.com/reglement',
+  },
 };
 
 export default function ReglementPage() {
