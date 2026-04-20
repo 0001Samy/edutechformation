@@ -11,12 +11,29 @@ export default function ContactPage() {
     subject: '',
     message: '',
   });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    alert('Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
+    setStatus('sending');
+    setErrorMessage('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Échec de l'envoi");
+      }
+      setStatus('success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      setStatus('error');
+      setErrorMessage(err instanceof Error ? err.message : 'Erreur inconnue');
+    }
   };
 
   const handleChange = (
@@ -157,11 +174,23 @@ export default function ContactPage() {
 
                 <button
                   type='submit'
-                  className='w-full bg-gradient-to-r from-primary to-teal-600 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2'
+                  disabled={status === 'sending'}
+                  className='w-full bg-gradient-to-r from-primary to-teal-600 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100'
                 >
-                  Envoyer le message
+                  {status === 'sending' ? 'Envoi en cours...' : 'Envoyer le message'}
                   <Send size={20} />
                 </button>
+
+                {status === 'success' && (
+                  <p className='text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3 text-sm'>
+                    Message envoyé ! Nous vous répondrons dans les plus brefs délais.
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className='text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm'>
+                    {errorMessage || "Une erreur est survenue. Merci de réessayer ou de nous contacter directement par email."}
+                  </p>
+                )}
               </form>
             </div>
 

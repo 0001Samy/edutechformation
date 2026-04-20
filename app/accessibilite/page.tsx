@@ -78,10 +78,10 @@ export default function AccessibilitePage() {
                 <p className='text-gray-700'>
                   Email :{' '}
                   <a
-                    href='mailto:contact@edutechformations.com'
+                    href='mailto:edutech.formations@gmail.com'
                     className='text-primary hover:underline'
                   >
-                    contact@edutechformations.com
+                    edutech.formations@gmail.com
                   </a>
                 </p>
                 <p className='text-gray-700'>

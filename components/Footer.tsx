@@ -83,10 +83,10 @@ export default function Footer() {
             <ul className='space-y-2 text-gray-400'>
               <li>
                 <a
-                  href='mailto:contact@edutechformations.com'
+                  href='mailto:edutech.formations@gmail.com'
                   className='hover:text-white transition-colors'
                 >
-                  contact@edutechformations.com
+                  edutech.formations@gmail.com
                 </a>
               </li>
               <li>

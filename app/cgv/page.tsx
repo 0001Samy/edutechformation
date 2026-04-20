@@ -163,10 +163,10 @@ export default function CGVPage() {
               <p className='text-gray-700 leading-relaxed'>
                 Toute réclamation doit être formulée par écrit à l&apos;adresse{' '}
                 <a
-                  href='mailto:contact@edutechformations.com'
+                  href='mailto:edutech.formations@gmail.com'
                   className='text-primary hover:underline'
                 >
-                  contact@edutechformations.com
+                  edutech.formations@gmail.com
                 </a>
                 . Nous nous engageons à accuser réception sous 48 heures et à
                 apporter une réponse sous 15 jours ouvrés.
