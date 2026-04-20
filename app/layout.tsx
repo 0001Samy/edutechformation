@@ -15,9 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://edutechformations.com'),
   title: 'EduTech Formation - Formations professionnelles',
   description:
     'Développez vos compétences avec nos formations professionnelles de qualité',
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
