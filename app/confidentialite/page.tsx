@@ -50,10 +50,10 @@ export default function ConfidentialitePage() {
                 <p>
                   Contact :{' '}
                   <a
-                    href='mailto:edutech.formations@gmail.com'
+                    href='mailto:contact@edutechformations.com'
                     className='text-primary hover:underline'
                   >
-                    edutech.formations@gmail.com
+                    contact@edutechformations.com
                   </a>
                 </p>
               </div>
@@ -154,10 +154,10 @@ export default function ConfidentialitePage() {
               <p className='text-gray-700 mt-3'>
                 Pour exercer ces droits, contactez-nous à{' '}
                 <a
-                  href='mailto:edutech.formations@gmail.com'
+                  href='mailto:contact@edutechformations.com'
                   className='text-primary hover:underline'
                 >
-                  edutech.formations@gmail.com
+                  contact@edutechformations.com
                 </a>
                 .
               </p>

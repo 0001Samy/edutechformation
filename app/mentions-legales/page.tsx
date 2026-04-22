@@ -42,10 +42,10 @@ export default function MentionsLegalesPage() {
                 <p>
                   Contact :{' '}
                   <a
-                    href='mailto:edutech.formations@gmail.com'
+                    href='mailto:contact@edutechformations.com'
                     className='text-primary hover:underline'
                   >
-                    edutech.formations@gmail.com
+                    contact@edutechformations.com
                   </a>
                 </p>
                 <p>
@@ -98,10 +98,10 @@ export default function MentionsLegalesPage() {
                 d&apos;accès, de rectification et de suppression de vos données.
                 Pour exercer ces droits, contactez-nous à{' '}
                 <a
-                  href='mailto:edutech.formations@gmail.com'
+                  href='mailto:contact@edutechformations.com'
                   className='text-primary hover:underline'
                 >
-                  edutech.formations@gmail.com
+                  contact@edutechformations.com
                 </a>
                 .
               </p>
