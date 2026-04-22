@@ -8,17 +8,56 @@ const SUBJECT_LABELS: Record<string, string> = {
   info: "Demande d'information",
   inscription: 'Inscription à une formation',
   financement: 'Question sur le financement',
+  handicap: 'Situation de handicap',
   technique: 'Support technique',
   autre: 'Autre',
 };
 
+const LIMITS = {
+  name: 100,
+  email: 254,
+  phone: 30,
+  subject: 50,
+  message: 5000,
+};
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function str(value: unknown, max: number): string {
+  if (typeof value !== 'string') return '';
+  return value.trim().slice(0, max);
+}
+
 export async function POST(request: Request) {
   try {
-    const { name, email, phone, subject, message } = await request.json();
+    const body = await request.json().catch(() => null);
+    if (!body || typeof body !== 'object') {
+      return NextResponse.json({ error: 'Requête invalide' }, { status: 400 });
+    }
+
+    const name = str(body.name, LIMITS.name);
+    const email = str(body.email, LIMITS.email);
+    const phone = str(body.phone, LIMITS.phone);
+    const subject = str(body.subject, LIMITS.subject);
+    const message = str(body.message, LIMITS.message);
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: 'Champs requis manquants' },
+        { status: 400 }
+      );
+    }
+
+    if (!EMAIL_REGEX.test(email) || /[\r\n]/.test(email)) {
+      return NextResponse.json(
+        { error: 'Adresse email invalide' },
+        { status: 400 }
+      );
+    }
+
+    if (/[\r\n]/.test(name) || /[\r\n]/.test(subject)) {
+      return NextResponse.json(
+        { error: 'Champs invalides' },
         { status: 400 }
       );
     }
@@ -34,7 +73,7 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(apiKey);
-    const subjectLabel = SUBJECT_LABELS[subject] ?? subject;
+    const subjectLabel = SUBJECT_LABELS[subject] ?? 'Autre';
 
     const { error } = await resend.emails.send({
       from: 'EduTech Formation <contact@edutechformations.com>',

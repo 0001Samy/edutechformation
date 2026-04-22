@@ -5,7 +5,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'À propos',
   description:
-    "Découvrez EduTech Formation : organisme certifié Qualiopi, engagé pour des formations professionnelles concrètes, accessibles à tous et finançables (CPF, OPCO).",
+    "Découvrez EduTech Formation : organisme certifié Qualiopi, engagé pour des formations professionnelles concrètes, accessibles à tous et finançables (OPCO, France Travail).",
   alternates: { canonical: '/about' },
   openGraph: {
     title: 'À propos | EduTech Formation',
@@ -128,7 +128,7 @@ export default function AboutPage() {
                   de la catégorie « Actions de formation ». Cette certification
                   nationale atteste de la qualité du processus mis en œuvre et
                   vous permet de bénéficier de financements publics ou mutualisés
-                  (CPF, OPCO, France Travail).
+                  (OPCO, France Travail).
                 </p>
                 <Link
                   href='/qualiopi'

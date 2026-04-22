@@ -1,11 +1,11 @@
 import {
   ShieldCheck,
   CheckCircle,
-  CreditCard,
   Building2,
   Briefcase,
   ArrowRight,
   Sparkles,
+  Download,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -54,11 +54,21 @@ export default function QualiopiPage() {
             <p className='text-primary font-medium mb-4'>
               Actions de formation
             </p>
-            <p className='text-sm text-gray-500'>
-              N° de déclaration d&apos;activité : à compléter
-              <br />
+            <p className='text-sm text-gray-500 mb-6'>
               Certification obtenue en 2024
+              <br />
+              Déclaration d&apos;activité enregistrée sous le numéro
+              11 94 12031 94 auprès du préfet de région d&apos;Île-de-France
             </p>
+            <a
+              href='/certificat-qualiopi.pdf'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-flex items-center gap-2 bg-gradient-to-r from-primary to-teal-600 text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition-all hover:scale-105'
+            >
+              <Download size={18} />
+              Télécharger le certificat
+            </a>
           </div>
         </div>
       </section>
@@ -128,17 +138,7 @@ export default function QualiopiPage() {
             La certification Qualiopi vous permet de faire financer votre
             formation par les dispositifs publics et mutualisés :
           </p>
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-            <div className='bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100'>
-              <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center mb-4'>
-                <CreditCard className='text-white' size={28} />
-              </div>
-              <h3 className='text-xl font-bold mb-2'>CPF</h3>
-              <p className='text-gray-600'>
-                Utilisez votre Compte Personnel de Formation pour financer
-                directement votre inscription.
-              </p>
-            </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             <div className='bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100'>
               <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center mb-4'>
                 <Building2 className='text-white' size={28} />

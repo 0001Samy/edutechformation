@@ -1,9 +1,5 @@
 import { type SchemaTypeDefinition } from 'sanity'
 import formation from './formation';
+import moduleDetaille from './moduleDetaille';
 
-export const schemaTypes = [
-  formation
-];
-export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [],
-}
+export const schemaTypes: SchemaTypeDefinition[] = [formation, moduleDetaille];

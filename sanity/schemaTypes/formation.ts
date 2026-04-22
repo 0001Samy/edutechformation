@@ -34,6 +34,22 @@ export default defineType({
     }),
 
     defineField({
+      name: "pole",
+      title: "Pôle",
+      type: "string",
+      group: "general",
+      description: "Pôle thématique de la formation",
+      options: {
+        list: [
+          { title: "Droit", value: "droit" },
+          { title: "Médiation", value: "mediation" },
+          { title: "IA", value: "ia" },
+        ],
+        layout: "radio",
+      },
+    }),
+
+    defineField({
       name: "description",
       title: "Description",
       type: "text",
@@ -93,12 +109,34 @@ export default defineType({
     }),
 
     defineField({
-      name: "prix",
-      title: "Tarif (exonéré de TVA)",
+      name: "prixInter",
+      title: "Tarif INTER / individuel (exonéré de TVA)",
       type: "number",
       group: "modalites",
       description:
-        "Montant en euros — Exonérée de TVA — Art. 261.4.4 a du CGI",
+        "Montant en euros pour une formation inter-entreprises ou individuelle — mis en avant",
+      validation: (Rule) => Rule.min(0),
+    }),
+
+    defineField({
+      name: "prixIntra",
+      title: "Tarif INTRA (exonéré de TVA)",
+      type: "number",
+      group: "modalites",
+      description:
+        "Montant en euros pour une formation intra-entreprise",
+      validation: (Rule) => Rule.min(0),
+    }),
+
+    defineField({
+      name: "prix",
+      title: "Tarif (legacy — utiliser INTER/INTRA)",
+      type: "number",
+      group: "modalites",
+      description:
+        "Champ historique. Utilisez désormais « Tarif INTER / individuel » et « Tarif INTRA ».",
+      hidden: ({ document }) =>
+        document?.prixIntra != null || document?.prixInter != null,
     }),
 
     defineField({
@@ -141,9 +179,10 @@ export default defineType({
       name: "modules",
       title: "Modules du programme",
       type: "array",
-      of: [{ type: "string" }],
       group: "pedagogie",
-      description: "Liste des modules de la formation (optionnel, pour un programme détaillé)",
+      description:
+        "Liste des modules. Chaque module peut avoir des sous-points optionnels.",
+      of: [{ type: "moduleDetaille" }],
     }),
 
     // ━━━ ÉVALUATION & SUIVI ━━━

@@ -15,11 +15,6 @@ export default function Footer() {
               Formations professionnelles de qualité pour développer vos
               compétences.
             </p>
-            <p className='text-gray-400 text-sm'>
-              SAS au capital de 1 000 €
-              <br />
-              SIREN : 977 619 089
-            </p>
           </div>
 
           {/* Navigation */}
@@ -36,7 +31,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href='/cours'
+                  href='/formations'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
                   Formations
@@ -91,10 +86,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href='tel:+33662091892'
+                  href='tel:+33633247764'
                   className='hover:text-white transition-colors'
                 >
-                  06 62 09 18 92
+                  06 33 24 77 64
                 </a>
               </li>
               <li>52 rue Montesquieu, 92600 Asnières-sur-Seine</li>
@@ -182,8 +177,7 @@ export default function Footer() {
 
         <div className='border-t border-gray-800 mt-8 pt-8 text-center text-gray-400'>
           <p>
-            &copy; {new Date().getFullYear()} Edutech Formations — SAS au
-            capital de 1 000 € — SIREN 977 619 089
+            &copy; {new Date().getFullYear()} Edutech Formations
           </p>
         </div>
       </div>

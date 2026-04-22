@@ -58,10 +58,10 @@ export default function MentionsLegalesPage() {
                 <p>
                   Téléphone :{' '}
                   <a
-                    href='tel:+33662091892'
+                    href='tel:+33633247764'
                     className='text-primary hover:underline'
                   >
-                    06 62 09 18 92
+                    06 33 24 77 64
                   </a>
                 </p>
               </div>

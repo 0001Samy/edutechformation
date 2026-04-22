@@ -54,8 +54,8 @@ export default function CGVPage() {
                 Toute inscription à une formation est conditionnée par
                 l&apos;envoi d&apos;un bulletin d&apos;inscription dûment
                 complété et signé, accompagné du règlement ou de l&apos;accord de
-                prise en charge par un organisme financeur (OPCO, France Travail,
-                CPF). L&apos;inscription est définitive à réception de ces
+                prise en charge par un organisme financeur (OPCO, France
+                Travail). L&apos;inscription est définitive à réception de ces
                 éléments.
               </p>
             </div>

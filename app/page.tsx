@@ -97,7 +97,7 @@ export default function Home() {
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <Link
-                href='/cours'
+                href='/formations'
                 className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg hover:shadow-xl'
               >
                 Découvrir nos formations
@@ -221,7 +221,7 @@ export default function Home() {
           </p>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <Link
-              href='/cours'
+              href='/formations'
               className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg'
             >
               Voir les formations

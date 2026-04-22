@@ -149,6 +149,7 @@ export default function ContactPage() {
                     <option value='financement'>
                       Question sur le financement
                     </option>
+                    <option value='handicap'>Situation de handicap</option>
                     <option value='technique'>Support technique</option>
                     <option value='autre'>Autre</option>
                   </select>
@@ -221,10 +222,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className='font-semibold mb-1'>Téléphone</h3>
                       <a
-                        href='tel:+33662091892'
+                        href='tel:+33633247764'
                         className='text-primary hover:underline'
                       >
-                        +33 6 62 09 18 92
+                        +33 6 33 24 77 64
                       </a>
                       <p className='text-sm text-gray-600 mt-1'>
                         Lun - Ven : 9h00 - 18h00
@@ -239,9 +240,9 @@ export default function ContactPage() {
                     <div>
                       <h3 className='font-semibold mb-1'>Adresse</h3>
                       <p className='text-gray-700'>
-                        123 Avenue de la République
+                        52 Rue Montesquieu
                         <br />
-                        75011 Paris, France
+                        92600 Asnières-sur-Seine, France
                       </p>
                     </div>
                   </div>

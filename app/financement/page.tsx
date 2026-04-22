@@ -1,5 +1,4 @@
 import {
-  CreditCard,
   Building2,
   Briefcase,
   Landmark,
@@ -11,14 +10,14 @@ import {
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Financer votre formation : CPF, OPCO, France Travail',
+  title: 'Financer votre formation : OPCO, France Travail',
   description:
-    'Comment financer votre formation professionnelle ? CPF, OPCO, France Travail, plan de développement des compétences : tous les dispositifs expliqués par EduTech Formation.',
+    'Comment financer votre formation professionnelle ? OPCO, France Travail, plan de développement des compétences : tous les dispositifs expliqués par EduTech Formation.',
   alternates: { canonical: '/financement' },
   openGraph: {
     title: 'Financer votre formation | EduTech Formation',
     description:
-      'Tous les dispositifs de financement pour votre formation professionnelle : CPF, OPCO, France Travail.',
+      'Tous les dispositifs de financement pour votre formation professionnelle : OPCO, France Travail.',
     url: 'https://edutechformations.com/financement',
   },
 };
@@ -61,45 +60,8 @@ export default function FinancementPage() {
         </div>
       </section>
 
-      {/* CPF */}
-      <section className='py-12 bg-white'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='flex items-start gap-5'>
-            <div className='w-16 h-16 bg-gradient-to-br from-primary to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0'>
-              <CreditCard className='text-white' size={32} />
-            </div>
-            <div>
-              <h2 className='text-2xl md:text-3xl font-bold mb-4'>
-                Le Compte Personnel de Formation (CPF)
-              </h2>
-              <p className='text-gray-700 mb-4 leading-relaxed'>
-                Chaque actif (salarié ou demandeur d&apos;emploi) dispose
-                d&apos;un CPF alimenté chaque année. Vous pouvez utiliser vos
-                droits pour financer directement votre inscription à nos
-                formations éligibles.
-              </p>
-              <div className='space-y-3'>
-                {[
-                  'Consultez vos droits sur moncompteformation.gouv.fr',
-                  'Inscription en ligne directe avec paiement via votre CPF',
-                  "Un reste à charge de 100 € s'applique depuis mai 2024",
-                ].map((item, i) => (
-                  <div key={i} className='flex items-start gap-3'>
-                    <CheckCircle
-                      className='text-primary flex-shrink-0 mt-0.5'
-                      size={20}
-                    />
-                    <p className='text-gray-700'>{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* OPCO */}
-      <section className='py-12'>
+      <section className='py-12 bg-white'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex items-start gap-5'>
             <div className='w-16 h-16 bg-gradient-to-br from-primary to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0'>
@@ -135,7 +97,7 @@ export default function FinancementPage() {
       </section>
 
       {/* France Travail */}
-      <section className='py-12 bg-white'>
+      <section className='py-12'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex items-start gap-5'>
             <div className='w-16 h-16 bg-gradient-to-br from-primary to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0'>
@@ -171,7 +133,7 @@ export default function FinancementPage() {
       </section>
 
       {/* Financement employeur */}
-      <section className='py-12'>
+      <section className='py-12 bg-white'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex items-start gap-5'>
             <div className='w-16 h-16 bg-gradient-to-br from-primary to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0'>
@@ -192,7 +154,7 @@ export default function FinancementPage() {
       </section>
 
       {/* Autofinancement */}
-      <section className='py-12 bg-white'>
+      <section className='py-12'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex items-start gap-5'>
             <div className='w-16 h-16 bg-gradient-to-br from-primary to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0'>

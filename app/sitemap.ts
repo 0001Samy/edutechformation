@@ -7,7 +7,7 @@ const BASE_URL = 'https://edutechformations.com';
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }[] = [
   { path: '', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
-  { path: '/cours', priority: 0.9, changeFrequency: 'weekly' },
+  { path: '/formations', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/financement', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/temoignages', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/contact', priority: 0.7, changeFrequency: 'yearly' },
@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       groq`*[_type == "formation" && defined(slug.current)]{ "slug": slug.current }`
     );
     formationEntries = slugs.map((s) => ({
-      url: `${BASE_URL}/cours/${s.slug}`,
+      url: `${BASE_URL}/formations/${s.slug}`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,

@@ -15,7 +15,6 @@ import {
   Target,
   FileText,
   CalendarClock,
-  Euro,
   Info,
 } from "lucide-react";
 
@@ -61,12 +60,12 @@ export async function generateMetadata({
   const description =
     course.description?.slice(0, 160) ??
     `Découvrez la formation ${title} proposée par EduTech Formation, organisme certifié Qualiopi.`;
-  const url = `https://edutechformations.com/cours/${slug}`;
+  const url = `https://edutechformations.com/formations/${slug}`;
 
   return {
     title,
     description,
-    alternates: { canonical: `/cours/${slug}` },
+    alternates: { canonical: `/formations/${slug}` },
     openGraph: {
       title: `${title} | EduTech Formation`,
       description,
@@ -151,6 +150,8 @@ export default async function Page({
         etudiants,
         note,
         prix,
+        prixIntra,
+        prixInter,
         participantsMin,
         participantsMax,
         modules,
@@ -179,7 +180,7 @@ export default async function Page({
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
             Formation introuvable
           </h1>
-          <Link href="/cours" className="text-primary hover:underline">
+          <Link href="/formations" className="text-primary hover:underline">
             ← Retour aux formations
           </Link>
         </div>
@@ -255,15 +256,36 @@ export default async function Page({
 
             {/* Encadré tarif */}
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
-              <h3 className="text-2xl font-bold mb-2">Tarif de la formation</h3>
-              {course.prix != null && (
-                <>
-                  <p className="text-5xl font-bold mb-2">{course.prix}€</p>
-                  <p className="text-teal-200 text-sm mb-6">
-                    Exonérée de TVA — Art. 261.4.4 a du CGI
+              <h3 className="text-2xl font-bold mb-4">Tarif de la formation</h3>
+
+              {course.prixInter != null && (
+                <div className="mb-4 pb-4 border-b border-white/20">
+                  <p className="text-xs uppercase tracking-wider text-accent font-semibold mb-1">
+                    INTER / individuel
                   </p>
-                </>
+                  <p className="text-4xl font-bold">{course.prixInter}€</p>
+                </div>
               )}
+
+              {course.prixIntra != null && (
+                <div className="mb-4">
+                  <p className="text-xs uppercase tracking-wider text-teal-200 font-semibold mb-1">
+                    INTRA
+                  </p>
+                  <p className="text-2xl font-bold">{course.prixIntra}€</p>
+                </div>
+              )}
+
+              {course.prixInter == null && course.prixIntra == null && course.prix != null && (
+                <p className="text-5xl font-bold mb-2">{course.prix}€</p>
+              )}
+
+              {(course.prixInter != null || course.prixIntra != null || course.prix != null) && (
+                <p className="text-teal-200 text-sm mb-6">
+                  Exonérée de TVA — Art. 261.4.4 a du CGI
+                </p>
+              )}
+
               <ul className="space-y-3 text-teal-100 text-sm">
                 {course.duree && (
                   <li className="flex items-center gap-2">
@@ -289,14 +311,6 @@ export default async function Page({
                     </span>
                   </li>
                 )}
-                <li className="flex items-center gap-2">
-                  <CheckCircle size={18} />
-                  <span>Support des formateurs</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle size={18} />
-                  <span>Certification à la fin</span>
-                </li>
               </ul>
             </div>
           </div>
@@ -343,15 +357,46 @@ export default async function Page({
               {/* Programme / Modules */}
               {course.modules && course.modules.length > 0 && (
                 <Section title="Programme de la formation" icon={BookOpen}>
-                  <ul className="space-y-3">
-                    {course.modules.map((module: string, index: number) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary to-teal-900 text-white rounded-full flex items-center justify-center font-semibold text-sm shadow-md border border-teal-600/30">
-                          {index + 1}
-                        </div>
-                        <span className="pt-1 text-gray-700">{module}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-4">
+                    {course.modules.map(
+                      (
+                        module: string | { titre?: string; sousPoints?: string[] },
+                        index: number
+                      ) => {
+                        const titre =
+                          typeof module === "string" ? module : module?.titre ?? "";
+                        const sousPoints =
+                          typeof module === "string"
+                            ? []
+                            : Array.isArray(module?.sousPoints)
+                            ? module.sousPoints
+                            : [];
+
+                        return (
+                          <li key={index} className="flex items-start gap-3">
+                            <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary to-teal-900 text-white rounded-full flex items-center justify-center font-semibold text-sm shadow-md border border-teal-600/30">
+                              {index + 1}
+                            </div>
+                            <div className="flex-1 pt-1">
+                              <p className="text-gray-800 font-medium">{titre}</p>
+                              {sousPoints.length > 0 && (
+                                <ul className="mt-2 ml-2 space-y-1.5">
+                                  {sousPoints.map((sp, i) => (
+                                    <li
+                                      key={i}
+                                      className="flex items-start gap-2 text-gray-600 text-sm"
+                                    >
+                                      <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-primary" />
+                                      <span className="leading-relaxed">{sp}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          </li>
+                        );
+                      }
+                    )}
                   </ul>
                 </Section>
               )}
@@ -455,7 +500,27 @@ export default async function Page({
                       </dd>
                     </div>
                   )}
-                  {course.prix != null && (
+                  {course.prixInter != null && (
+                    <div>
+                      <dt className="text-sm font-medium text-gray-500">
+                        Tarif INTER / individuel
+                      </dt>
+                      <dd className="text-gray-900 font-semibold">
+                        {course.prixInter}€
+                      </dd>
+                    </div>
+                  )}
+                  {course.prixIntra != null && (
+                    <div>
+                      <dt className="text-sm font-medium text-gray-500">
+                        Tarif INTRA
+                      </dt>
+                      <dd className="text-gray-900 font-semibold">
+                        {course.prixIntra}€
+                      </dd>
+                    </div>
+                  )}
+                  {course.prixInter == null && course.prixIntra == null && course.prix != null && (
                     <div>
                       <dt className="text-sm font-medium text-gray-500">
                         Tarif
@@ -463,10 +528,12 @@ export default async function Page({
                       <dd className="text-gray-900 font-semibold">
                         {course.prix}€
                       </dd>
-                      <dd className="text-xs text-gray-400 mt-1">
-                        Exonérée de TVA — Art. 261.4.4 a du CGI
-                      </dd>
                     </div>
+                  )}
+                  {(course.prixInter != null || course.prixIntra != null || course.prix != null) && (
+                    <dd className="text-xs text-gray-400 mt-1">
+                      Exonérée de TVA — Art. 261.4.4 a du CGI
+                    </dd>
                   )}
                 </dl>
               </div>

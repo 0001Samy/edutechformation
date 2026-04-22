@@ -21,16 +21,15 @@ export const metadata: Metadata = {
     template: '%s | EduTech Formation',
   },
   description:
-    "Organisme de formation professionnelle certifié Qualiopi. Formations bureautique, IA, web, marketing digital — éligibles CPF, OPCO et financements publics.",
+    "Organisme de formation professionnelle certifié Qualiopi. Formations droit, médiation et IA — éligibles OPCO et financements publics.",
   keywords: [
     'formation professionnelle',
     'organisme de formation',
     'Qualiopi',
-    'CPF',
     'OPCO',
-    'formation bureautique',
+    'formation droit',
+    'formation médiation',
     'formation IA',
-    'formation web',
     'EduTech Formation',
   ],
   alternates: { canonical: '/' },
@@ -41,14 +40,14 @@ export const metadata: Metadata = {
     siteName: 'EduTech Formation',
     title: 'EduTech Formation — Organisme de formation certifié Qualiopi',
     description:
-      "Formations professionnelles certifiées Qualiopi : bureautique, IA, web, marketing digital. Éligibles CPF, OPCO et financements publics.",
+      "Formations professionnelles certifiées Qualiopi : droit, médiation, IA. Éligibles OPCO et financements publics.",
     images: [{ url: '/edutech-logo.svg', width: 1200, height: 630, alt: 'EduTech Formation' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'EduTech Formation — Organisme de formation certifié Qualiopi',
     description:
-      "Formations professionnelles certifiées Qualiopi, éligibles CPF et OPCO.",
+      "Formations professionnelles certifiées Qualiopi, éligibles OPCO et financements publics.",
     images: ['/edutech-logo.svg'],
   },
   robots: {
