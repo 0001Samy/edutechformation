@@ -92,7 +92,6 @@ export default function Footer() {
                   06 33 24 77 64
                 </a>
               </li>
-              <li>52 rue Montesquieu, 92600 Asnières-sur-Seine</li>
               <li>
                 <Link
                   href='/contact'

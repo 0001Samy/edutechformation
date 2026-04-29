@@ -39,9 +39,6 @@ export default function MentionsLegalesPage() {
                   EDUTECH FORMATIONS
                 </p>
                 <p>SAS au capital de 1 000 €</p>
-                <p>
-                  Siège social : 52 rue Montesquieu, 92600 Asnières-sur-Seine
-                </p>
                 <p>SIREN : 977 619 089</p>
                 <p>SIRET (siège) : 977 619 089 00021</p>
                 <p>Code NAF : 85.59A — Formation continue d&apos;adultes</p>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, Send } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ContactPage() {
@@ -227,23 +227,6 @@ export default function ContactPage() {
                       >
                         +33 6 33 24 77 64
                       </a>
-                      <p className='text-sm text-gray-600 mt-1'>
-                        Lun - Ven : 9h00 - 18h00
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className='flex items-start gap-4 group'>
-                    <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md'>
-                      <MapPin className='text-white' size={24} />
-                    </div>
-                    <div>
-                      <h3 className='font-semibold mb-1'>Adresse</h3>
-                      <p className='text-gray-700'>
-                        52 Rue Montesquieu
-                        <br />
-                        92600 Asnières-sur-Seine, France
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -259,11 +242,7 @@ export default function ContactPage() {
                     <span className='font-semibold'>9h00 - 18h00</span>
                   </div>
                   <div className='flex justify-between'>
-                    <span>Samedi</span>
-                    <span className='font-semibold'>10h00 - 16h00</span>
-                  </div>
-                  <div className='flex justify-between'>
-                    <span>Dimanche</span>
+                    <span>Samedi - Dimanche</span>
                     <span className='font-semibold'>Fermé</span>
                   </div>
                 </div>

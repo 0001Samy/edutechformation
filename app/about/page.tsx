@@ -149,9 +149,8 @@ export default function AboutPage() {
           <h2 className='text-3xl font-bold mb-6'>Informations légales</h2>
           <p className='text-lg text-gray-700 leading-relaxed'>
             Edutech Formations est une SAS au capital de 1 000 €, immatriculée
-            sous le SIREN 977 619 089. Siège social : 52 rue Montesquieu, 92600
-            Asnières-sur-Seine. Activité : Formation continue d&apos;adultes (NAF
-            85.59A).
+            sous le SIREN 977 619 089. Activité : Formation continue
+            d&apos;adultes (NAF 85.59A).
           </p>
         </div>
       </section>

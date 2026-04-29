@@ -53,7 +53,6 @@ export default function ConfidentialitePage() {
                 <p className='font-bold text-gray-900'>
                   EDUTECH FORMATIONS — SAS au capital de 1 000 €
                 </p>
-                <p>52 rue Montesquieu, 92600 Asnières-sur-Seine</p>
                 <p>
                   Contact :{' '}
                   <a
