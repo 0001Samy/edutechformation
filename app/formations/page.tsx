@@ -134,7 +134,7 @@ export default function CoursPage() {
                 <Link
                   key={formation._id}
                   href={`/formations/${formation.slug.current}`}
-                  className='course-card group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2'
+                  className='course-card group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col h-full'
                 >
                   <div className='h-48 flex items-center justify-center relative overflow-hidden'>
                     {formation.imageUrl ? (
@@ -149,11 +149,11 @@ export default function CoursPage() {
                       <p className='text-gray-400 relative z-10'>[Image]</p>
                     )}
                   </div>
-                  <div className='p-6'>
+                  <div className='p-6 flex flex-col flex-1'>
                     <h2 className='text-2xl font-bold mb-3 text-gray-900 group-hover:text-primary transition-colors'>
                       {formation.titre}
                     </h2>
-                    <p className='text-gray-600 mb-6 leading-relaxed'>
+                    <p className='text-gray-600 mb-6 leading-relaxed flex-1'>
                       {formation.description}
                     </p>
 
