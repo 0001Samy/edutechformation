@@ -32,7 +32,19 @@ function formatDuree(heures: number): string {
     const jours = heures / 7;
     return `${jours} jour${jours > 1 ? 's' : ''}`;
   }
-  return `${heures}h`;
+  return `${heures} h`;
+}
+
+// ─── Ligne « clé : valeur » harmonisée ───────────────────────────────────────
+function InfoRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className='flex justify-between items-baseline gap-3 text-sm'>
+      <span className='text-gray-500 shrink-0'>{label}</span>
+      <span className='font-medium text-gray-800 text-right truncate'>
+        {children}
+      </span>
+    </div>
+  );
 }
 
 // ─── Composant onglets prix par carte ───────────────────────────────────────
@@ -62,7 +74,7 @@ function PriceTabs({
   return (
     <div
       className='border-t border-gray-100 mt-auto'
-      onClick={(e) => e.preventDefault()} // empêche la navigation sur le Link parent
+      onClick={(e) => e.preventDefault()}
     >
       {/* Onglets */}
       <div className='flex border-b border-gray-200'>
@@ -74,7 +86,7 @@ function PriceTabs({
               e.stopPropagation();
               setActive(tab.key);
             }}
-            className={`flex-1 py-2.5 text-xs font-bold tracking-wider uppercase transition-all ${
+            className={`flex-1 py-2.5 text-[11px] font-bold tracking-wider uppercase transition-all ${
               active === tab.key
                 ? 'bg-foreground text-white'
                 : 'bg-white text-gray-400 hover:text-gray-600'
@@ -85,32 +97,23 @@ function PriceTabs({
         ))}
       </div>
 
-      {/* Contenu du tab actif */}
-      <div className='p-4 space-y-2.5'>
+      {/* Contenu — hauteur identique grâce à la structure commune */}
+      <div className='p-5 flex flex-col gap-3'>
         {active === 'inter' && prixInter != null && (
           <>
-            <div className='flex justify-between items-center text-sm'>
-              <span className='text-gray-500'>Format</span>
-              <span className='font-medium text-gray-800 text-right'>
-                En présentiel ou à distance
-              </span>
-            </div>
-            {duree && (
-              <div className='flex justify-between items-center text-sm'>
-                <span className='text-gray-500'>Durée</span>
-                <span className='font-medium text-gray-800'>
-                  {formatDuree(duree)}
+            <div className='space-y-2'>
+              <InfoRow label='Format'>Présentiel ou à distance</InfoRow>
+              <InfoRow label='Durée'>{duree ? formatDuree(duree) : '—'}</InfoRow>
+              <InfoRow label='Tarif'>
+                <span className='font-bold text-foreground'>
+                  {formatPrice(prixInter)}
                 </span>
-              </div>
-            )}
-            <div className='flex justify-between items-center text-sm'>
-              <span className='text-gray-500'>Prix</span>
-              <span className='font-bold text-foreground'>
-                {formatPrice(prixInter)}{' '}
-                <span className='font-normal text-gray-400 text-xs'>HT / stagiaire</span>
-              </span>
+                <span className='font-normal text-gray-400 text-xs ml-1'>
+                  HT / stagiaire
+                </span>
+              </InfoRow>
             </div>
-            <div className='pt-1 space-y-2'>
+            <div className='flex flex-col gap-2 mt-1'>
               <Link
                 href={lien || `/formations/${slug}`}
                 onClick={(e) => e.stopPropagation()}
@@ -132,28 +135,19 @@ function PriceTabs({
 
         {active === 'intra' && prixIntra != null && (
           <>
-            <div className='flex justify-between items-center text-sm'>
-              <span className='text-gray-500'>Format</span>
-              <span className='font-medium text-gray-800 text-right'>
-                Dans vos locaux ou à distance
-              </span>
-            </div>
-            {duree && (
-              <div className='flex justify-between items-center text-sm'>
-                <span className='text-gray-500'>Durée</span>
-                <span className='font-medium text-gray-800'>
-                  {formatDuree(duree)}
+            <div className='space-y-2'>
+              <InfoRow label='Format'>Dans vos locaux ou à distance</InfoRow>
+              <InfoRow label='Durée'>{duree ? formatDuree(duree) : '—'}</InfoRow>
+              <InfoRow label='Tarif'>
+                <span className='font-bold text-foreground'>
+                  {formatPrice(prixIntra)}
                 </span>
-              </div>
-            )}
-            <div className='flex justify-between items-center text-sm'>
-              <span className='text-gray-500'>Prix</span>
-              <span className='font-bold text-foreground'>
-                {formatPrice(prixIntra)}{' '}
-                <span className='font-normal text-gray-400 text-xs'>HT / groupe</span>
-              </span>
+                <span className='font-normal text-gray-400 text-xs ml-1'>
+                  HT / groupe
+                </span>
+              </InfoRow>
             </div>
-            <div className='pt-1 space-y-2'>
+            <div className='flex flex-col gap-2 mt-1'>
               <Link
                 href={lien || `/formations/${slug}`}
                 onClick={(e) => e.stopPropagation()}
@@ -175,18 +169,28 @@ function PriceTabs({
 
         {active === 'sur-mesure' && (
           <>
-            <p className='text-sm text-gray-600 leading-relaxed'>
-              Vous avez un besoin spécifique ? Nous adaptons le contenu, le
-              format et les dates à votre organisation.
-            </p>
-            <div className='pt-1'>
+            <div className='space-y-2'>
+              <InfoRow label='Format'>Adapté à votre organisation</InfoRow>
+              <InfoRow label='Durée'>Sur mesure</InfoRow>
+              <InfoRow label='Tarif'>
+                <span className='font-bold text-foreground'>Sur devis</span>
+              </InfoRow>
+            </div>
+            <div className='flex flex-col gap-2 mt-1'>
               <Link
                 href='/contact'
                 onClick={(e) => e.stopPropagation()}
                 className='flex items-center justify-center gap-2 w-full bg-primary text-white py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity'
               >
                 <Phone size={15} />
-                Nous contacter
+                NOUS CONTACTER
+              </Link>
+              <Link
+                href='/contact'
+                onClick={(e) => e.stopPropagation()}
+                className='flex items-center justify-center w-full border border-gray-200 text-gray-600 py-2 rounded-lg text-sm font-medium hover:border-primary hover:text-primary transition-colors'
+              >
+                Demander un devis
               </Link>
             </div>
           </>
@@ -292,10 +296,10 @@ export default function FormationsPage() {
             </p>
           )}
 
-          {/* Grille de cartes */}
+          {/* Grille de cartes — alignement automatique grâce à hauteurs réservées */}
           <div
             ref={cardsRef}
-            className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+            className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch'
           >
             {filteredFormations.map((formation: any) => {
               if (!formation.slug?.current) return null;
@@ -303,15 +307,15 @@ export default function FormationsPage() {
               return (
                 <div
                   key={formation._id}
-                  className='course-card group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col'
+                  className='course-card group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full'
                 >
-                  {/* Image + titre → lien vers le détail */}
+                  {/* Bloc image + texte (cliquable) */}
                   <Link
                     href={`/formations/${formation.slug.current}`}
                     className='flex flex-col flex-1'
                   >
-                    {/* Image */}
-                    <div className='h-48 flex items-center justify-center relative overflow-hidden bg-gray-100'>
+                    {/* Image — hauteur fixe */}
+                    <div className='h-48 relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center'>
                       {formation.imageUrl ? (
                         <Image
                           src={formation.imageUrl}
@@ -325,45 +329,54 @@ export default function FormationsPage() {
                       )}
                     </div>
 
-                    {/* Contenu texte */}
+                    {/* Bloc texte — hauteurs réservées pour titre & description */}
                     <div className='p-6 flex flex-col flex-1'>
-                      <h2 className='text-xl font-bold mb-3 text-gray-900 group-hover:text-primary transition-colors leading-snug'>
+                      {/* Titre : 2 lignes max, hauteur fixe ~3.5rem */}
+                      <h2 className='text-lg font-bold text-gray-900 group-hover:text-primary transition-colors leading-snug line-clamp-2 min-h-[3.25rem] mb-3'>
                         {formation.titre}
                       </h2>
-                      <p className='text-gray-500 text-sm mb-4 leading-relaxed flex-1'>
-                        {formation.description}
+
+                      {/* Description : 3 lignes max, hauteur fixe ~4.5rem */}
+                      <p className='text-gray-500 text-sm leading-relaxed line-clamp-3 min-h-[4rem] mb-4'>
+                        {formation.description || ' '}
                       </p>
 
-                      {/* Méta (durée, élèves, note) */}
-                      <div className='flex items-center gap-4 text-xs text-gray-400 pt-3 border-t border-gray-100'>
-                        {formation.duree && (
-                          <div className='flex items-center gap-1'>
-                            <Clock size={14} className='text-primary' />
-                            <span>{formatDuree(formation.duree)}</span>
-                          </div>
-                        )}
-                        {formation.etudiants && (
-                          <div className='flex items-center gap-1'>
-                            <Users size={14} className='text-primary' />
-                            <span>{formation.etudiants} formés</span>
-                          </div>
-                        )}
-                        {formation.note && (
-                          <div className='flex items-center gap-1 ml-auto'>
-                            <Star
-                              size={14}
-                              className='fill-accent text-accent'
-                            />
-                            <span className='font-semibold text-gray-600'>
-                              {formation.note}/5
-                            </span>
-                          </div>
-                        )}
+                      {/* Méta — toujours collée au bas du bloc texte */}
+                      <div className='mt-auto flex items-center justify-between gap-3 text-xs text-gray-500 pt-3 border-t border-gray-100'>
+                        <div className='flex items-center gap-1.5'>
+                          <Clock size={14} className='text-primary' />
+                          <span>
+                            {formation.duree
+                              ? formatDuree(formation.duree)
+                              : '—'}
+                          </span>
+                        </div>
+                        <div className='flex items-center gap-1.5'>
+                          <Users size={14} className='text-primary' />
+                          <span>
+                            {formation.etudiants
+                              ? `${formation.etudiants} formés`
+                              : 'Nouveau'}
+                          </span>
+                        </div>
+                        <div className='flex items-center gap-1.5'>
+                          <Star
+                            size={14}
+                            className={
+                              formation.note
+                                ? 'fill-accent text-accent'
+                                : 'text-gray-300'
+                            }
+                          />
+                          <span className='font-semibold text-gray-600'>
+                            {formation.note ? `${formation.note}/5` : '—'}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </Link>
 
-                  {/* Bloc prix avec onglets — hors du Link */}
+                  {/* Bloc onglets prix — hors du Link, structure identique pour tous les tabs */}
                   <PriceTabs
                     prixInter={formation.prixInter}
                     prixIntra={formation.prixIntra}
