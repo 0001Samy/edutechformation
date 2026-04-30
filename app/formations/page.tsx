@@ -204,6 +204,8 @@ function PriceTabs({
 export default function FormationsPage() {
   const [formations, setFormations] = useState<any[]>([]);
   const [selectedPole, setSelectedPole] = useState<PoleValue>('all');
+  const heroRef = useRef<HTMLDivElement>(null);
+  const filtersRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -226,25 +228,100 @@ export default function FormationsPage() {
     return formations.filter((f) => f.pole === selectedPole);
   }, [formations, selectedPole]);
 
+  // ─── Animation d'apparition du hero + filtres (au mount) ───────────────────
   useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      if (heroRef.current) {
+        tl.from(heroRef.current.children, {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.12,
+        });
+      }
+
+      if (filtersRef.current) {
+        tl.from(
+          filtersRef.current.children,
+          {
+            opacity: 0,
+            y: 15,
+            scale: 0.9,
+            duration: 0.5,
+            stagger: 0.06,
+            ease: 'back.out(1.7)',
+          },
+          '-=0.4'
+        );
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  // ─── Animation des cartes au scroll (ScrollTrigger.batch) ──────────────────
+  // Batch = anime ENSEMBLE les cartes qui entrent dans le viewport, avec un
+  // stagger naturel basé sur leur ordre d'apparition (et non leur index global).
+  // → la carte n°9 ne traîne plus 0.9s avant d'apparaître.
+  useEffect(() => {
+    if (!cardsRef.current) return;
+    const cards = cardsRef.current.querySelectorAll<HTMLElement>('.course-card');
+    if (cards.length === 0) return;
+
+    // État initial : invisibles, légèrement décalées et zoomées
+    gsap.set(cards, {
+      opacity: 0,
+      y: 60,
+      scale: 0.94,
+      transformOrigin: 'center bottom',
+    });
+
+    const triggers = ScrollTrigger.batch(cards, {
+      start: 'top 88%',
+      once: true,
+      onEnter: (batch) => {
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.85,
+          ease: 'power3.out',
+          stagger: { each: 0.09, from: 'start' },
+          overwrite: 'auto',
+          clearProps: 'transform', // libère les transforms pour le hover CSS
+        });
+      },
+    });
+
+    // Refresh nécessaire si les images modifient la hauteur de la grille
+    ScrollTrigger.refresh();
+
+    return () => {
+      triggers.forEach((t) => t.kill());
+    };
+  }, [filteredFormations]);
+
+  // ─── Changement de filtre : fade out → setState → batch ré-anime ───────────
+  const handlePoleChange = (newPole: PoleValue) => {
+    if (newPole === selectedPole) return;
+
     if (cardsRef.current) {
       const cards = cardsRef.current.querySelectorAll('.course-card');
-      cards.forEach((card, index) => {
-        gsap.from(card, {
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          opacity: 0,
-          y: 50,
-          duration: 0.6,
-          delay: index * 0.1,
-          ease: 'power3.out',
-        });
+      gsap.to(cards, {
+        opacity: 0,
+        y: -10,
+        scale: 0.97,
+        duration: 0.25,
+        stagger: 0.025,
+        ease: 'power2.in',
+        onComplete: () => setSelectedPole(newPole),
       });
+    } else {
+      setSelectedPole(newPole);
     }
-  }, [filteredFormations]);
+  };
 
   return (
     <div className='bg-gradient-to-b from-gray-50 to-white'>
@@ -253,7 +330,10 @@ export default function FormationsPage() {
         <div className='absolute inset-0 opacity-10'>
           <div className='absolute top-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl'></div>
         </div>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
+        <div
+          ref={heroRef}
+          className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'
+        >
           <h1 className='text-5xl md:text-6xl font-bold mb-6'>Nos Formations</h1>
           <p className='text-xl md:text-2xl text-teal-50 max-w-2xl'>
             Choisissez la formation parfaite et développez vos compétences.
@@ -266,6 +346,7 @@ export default function FormationsPage() {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           {/* Filtre pôles */}
           <div
+            ref={filtersRef}
             role='tablist'
             aria-label='Filtrer par pôle'
             className='flex flex-wrap justify-center gap-2 sm:gap-3 mb-12'
@@ -277,7 +358,7 @@ export default function FormationsPage() {
                   key={pole.value}
                   role='tab'
                   aria-selected={active}
-                  onClick={() => setSelectedPole(pole.value)}
+                  onClick={() => handlePoleChange(pole.value)}
                   className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all ${
                     active
                       ? 'bg-gradient-to-r from-primary to-teal-600 text-white shadow-lg scale-105'
@@ -301,8 +382,12 @@ export default function FormationsPage() {
             ref={cardsRef}
             className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch'
           >
-            {filteredFormations.map((formation: any) => {
+            {filteredFormations.map((formation: any, idx: number) => {
               if (!formation.slug?.current) return null;
+
+              // Les 3 premières images sont au-dessus de la ligne de flottaison
+              // (LCP) → on les charge en priorité.
+              const isAboveTheFold = idx < 3;
 
               return (
                 <div
@@ -323,6 +408,7 @@ export default function FormationsPage() {
                           fill
                           sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
                           className='object-cover'
+                          priority={isAboveTheFold}
                         />
                       ) : (
                         <p className='text-gray-400 text-sm'>Image à venir</p>

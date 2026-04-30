@@ -58,6 +58,7 @@ export default function AboutPage() {
                 src='/about-team.jpg'
                 alt='Groupe de personnes en formation'
                 fill
+                sizes='(max-width: 768px) 100vw, 50vw'
                 className='object-cover'
               />
             </div>

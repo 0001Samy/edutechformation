@@ -19,7 +19,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
-* {
+/* Smooth scroll uniquement sur l'élément racine — Next.js le désactivera
+   automatiquement pendant les transitions de route grâce à l'attribut
+   data-scroll-behavior="smooth" placé sur <html>.
+   Évite le bug de scroll saccadé entre pages. */
+html {
   scroll-behavior: smooth;
 }
 
