@@ -228,37 +228,41 @@ export default function FormationsPage() {
     return formations.filter((f) => f.pole === selectedPole);
   }, [formations, selectedPole]);
 
-  // ─── Animation d'apparition du hero + filtres (au mount) ───────────────────
+  // ─── Animation d'apparition du hero + filtres (au mount, une seule fois) ───
+  // Garde useRef contre le double-mount du Strict Mode en dev qui cassait
+  // l'animation (les filtres restaient invisibles après revert).
+  const introAnimated = useRef(false);
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    if (introAnimated.current) return;
+    introAnimated.current = true;
 
-      if (heroRef.current) {
-        tl.from(heroRef.current.children, {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    if (heroRef.current) {
+      tl.from(heroRef.current.children, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.12,
+        clearProps: 'all',
+      });
+    }
+
+    if (filtersRef.current) {
+      tl.from(
+        filtersRef.current.children,
+        {
           opacity: 0,
-          y: 30,
-          duration: 0.8,
-          stagger: 0.12,
-        });
-      }
-
-      if (filtersRef.current) {
-        tl.from(
-          filtersRef.current.children,
-          {
-            opacity: 0,
-            y: 15,
-            scale: 0.9,
-            duration: 0.5,
-            stagger: 0.06,
-            ease: 'back.out(1.7)',
-          },
-          '-=0.4'
-        );
-      }
-    });
-
-    return () => ctx.revert();
+          y: 15,
+          scale: 0.9,
+          duration: 0.5,
+          stagger: 0.06,
+          ease: 'back.out(1.7)',
+          clearProps: 'all', // libère les styles inline une fois l'anim terminée
+        },
+        '-=0.4'
+      );
+    }
   }, []);
 
   // ─── Animation des cartes au scroll (ScrollTrigger.batch) ──────────────────
