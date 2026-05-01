@@ -117,7 +117,9 @@ function BulletList({ items }: { items: string[] }) {
             className="text-primary flex-shrink-0 mt-0.5"
             size={18}
           />
-          <span className="text-gray-700 leading-relaxed">{item}</span>
+          <span className="text-gray-700 leading-relaxed text-justify hyphens-auto flex-1">
+            {item}
+          </span>
         </li>
       ))}
     </ul>
@@ -127,7 +129,9 @@ function BulletList({ items }: { items: string[] }) {
 // Composant pour afficher du texte
 function TextBlock({ text }: { text: string }) {
   return (
-    <p className="text-gray-700 leading-relaxed whitespace-pre-line">{text}</p>
+    <p className="text-gray-700 leading-relaxed whitespace-pre-line text-justify hyphens-auto">
+      {text}
+    </p>
   );
 }
 
@@ -263,7 +267,7 @@ export default async function Page({
                   <p className="text-xs uppercase tracking-wider text-accent font-semibold mb-1">
                     INTER / individuel
                   </p>
-                  <p className="text-4xl font-bold">{course.prixInter}€</p>
+                  <p className="text-3xl font-bold">{course.prixInter}€</p>
                 </div>
               )}
 
@@ -272,7 +276,7 @@ export default async function Page({
                   <p className="text-xs uppercase tracking-wider text-teal-200 font-semibold mb-1">
                     INTRA
                   </p>
-                  <p className="text-2xl font-bold">{course.prixIntra}€</p>
+                  <p className="text-3xl font-bold">{course.prixIntra}€</p>
                 </div>
               )}
 
