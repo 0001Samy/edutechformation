@@ -1,9 +1,11 @@
 'use client';
 
 import { Star, Quote } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from '@/lib/i18n/LanguageContext';
+import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -61,7 +63,21 @@ const testimonials = [
 ];
 
 export default function TemoignagesPage() {
+  const t = useTranslation();
   const testimonialsRef = useRef<HTMLDivElement>(null);
+
+  // Tableau plat de toutes les chaînes à traduire (role + text + formation pour chaque)
+  const allTexts = useMemo(() => {
+    const arr: string[] = [];
+    testimonials.forEach((tm) => {
+      arr.push(tm.role);
+      arr.push(tm.text);
+      arr.push(tm.formation);
+    });
+    return arr;
+  }, []);
+
+  const [translatedTexts] = useTranslatedContent(allTexts);
 
   useEffect(() => {
     if (testimonialsRef.current) {
@@ -91,10 +107,11 @@ export default function TemoignagesPage() {
           <div className='absolute top-20 left-10 w-96 h-96 bg-accent rounded-full blur-3xl'></div>
         </div>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
-          <h1 className='text-5xl md:text-6xl font-bold mb-6'>Témoignages</h1>
+          <h1 className='text-5xl md:text-6xl font-bold mb-6'>
+            {t.testimonials.heroTitle}
+          </h1>
           <p className='text-xl md:text-2xl text-teal-50 max-w-2xl'>
-            Découvrez ce que nos étudiants pensent de nos formations et comment
-            elles ont transformé leur carrière
+            {t.testimonials.heroSubtitle}
           </p>
         </div>
       </section>
@@ -110,56 +127,61 @@ export default function TemoignagesPage() {
               <Star className='fill-accent text-accent' size={40} />
             </div>
             <p className='text-3xl font-bold text-gray-900 mb-2'>
-              4.8/5 sur plus de 5000 avis
+              {t.testimonials.ratingValue}
             </p>
-            <p className='text-gray-600'>
-              La satisfaction de nos étudiants est notre priorité
-            </p>
+            <p className='text-gray-600'>{t.testimonials.ratingSubtitle}</p>
           </div>
 
           <div
             ref={testimonialsRef}
             className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
           >
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className='testimonial-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 relative group'
-              >
-                <Quote
-                  className='absolute top-6 right-6 text-primary/5 group-hover:text-primary/10 transition-colors'
-                  size={64}
-                />
-                <div className='flex items-center gap-4 mb-4 relative z-10'>
-                  <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md'>
-                    {testimonial.avatar}
+            {testimonials.map((testimonial, index) => {
+              const tRole = translatedTexts[index * 3] || testimonial.role;
+              const tText = translatedTexts[index * 3 + 1] || testimonial.text;
+              const tFormation =
+                translatedTexts[index * 3 + 2] || testimonial.formation;
+
+              return (
+                <div
+                  key={index}
+                  className='testimonial-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 relative group'
+                >
+                  <Quote
+                    className='absolute top-6 right-6 text-primary/5 group-hover:text-primary/10 transition-colors'
+                    size={64}
+                  />
+                  <div className='flex items-center gap-4 mb-4 relative z-10'>
+                    <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md'>
+                      {testimonial.avatar}
+                    </div>
+                    <div>
+                      <h3 className='font-bold text-gray-900'>
+                        {testimonial.name}
+                      </h3>
+                      <p className='text-sm text-gray-600'>{tRole}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className='font-bold text-gray-900'>
-                      {testimonial.name}
-                    </h3>
-                    <p className='text-sm text-gray-600'>{testimonial.role}</p>
+                  <div className='flex gap-1 mb-4'>
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className='fill-accent text-accent'
+                        size={18}
+                      />
+                    ))}
                   </div>
-                </div>
-                <div className='flex gap-1 mb-4'>
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className='fill-accent text-accent'
-                      size={18}
-                    />
-                  ))}
-                </div>
-                <p className='text-gray-700 mb-6 leading-relaxed italic'>
-                  "{testimonial.text}"
-                </p>
-                <div className='pt-4 border-t border-gray-100'>
-                  <p className='text-sm text-primary font-semibold'>
-                    {testimonial.formation}
+                  <p className='text-gray-700 mb-6 leading-relaxed italic'>
+                    &ldquo;{tText}&rdquo;
                   </p>
+                  <div className='pt-4 border-t border-gray-100'>
+                    <p className='text-sm text-primary font-semibold'>
+                      {tFormation}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -170,17 +192,16 @@ export default function TemoignagesPage() {
         </div>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10'>
           <h2 className='text-4xl md:text-5xl font-bold mb-6'>
-            Rejoignez nos étudiants satisfaits
+            {t.testimonials.finalCtaTitle}
           </h2>
           <p className='text-xl text-gray-300 mb-10 leading-relaxed'>
-            Commencez votre formation dès aujourd'hui et transformez votre
-            avenir professionnel
+            {t.testimonials.finalCtaSubtitle}
           </p>
           <a
             href='/formations'
             className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg'
           >
-            Voir nos formations
+            {t.testimonials.finalCtaButton}
           </a>
         </div>
       </section>

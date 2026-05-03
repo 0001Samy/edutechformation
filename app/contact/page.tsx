@@ -2,8 +2,10 @@
 
 import { Mail, Phone, Send } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from '@/lib/i18n/LanguageContext';
 
 export default function ContactPage() {
+  const t = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -55,11 +57,10 @@ export default function ContactPage() {
         </div>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
           <h1 className='text-5xl md:text-6xl font-bold mb-6'>
-            Contactez-nous
+            {t.contact.heroTitle}
           </h1>
           <p className='text-xl md:text-2xl text-teal-50 max-w-2xl'>
-            Une question ? Besoin d'informations ? Notre équipe est là pour vous
-            accompagner
+            {t.contact.heroSubtitle}
           </p>
         </div>
       </section>
@@ -69,16 +70,14 @@ export default function ContactPage() {
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
             {/* Contact Form */}
             <div className='bg-white rounded-2xl shadow-xl p-8 md:p-10'>
-              <h2 className='text-3xl font-bold mb-6'>
-                Envoyez-nous un message
-              </h2>
+              <h2 className='text-3xl font-bold mb-6'>{t.contact.formTitle}</h2>
               <form onSubmit={handleSubmit} className='space-y-6'>
                 <div>
                   <label
                     htmlFor='name'
                     className='block text-sm font-medium text-gray-700 mb-2'
                   >
-                    Nom complet *
+                    {t.contact.labelName}
                   </label>
                   <input
                     type='text'
@@ -96,7 +95,7 @@ export default function ContactPage() {
                     htmlFor='email'
                     className='block text-sm font-medium text-gray-700 mb-2'
                   >
-                    Email *
+                    {t.contact.labelEmail}
                   </label>
                   <input
                     type='email'
@@ -114,7 +113,7 @@ export default function ContactPage() {
                     htmlFor='phone'
                     className='block text-sm font-medium text-gray-700 mb-2'
                   >
-                    Téléphone
+                    {t.contact.labelPhone}
                   </label>
                   <input
                     type='tel'
@@ -131,7 +130,7 @@ export default function ContactPage() {
                     htmlFor='subject'
                     className='block text-sm font-medium text-gray-700 mb-2'
                   >
-                    Sujet *
+                    {t.contact.labelSubject}
                   </label>
                   <select
                     id='subject'
@@ -141,17 +140,12 @@ export default function ContactPage() {
                     onChange={handleChange}
                     className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent'
                   >
-                    <option value=''>Sélectionnez un sujet</option>
-                    <option value='info'>Demande d'information</option>
-                    <option value='inscription'>
-                      Inscription à une formation
-                    </option>
-                    <option value='financement'>
-                      Question sur le financement
-                    </option>
-                    <option value='handicap'>Situation de handicap</option>
-                    <option value='technique'>Support technique</option>
-                    <option value='autre'>Autre</option>
+                    <option value=''>{t.contact.subjectSelect}</option>
+                    <option value='info'>{t.contact.subjectInfo}</option>
+                    <option value='inscription'>{t.contact.subjectRegistration}</option>
+                    <option value='financement'>{t.contact.subjectFinancing}</option>
+                    <option value='technique'>{t.contact.subjectTechnical}</option>
+                    <option value='autre'>{t.contact.subjectOther}</option>
                   </select>
                 </div>
 
@@ -160,7 +154,7 @@ export default function ContactPage() {
                     htmlFor='message'
                     className='block text-sm font-medium text-gray-700 mb-2'
                   >
-                    Message *
+                    {t.contact.labelMessage}
                   </label>
                   <textarea
                     id='message'
@@ -178,18 +172,18 @@ export default function ContactPage() {
                   disabled={status === 'sending'}
                   className='w-full bg-gradient-to-r from-primary to-teal-600 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100'
                 >
-                  {status === 'sending' ? 'Envoi en cours...' : 'Envoyer le message'}
+                  {status === 'sending' ? t.contact.sending : t.contact.sendButton}
                   <Send size={20} />
                 </button>
 
                 {status === 'success' && (
                   <p className='text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3 text-sm'>
-                    Message envoyé ! Nous vous répondrons dans les plus brefs délais.
+                    {t.contact.messageSent}
                   </p>
                 )}
                 {status === 'error' && (
                   <p className='text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm'>
-                    {errorMessage || "Une erreur est survenue. Merci de réessayer ou de nous contacter directement par email."}
+                    {errorMessage || t.contact.messageError}
                   </p>
                 )}
               </form>
@@ -198,14 +192,16 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div>
               <div className='bg-white rounded-2xl shadow-xl p-8 md:p-10 mb-8'>
-                <h2 className='text-3xl font-bold mb-8'>Nos coordonnées</h2>
+                <h2 className='text-3xl font-bold mb-8'>
+                  {t.contact.coordinatesTitle}
+                </h2>
                 <div className='space-y-6'>
                   <div className='flex items-start gap-4 group'>
                     <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-md'>
                       <Mail className='text-white' size={24} />
                     </div>
                     <div>
-                      <h3 className='font-semibold mb-1'>Email</h3>
+                      <h3 className='font-semibold mb-1'>{t.contact.emailLabel}</h3>
                       <a
                         href='mailto:contact@edutechformations.com'
                         className='text-primary hover:underline'
@@ -220,7 +216,7 @@ export default function ContactPage() {
                       <Phone className='text-white' size={24} />
                     </div>
                     <div>
-                      <h3 className='font-semibold mb-1'>Téléphone</h3>
+                      <h3 className='font-semibold mb-1'>{t.contact.phoneLabel}</h3>
                       <a
                         href='tel:+33633247764'
                         className='text-primary hover:underline'
@@ -234,16 +230,18 @@ export default function ContactPage() {
 
               <div className='bg-gradient-to-br from-primary to-teal-700 text-white rounded-2xl p-8 shadow-xl'>
                 <h3 className='text-2xl font-bold mb-6'>
-                  Horaires d'ouverture
+                  {t.contact.openingHoursTitle}
                 </h3>
                 <div className='space-y-3'>
                   <div className='flex justify-between'>
-                    <span>Lundi - Vendredi</span>
+                    <span>{t.contact.monFri}</span>
                     <span className='font-semibold'>9h00 - 18h00</span>
                   </div>
                   <div className='flex justify-between'>
-                    <span>Samedi - Dimanche</span>
-                    <span className='font-semibold'>Fermé</span>
+                    <span>
+                      {t.contact.sat} - {t.contact.sun}
+                    </span>
+                    <span className='font-semibold'>{t.contact.closed}</span>
                   </div>
                 </div>
               </div>

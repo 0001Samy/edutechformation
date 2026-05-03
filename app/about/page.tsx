@@ -1,21 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import { ShieldCheck, Users, TrendingUp, ArrowRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'À propos',
-  description:
-    "Découvrez EduTech Formation : organisme certifié Qualiopi, engagé pour des formations professionnelles concrètes, accessibles à tous et finançables (OPCO, France Travail).",
-  alternates: { canonical: '/about' },
-  openGraph: {
-    title: 'À propos | EduTech Formation',
-    description:
-      "Organisme de formation certifié Qualiopi, engagé pour la qualité et l'accessibilité.",
-    url: 'https://edutechformations.com/about',
-  },
-};
+import { useTranslation } from '@/lib/i18n/LanguageContext';
 
 export default function AboutPage() {
+  const t = useTranslation();
+
   return (
     <div className='bg-gradient-to-b from-gray-50 to-white'>
       {/* Hero Section */}
@@ -26,11 +18,10 @@ export default function AboutPage() {
         </div>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
           <h1 className='text-5xl md:text-6xl font-bold mb-6'>
-            À propos d&apos;Edutech Formations
+            {t.about.heroTitle}
           </h1>
           <p className='text-xl md:text-2xl text-teal-50 max-w-3xl'>
-            Un organisme certifié Qualiopi, engagé pour des formations
-            professionnelles concrètes et de qualité.
+            {t.about.heroSubtitle}
           </p>
         </div>
       </section>
@@ -40,17 +31,12 @@ export default function AboutPage() {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-center'>
             <div>
-              <h2 className='text-4xl font-bold mb-6'>Notre mission</h2>
+              <h2 className='text-4xl font-bold mb-6'>{t.about.missionTitle}</h2>
               <p className='text-lg text-gray-700 mb-4 leading-relaxed'>
-                Edutech Formations accompagne les professionnels dans le
-                développement de leurs compétences à travers des formations en
-                présentiel, concrètes et directement applicables en entreprise.
+                {t.about.missionText1}
               </p>
               <p className='text-lg text-gray-700 leading-relaxed'>
-                Nous croyons que la formation professionnelle doit être
-                accessible, exigeante et orientée résultats. Chaque programme est
-                conçu pour répondre à des besoins réels, avec des objectifs
-                pédagogiques clairs et mesurables.
+                {t.about.missionText2}
               </p>
             </div>
             <div className='bg-gradient-to-br from-primary/30 to-teal-900/30 h-96 rounded-lg flex items-center justify-center relative overflow-hidden shadow-lg border border-teal-100'>
@@ -70,9 +56,11 @@ export default function AboutPage() {
       <section className='py-20 bg-white'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-16'>
-            <h2 className='text-4xl md:text-5xl font-bold mb-4'>Nos valeurs</h2>
+            <h2 className='text-4xl md:text-5xl font-bold mb-4'>
+              {t.about.valuesTitle}
+            </h2>
             <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
-              Ce qui guide notre approche au quotidien
+              {t.about.valuesSubtitle}
             </p>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
@@ -80,10 +68,11 @@ export default function AboutPage() {
               <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent to-yellow-500 rounded-2xl mb-6 group-hover:scale-110 transition-transform'>
                 <ShieldCheck className='text-white' size={32} />
               </div>
-              <h3 className='text-2xl font-bold mb-4 text-gray-900'>Qualité</h3>
+              <h3 className='text-2xl font-bold mb-4 text-gray-900'>
+                {t.about.qualityTitle}
+              </h3>
               <p className='text-gray-600 leading-relaxed'>
-                Notre certification Qualiopi témoigne de notre engagement pour un
-                processus de formation rigoureux et transparent.
+                {t.about.qualityText}
               </p>
             </div>
             <div className='group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100'>
@@ -91,21 +80,21 @@ export default function AboutPage() {
                 <Users className='text-white' size={32} />
               </div>
               <h3 className='text-2xl font-bold mb-4 text-gray-900'>
-                Proximité
+                {t.about.proximityTitle}
               </h3>
               <p className='text-gray-600 leading-relaxed'>
-                Des groupes à taille humaine et un accompagnement personnalisé,
-                avant, pendant et après la formation.
+                {t.about.proximityText}
               </p>
             </div>
             <div className='group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100'>
               <div className='inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-foreground to-gray-700 rounded-2xl mb-6 group-hover:scale-110 transition-transform'>
                 <TrendingUp className='text-white' size={32} />
               </div>
-              <h3 className='text-2xl font-bold mb-4 text-gray-900'>Impact</h3>
+              <h3 className='text-2xl font-bold mb-4 text-gray-900'>
+                {t.about.impactTitle}
+              </h3>
               <p className='text-gray-600 leading-relaxed'>
-                Nous mesurons l&apos;efficacité de chaque formation à travers des
-                évaluations de compétences et des enquêtes de satisfaction.
+                {t.about.impactText}
               </p>
             </div>
           </div>
@@ -121,21 +110,15 @@ export default function AboutPage() {
                 <ShieldCheck className='text-white' size={32} />
               </div>
               <div>
-                <h2 className='text-3xl font-bold mb-4'>
-                  Certification Qualiopi
-                </h2>
+                <h2 className='text-3xl font-bold mb-4'>{t.about.qualiopiTitle}</h2>
                 <p className='text-lg text-gray-700 leading-relaxed mb-4'>
-                  Edutech Formations est certifié Qualiopi depuis 2024 au titre
-                  de la catégorie « Actions de formation ». Cette certification
-                  nationale atteste de la qualité du processus mis en œuvre et
-                  vous permet de bénéficier de financements publics ou mutualisés
-                  (OPCO, France Travail).
+                  {t.about.qualiopiText}
                 </p>
                 <Link
                   href='/qualiopi'
                   className='text-primary font-semibold hover:underline inline-flex items-center gap-1'
                 >
-                  En savoir plus sur Qualiopi
+                  {t.about.qualiopiLink}
                   <ArrowRight size={16} />
                 </Link>
               </div>
@@ -147,11 +130,9 @@ export default function AboutPage() {
       {/* Informations légales */}
       <section className='py-16 bg-white'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl font-bold mb-6'>Informations légales</h2>
+          <h2 className='text-3xl font-bold mb-6'>{t.about.legalTitle}</h2>
           <p className='text-lg text-gray-700 leading-relaxed'>
-            Edutech Formations est une SAS au capital de 1 000 €, immatriculée
-            sous le SIREN 977 619 089. Activité : Formation continue
-            d&apos;adultes (NAF 85.59A).
+            {t.about.legalText}
           </p>
         </div>
       </section>
@@ -164,19 +145,19 @@ export default function AboutPage() {
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10'>
           <div className='inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6'>
             <Sparkles size={18} className='text-accent' />
-            <span className='text-sm font-medium'>Échangeons ensemble</span>
+            <span className='text-sm font-medium'>{t.about.finalCtaBadge}</span>
           </div>
           <h2 className='text-4xl md:text-5xl font-bold mb-6'>
-            Envie d&apos;en savoir plus ?
+            {t.about.finalCtaTitle}
           </h2>
           <p className='text-xl text-gray-300 mb-10 leading-relaxed'>
-            Contactez-nous pour échanger sur vos besoins en formation.
+            {t.about.finalCtaSubtitle}
           </p>
           <Link
             href='/contact'
             className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg'
           >
-            Nous contacter
+            {t.common.contactUs}
             <ArrowRight size={20} />
           </Link>
         </div>

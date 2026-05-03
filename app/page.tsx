@@ -13,12 +13,14 @@ import {
   Target,
 } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslation } from '@/lib/i18n/LanguageContext';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function Home() {
+  const t = useTranslation();
   const heroRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -83,31 +85,29 @@ export default function Home() {
           <div ref={heroRef} className='text-center max-w-4xl mx-auto'>
             <div className='inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6'>
               <Sparkles size={18} className='text-accent' />
-              <span className='text-sm font-medium'>
-                Formations certifiantes 2025
-              </span>
+              <span className='text-sm font-medium'>{t.home.heroBadge}</span>
             </div>
             <h1 className='text-5xl md:text-7xl font-bold mb-6 leading-tight'>
-              Transformez votre <span className='text-accent'>carrière</span>{' '}
-              avec nos formations
+              {t.home.heroTitle1}{' '}
+              <span className='text-accent'>{t.home.heroTitleAccent}</span>{' '}
+              {t.home.heroTitle2}
             </h1>
             <p className='text-xl md:text-2xl mb-10 text-teal-50 leading-relaxed'>
-              Rejoignez plus de 10,000 professionnels qui ont accéléré leur
-              carrière grâce à nos formations expertes
+              {t.home.heroSubtitle}
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <Link
                 href='/formations'
                 className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg hover:shadow-xl'
               >
-                Découvrir nos formations
+                {t.home.ctaDiscover}
                 <ArrowRight size={20} />
               </Link>
               <Link
                 href='/contact'
                 className='inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all border border-white/20'
               >
-                Parler à un conseiller
+                {t.home.ctaTalk}
               </Link>
             </div>
           </div>
@@ -120,27 +120,27 @@ export default function Home() {
           <div ref={statsRef} className='grid grid-cols-2 md:grid-cols-4 gap-8'>
             <div className='text-center'>
               <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
-                10K+
+                {t.home.stat1Value}
               </div>
-              <div className='text-gray-600'>Étudiants formés</div>
+              <div className='text-gray-600'>{t.home.stat1Label}</div>
             </div>
             <div className='text-center'>
               <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
-                95%
+                {t.home.stat2Value}
               </div>
-              <div className='text-gray-600'>Taux de satisfaction</div>
+              <div className='text-gray-600'>{t.home.stat2Label}</div>
             </div>
             <div className='text-center'>
               <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
-                50+
+                {t.home.stat3Value}
               </div>
-              <div className='text-gray-600'>Formations</div>
+              <div className='text-gray-600'>{t.home.stat3Label}</div>
             </div>
             <div className='text-center'>
               <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
-                100+
+                {t.home.stat4Value}
               </div>
-              <div className='text-gray-600'>Experts formateurs</div>
+              <div className='text-gray-600'>{t.home.stat4Label}</div>
             </div>
           </div>
         </div>
@@ -151,10 +151,10 @@ export default function Home() {
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='text-center mb-16'>
             <h2 className='text-4xl md:text-5xl font-bold mb-4'>
-              Pourquoi nous choisir ?
+              {t.home.featuresTitle}
             </h2>
             <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
-              Une approche complète pour votre réussite professionnelle
+              {t.home.featuresSubtitle}
             </p>
           </div>
           <div
@@ -166,11 +166,10 @@ export default function Home() {
                 <BookOpen className='text-white' size={32} />
               </div>
               <h3 className='text-2xl font-bold mb-4 text-gray-900'>
-                Formations complètes
+                {t.home.feature1Title}
               </h3>
               <p className='text-gray-600 leading-relaxed'>
-                Des cours structurés et complets pour maîtriser chaque sujet en
-                profondeur, avec des projets pratiques.
+                {t.home.feature1Desc}
               </p>
             </div>
             <div className='feature-card group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2'>
@@ -178,11 +177,10 @@ export default function Home() {
                 <Users className='text-white' size={32} />
               </div>
               <h3 className='text-2xl font-bold mb-4 text-gray-900'>
-                Formateurs experts
+                {t.home.feature2Title}
               </h3>
               <p className='text-gray-600 leading-relaxed'>
-                Apprenez auprès de professionnels passionnés avec des années
-                d'expérience terrain.
+                {t.home.feature2Desc}
               </p>
             </div>
             <div className='feature-card group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2'>
@@ -190,11 +188,10 @@ export default function Home() {
                 <Award className='text-white' size={32} />
               </div>
               <h3 className='text-2xl font-bold mb-4 text-gray-900'>
-                Certification reconnue
+                {t.home.feature3Title}
               </h3>
               <p className='text-gray-600 leading-relaxed'>
-                Obtenez des certifications valorisées par les entreprises pour
-                booster votre carrière.
+                {t.home.feature3Desc}
               </p>
             </div>
           </div>
@@ -210,28 +207,27 @@ export default function Home() {
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10'>
           <div className='inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6'>
             <Zap size={18} className='text-accent' />
-            <span className='text-sm font-medium'>Démarrez maintenant</span>
+            <span className='text-sm font-medium'>{t.home.finalCtaBadge}</span>
           </div>
           <h2 className='text-4xl md:text-5xl font-bold mb-6 leading-tight'>
-            Prêt à transformer votre carrière ?
+            {t.home.finalCtaTitle}
           </h2>
           <p className='text-xl text-gray-300 mb-10 leading-relaxed'>
-            Rejoignez des milliers de professionnels qui ont donné un nouvel
-            élan à leur parcours
+            {t.home.finalCtaSubtitle}
           </p>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <Link
               href='/formations'
               className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg'
             >
-              Voir les formations
+              {t.home.finalCtaButton}
               <ArrowRight size={20} />
             </Link>
             <Link
               href='/contact'
               className='inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all border border-white/20'
             >
-              Contactez-nous
+              {t.home.finalCtaContact}
             </Link>
           </div>
         </div>

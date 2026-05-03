@@ -6,18 +6,13 @@ import { Clock, Users, Star, ArrowRight, Phone } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from '@/lib/i18n/LanguageContext';
+import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
 
 gsap.registerPlugin(ScrollTrigger);
 
 type PoleValue = 'all' | 'droit' | 'mediation' | 'ia';
 type PriceTab = 'inter' | 'intra' | 'sur-mesure';
-
-const POLES: { value: PoleValue; label: string }[] = [
-  { value: 'all', label: 'Tous' },
-  { value: 'droit', label: 'Droit' },
-  { value: 'mediation', label: 'Médiation' },
-  { value: 'ia', label: 'IA' },
-];
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat('fr-FR', {
@@ -61,10 +56,11 @@ function PriceTabs({
   slug: string;
   lien?: string;
 }) {
+  const t = useTranslation();
   const tabs: { key: PriceTab; label: string }[] = [
-    ...(prixInter != null ? [{ key: 'inter' as PriceTab, label: 'INTER' }] : []),
-    ...(prixIntra != null ? [{ key: 'intra' as PriceTab, label: 'INTRA' }] : []),
-    { key: 'sur-mesure' as PriceTab, label: 'SUR-MESURE' },
+    ...(prixInter != null ? [{ key: 'inter' as PriceTab, label: t.formations.tabInter }] : []),
+    ...(prixIntra != null ? [{ key: 'intra' as PriceTab, label: t.formations.tabIntra }] : []),
+    { key: 'sur-mesure' as PriceTab, label: t.formations.tabSurMesure },
   ];
 
   const defaultTab: PriceTab =
@@ -102,14 +98,14 @@ function PriceTabs({
         {active === 'inter' && prixInter != null && (
           <>
             <div className='space-y-2'>
-              <InfoRow label='Format'>Présentiel ou à distance</InfoRow>
-              <InfoRow label='Durée'>{duree ? formatDuree(duree) : '—'}</InfoRow>
-              <InfoRow label='Tarif'>
+              <InfoRow label={t.formations.labelFormat}>{t.formations.formatInter}</InfoRow>
+              <InfoRow label={t.formations.labelDuration}>{duree ? formatDuree(duree) : '—'}</InfoRow>
+              <InfoRow label={t.formations.labelPrice}>
                 <span className='font-bold text-foreground'>
                   {formatPrice(prixInter)}
                 </span>
                 <span className='font-normal text-gray-400 text-xs ml-1'>
-                  HT / stagiaire
+                  {t.formations.perStudent}
                 </span>
               </InfoRow>
             </div>
@@ -119,7 +115,7 @@ function PriceTabs({
                 onClick={(e) => e.stopPropagation()}
                 className='flex items-center justify-center gap-2 w-full bg-foreground text-white py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity'
               >
-                JE M&apos;INSCRIS
+                {t.formations.buttonInscribe}
                 <ArrowRight size={15} />
               </Link>
               <Link
@@ -127,7 +123,7 @@ function PriceTabs({
                 onClick={(e) => e.stopPropagation()}
                 className='flex items-center justify-center w-full border border-gray-200 text-gray-600 py-2 rounded-lg text-sm font-medium hover:border-primary hover:text-primary transition-colors'
               >
-                Demander un devis
+                {t.formations.buttonQuote}
               </Link>
             </div>
           </>
@@ -136,14 +132,14 @@ function PriceTabs({
         {active === 'intra' && prixIntra != null && (
           <>
             <div className='space-y-2'>
-              <InfoRow label='Format'>Dans vos locaux ou à distance</InfoRow>
-              <InfoRow label='Durée'>{duree ? formatDuree(duree) : '—'}</InfoRow>
-              <InfoRow label='Tarif'>
+              <InfoRow label={t.formations.labelFormat}>{t.formations.formatIntra}</InfoRow>
+              <InfoRow label={t.formations.labelDuration}>{duree ? formatDuree(duree) : '—'}</InfoRow>
+              <InfoRow label={t.formations.labelPrice}>
                 <span className='font-bold text-foreground'>
                   {formatPrice(prixIntra)}
                 </span>
                 <span className='font-normal text-gray-400 text-xs ml-1'>
-                  HT / groupe
+                  {t.formations.perGroup}
                 </span>
               </InfoRow>
             </div>
@@ -153,7 +149,7 @@ function PriceTabs({
                 onClick={(e) => e.stopPropagation()}
                 className='flex items-center justify-center gap-2 w-full bg-foreground text-white py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity'
               >
-                JE M&apos;INSCRIS
+                {t.formations.buttonInscribe}
                 <ArrowRight size={15} />
               </Link>
               <Link
@@ -161,7 +157,7 @@ function PriceTabs({
                 onClick={(e) => e.stopPropagation()}
                 className='flex items-center justify-center w-full border border-gray-200 text-gray-600 py-2 rounded-lg text-sm font-medium hover:border-primary hover:text-primary transition-colors'
               >
-                Demander un devis
+                {t.formations.buttonQuote}
               </Link>
             </div>
           </>
@@ -170,10 +166,10 @@ function PriceTabs({
         {active === 'sur-mesure' && (
           <>
             <div className='space-y-2'>
-              <InfoRow label='Format'>Adapté à votre organisation</InfoRow>
-              <InfoRow label='Durée'>Sur mesure</InfoRow>
-              <InfoRow label='Tarif'>
-                <span className='font-bold text-foreground'>Sur devis</span>
+              <InfoRow label={t.formations.labelFormat}>{t.formations.formatSurMesure}</InfoRow>
+              <InfoRow label={t.formations.labelDuration}>{t.formations.durationSurMesure}</InfoRow>
+              <InfoRow label={t.formations.labelPrice}>
+                <span className='font-bold text-foreground'>{t.formations.priceSurMesure}</span>
               </InfoRow>
             </div>
             <div className='flex flex-col gap-2 mt-1'>
@@ -183,14 +179,14 @@ function PriceTabs({
                 className='flex items-center justify-center gap-2 w-full bg-primary text-white py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity'
               >
                 <Phone size={15} />
-                NOUS CONTACTER
+                {t.formations.buttonContact}
               </Link>
               <Link
                 href='/contact'
                 onClick={(e) => e.stopPropagation()}
                 className='flex items-center justify-center w-full border border-gray-200 text-gray-600 py-2 rounded-lg text-sm font-medium hover:border-primary hover:text-primary transition-colors'
               >
-                Demander un devis
+                {t.formations.buttonQuote}
               </Link>
             </div>
           </>
@@ -202,11 +198,23 @@ function PriceTabs({
 
 // ─── Page principale ─────────────────────────────────────────────────────────
 export default function FormationsPage() {
+  const t = useTranslation();
   const [formations, setFormations] = useState<any[]>([]);
   const [selectedPole, setSelectedPole] = useState<PoleValue>('all');
   const heroRef = useRef<HTMLDivElement>(null);
   const filtersRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+
+  // Pôles avec libellés traduits
+  const POLES: { value: PoleValue; label: string }[] = useMemo(
+    () => [
+      { value: 'all', label: t.formations.filterAll },
+      { value: 'droit', label: t.formations.filterDroit },
+      { value: 'mediation', label: t.formations.filterMediation },
+      { value: 'ia', label: t.formations.filterIA },
+    ],
+    [t]
+  );
 
   useEffect(() => {
     async function loadFormations() {
@@ -227,6 +235,18 @@ export default function FormationsPage() {
     if (selectedPole === 'all') return formations;
     return formations.filter((f) => f.pole === selectedPole);
   }, [formations, selectedPole]);
+
+  // ─── Traduction du contenu Sanity (titres + descriptions) ──────────────────
+  const sanityTexts = useMemo(() => {
+    const arr: string[] = [];
+    filteredFormations.forEach((f) => {
+      arr.push(f.titre || '');
+      arr.push(f.description || '');
+    });
+    return arr;
+  }, [filteredFormations]);
+
+  const [translatedSanityTexts] = useTranslatedContent(sanityTexts);
 
   // ─── Animation d'apparition du hero + filtres (au mount, une seule fois) ───
   // Garde useRef contre le double-mount du Strict Mode en dev qui cassait
@@ -338,9 +358,11 @@ export default function FormationsPage() {
           ref={heroRef}
           className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'
         >
-          <h1 className='text-5xl md:text-6xl font-bold mb-6'>Nos Formations</h1>
+          <h1 className='text-5xl md:text-6xl font-bold mb-6'>
+            {t.formations.heroTitle}
+          </h1>
           <p className='text-xl md:text-2xl text-teal-50 max-w-2xl'>
-            Choisissez la formation parfaite et développez vos compétences.
+            {t.formations.heroSubtitle}
           </p>
         </div>
       </section>
@@ -352,7 +374,7 @@ export default function FormationsPage() {
           <div
             ref={filtersRef}
             role='tablist'
-            aria-label='Filtrer par pôle'
+            aria-label={t.formations.filterAriaLabel}
             className='flex flex-wrap justify-center gap-2 sm:gap-3 mb-12'
           >
             {POLES.map((pole) => {
@@ -377,7 +399,7 @@ export default function FormationsPage() {
 
           {filteredFormations.length === 0 && formations.length > 0 && (
             <p className='text-center text-gray-500 py-12'>
-              Aucune formation dans ce pôle pour le moment.
+              {t.formations.noFormation}
             </p>
           )}
 
@@ -415,7 +437,9 @@ export default function FormationsPage() {
                           priority={isAboveTheFold}
                         />
                       ) : (
-                        <p className='text-gray-400 text-sm'>Image à venir</p>
+                        <p className='text-gray-400 text-sm'>
+                          {t.formations.imageComing}
+                        </p>
                       )}
                     </div>
 
@@ -423,12 +447,14 @@ export default function FormationsPage() {
                     <div className='p-6 flex flex-col flex-1'>
                       {/* Titre : 2 lignes max, hauteur fixe ~3.5rem */}
                       <h2 className='text-lg font-bold text-gray-900 group-hover:text-primary transition-colors leading-snug line-clamp-2 min-h-[3.25rem] mb-3'>
-                        {formation.titre}
+                        {translatedSanityTexts[idx * 2] || formation.titre}
                       </h2>
 
                       {/* Description : 3 lignes max, hauteur fixe ~4.5rem */}
                       <p className='text-gray-500 text-sm leading-relaxed line-clamp-3 min-h-[4rem] mb-4'>
-                        {formation.description || ' '}
+                        {translatedSanityTexts[idx * 2 + 1] ||
+                          formation.description ||
+                          ' '}
                       </p>
 
                       {/* Méta — toujours collée au bas du bloc texte */}
@@ -445,8 +471,8 @@ export default function FormationsPage() {
                           <Users size={14} className='text-primary' />
                           <span>
                             {formation.etudiants
-                              ? `${formation.etudiants} formés`
-                              : 'Nouveau'}
+                              ? `${formation.etudiants} ${t.formations.formed}`
+                              : t.formations.newLabel}
                           </span>
                         </div>
                         <div className='flex items-center gap-1.5'>

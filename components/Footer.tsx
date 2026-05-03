@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className='bg-gray-900 text-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
@@ -9,24 +14,21 @@ export default function Footer() {
           {/* About */}
           <div>
             <h3 className='text-xl font-bold mb-4 text-accent'>
-              EduTech Formation
+              {t.common.siteName}
             </h3>
-            <p className='text-gray-400 mb-4'>
-              Formations professionnelles de qualité pour développer vos
-              compétences.
-            </p>
+            <p className='text-gray-400 mb-4'>{t.footer.tagline}</p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h4 className='font-semibold mb-4'>Navigation</h4>
+            <h4 className='font-semibold mb-4'>{t.footer.navigation}</h4>
             <ul className='space-y-2'>
               <li>
                 <Link
                   href='/about'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  À propos
+                  {t.common.about}
                 </Link>
               </li>
               <li>
@@ -34,7 +36,7 @@ export default function Footer() {
                   href='/formations'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  Formations
+                  {t.common.formations}
                 </Link>
               </li>
               <li>
@@ -42,7 +44,7 @@ export default function Footer() {
                   href='/temoignages'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  Témoignages
+                  {t.common.testimonials}
                 </Link>
               </li>
               <li>
@@ -50,7 +52,7 @@ export default function Footer() {
                   href='/qualiopi'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  Certification Qualiopi
+                  {t.footer.qualiopi}
                 </Link>
               </li>
               <li>
@@ -58,7 +60,7 @@ export default function Footer() {
                   href='/financement'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  Financement
+                  {t.footer.financement}
                 </Link>
               </li>
               <li>
@@ -66,7 +68,7 @@ export default function Footer() {
                   href='/accessibilite'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  Accessibilité
+                  {t.footer.accessibility}
                 </Link>
               </li>
             </ul>
@@ -74,7 +76,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className='font-semibold mb-4'>Contact</h4>
+            <h4 className='font-semibold mb-4'>{t.footer.contact}</h4>
             <ul className='space-y-2 text-gray-400'>
               <li>
                 <a
@@ -97,7 +99,7 @@ export default function Footer() {
                   href='/contact'
                   className='hover:text-white transition-colors'
                 >
-                  Formulaire de contact
+                  {t.footer.contactForm}
                 </Link>
               </li>
             </ul>
@@ -105,14 +107,14 @@ export default function Footer() {
 
           {/* Légal + Social */}
           <div>
-            <h4 className='font-semibold mb-4'>Informations légales</h4>
+            <h4 className='font-semibold mb-4'>{t.footer.legalInfo}</h4>
             <ul className='space-y-2 mb-6'>
               <li>
                 <Link
                   href='/mentions-legales'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  Mentions légales
+                  {t.footer.mentionsLegales}
                 </Link>
               </li>
               <li>
@@ -120,7 +122,7 @@ export default function Footer() {
                   href='/cgv'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  CGV
+                  {t.footer.cgv}
                 </Link>
               </li>
               <li>
@@ -128,7 +130,7 @@ export default function Footer() {
                   href='/confidentialite'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  Confidentialité
+                  {t.footer.privacy}
                 </Link>
               </li>
               <li>
@@ -136,11 +138,11 @@ export default function Footer() {
                   href='/reglement'
                   className='text-gray-400 hover:text-white transition-colors'
                 >
-                  Règlement intérieur
+                  {t.footer.reglement}
                 </Link>
               </li>
             </ul>
-            <h4 className='font-semibold mb-4'>Suivez-nous</h4>
+            <h4 className='font-semibold mb-4'>{t.footer.followUs}</h4>
             <div className='flex space-x-4'>
               <a
                 href='#'
