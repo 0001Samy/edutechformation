@@ -3,8 +3,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLanguage } from './LanguageContext';
 
-const CLIENT_CACHE_KEY = 'edutech-translation-cache-v1';
-const CACHE_VERSION = 1;
+const CLIENT_CACHE_KEY = 'edutech-translation-cache-v2';
+const CACHE_VERSION = 2;
 
 type ClientCache = {
   version: number;

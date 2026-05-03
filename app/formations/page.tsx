@@ -6,7 +6,7 @@ import { Clock, Users, Star, ArrowRight, Phone } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useTranslation } from '@/lib/i18n/LanguageContext';
+import { useLanguage, useTranslation } from '@/lib/i18n/LanguageContext';
 import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,9 +22,12 @@ function formatPrice(price: number): string {
   }).format(price);
 }
 
-function formatDuree(heures: number): string {
+function formatDuree(heures: number, locale: 'fr' | 'en'): string {
   if (heures % 7 === 0 && heures >= 7) {
     const jours = heures / 7;
+    if (locale === 'en') {
+      return `${jours} day${jours > 1 ? 's' : ''}`;
+    }
     return `${jours} jour${jours > 1 ? 's' : ''}`;
   }
   return `${heures} h`;
@@ -57,6 +60,7 @@ function PriceTabs({
   lien?: string;
 }) {
   const t = useTranslation();
+  const { locale } = useLanguage();
   const tabs: { key: PriceTab; label: string }[] = [
     ...(prixInter != null ? [{ key: 'inter' as PriceTab, label: t.formations.tabInter }] : []),
     ...(prixIntra != null ? [{ key: 'intra' as PriceTab, label: t.formations.tabIntra }] : []),
@@ -99,7 +103,7 @@ function PriceTabs({
           <>
             <div className='space-y-2'>
               <InfoRow label={t.formations.labelFormat}>{t.formations.formatInter}</InfoRow>
-              <InfoRow label={t.formations.labelDuration}>{duree ? formatDuree(duree) : '—'}</InfoRow>
+              <InfoRow label={t.formations.labelDuration}>{duree ? formatDuree(duree, locale) : '—'}</InfoRow>
               <InfoRow label={t.formations.labelPrice}>
                 <span className='font-bold text-foreground'>
                   {formatPrice(prixInter)}
@@ -133,7 +137,7 @@ function PriceTabs({
           <>
             <div className='space-y-2'>
               <InfoRow label={t.formations.labelFormat}>{t.formations.formatIntra}</InfoRow>
-              <InfoRow label={t.formations.labelDuration}>{duree ? formatDuree(duree) : '—'}</InfoRow>
+              <InfoRow label={t.formations.labelDuration}>{duree ? formatDuree(duree, locale) : '—'}</InfoRow>
               <InfoRow label={t.formations.labelPrice}>
                 <span className='font-bold text-foreground'>
                   {formatPrice(prixIntra)}
@@ -199,6 +203,7 @@ function PriceTabs({
 // ─── Page principale ─────────────────────────────────────────────────────────
 export default function FormationsPage() {
   const t = useTranslation();
+  const { locale } = useLanguage();
   const [formations, setFormations] = useState<any[]>([]);
   const [selectedPole, setSelectedPole] = useState<PoleValue>('all');
   const heroRef = useRef<HTMLDivElement>(null);
@@ -463,7 +468,7 @@ export default function FormationsPage() {
                           <Clock size={14} className='text-primary' />
                           <span>
                             {formation.duree
-                              ? formatDuree(formation.duree)
+                              ? formatDuree(formation.duree, locale)
                               : '—'}
                           </span>
                         </div>
