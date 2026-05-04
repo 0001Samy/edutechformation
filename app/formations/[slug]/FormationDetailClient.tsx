@@ -201,7 +201,7 @@ export default function FormationDetailClient({ course }: { course: Course }) {
               {/* Badges */}
               <div className='flex flex-wrap items-center gap-4 text-sm mb-6'>
                 {course.duree && (
-                  <div className='flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full'>
+                  <div className='flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-4 py-2 rounded-full'>
                     <Clock size={18} />
                     <span>
                       {course.duree}
@@ -210,13 +210,13 @@ export default function FormationDetailClient({ course }: { course: Course }) {
                   </div>
                 )}
                 {tHoraires && (
-                  <div className='flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full'>
+                  <div className='flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-4 py-2 rounded-full'>
                     <CalendarClock size={18} />
                     <span>{tHoraires}</span>
                   </div>
                 )}
                 {(course.participantsMin || course.participantsMax) && (
-                  <div className='flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full'>
+                  <div className='flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-4 py-2 rounded-full'>
                     <Users size={18} />
                     <span>
                       {course.participantsMin && course.participantsMax
@@ -228,7 +228,7 @@ export default function FormationDetailClient({ course }: { course: Course }) {
                   </div>
                 )}
                 {course.etudiants && (
-                  <div className='flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full'>
+                  <div className='flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-4 py-2 rounded-full'>
                     <GraduationCap size={18} />
                     <span>
                       {course.etudiants} {t.formationDetail.studentsFormed}
@@ -236,7 +236,7 @@ export default function FormationDetailClient({ course }: { course: Course }) {
                   </div>
                 )}
                 {course.note && (
-                  <div className='flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full'>
+                  <div className='flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-4 py-2 rounded-full'>
                     <Star size={18} className='fill-accent text-accent' />
                     <span>{course.note}/5</span>
                   </div>

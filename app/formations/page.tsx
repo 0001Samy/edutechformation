@@ -307,11 +307,14 @@ function FormationsPageContent() {
     if (cards.length === 0) return;
 
     // État initial : invisibles, légèrement décalées et zoomées
+    // force3D: true → hardware acceleration (GPU layer), évite les reflows
     gsap.set(cards, {
       opacity: 0,
       y: 60,
       scale: 0.94,
       transformOrigin: 'center bottom',
+      force3D: true,
+      willChange: 'transform, opacity',
     });
 
     const triggers = ScrollTrigger.batch(cards, {
@@ -326,7 +329,8 @@ function FormationsPageContent() {
           ease: 'power3.out',
           stagger: { each: 0.09, from: 'start' },
           overwrite: 'auto',
-          clearProps: 'transform', // libère les transforms pour le hover CSS
+          force3D: true,
+          clearProps: 'transform,willChange', // libère les transforms + will-change après l'anim
         });
       },
     });

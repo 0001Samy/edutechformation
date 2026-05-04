@@ -26,6 +26,11 @@ export default function Home() {
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const sharedProps = {
+      force3D: true, // GPU layer → évite les forced reflows
+      clearProps: 'transform,willChange', // libère après l'anim
+    };
+
     // Hero animation
     if (heroRef.current) {
       gsap.from(heroRef.current.children, {
@@ -34,39 +39,48 @@ export default function Home() {
         duration: 1.2,
         stagger: 0.15,
         ease: 'power3.out',
+        ...sharedProps,
       });
     }
 
-    // Features scroll animation
+    // Features scroll animation — ScrollTrigger.batch + force3D pour éviter les reflows
     if (featuresRef.current) {
-      const features = featuresRef.current.querySelectorAll('.feature-card');
-      features.forEach((feature) => {
-        gsap.from(feature, {
-          scrollTrigger: {
-            trigger: feature,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          opacity: 0,
-          y: 50,
-          duration: 0.8,
-          ease: 'power3.out',
-        });
+      const features = featuresRef.current.querySelectorAll<HTMLElement>('.feature-card');
+      gsap.set(features, { opacity: 0, y: 50, force3D: true, willChange: 'transform, opacity' });
+      ScrollTrigger.batch(features, {
+        start: 'top 85%',
+        once: true,
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power3.out',
+            ...sharedProps,
+          });
+        },
       });
     }
 
     // Stats scroll animation
     if (statsRef.current) {
-      gsap.from(statsRef.current.children, {
-        scrollTrigger: {
-          trigger: statsRef.current,
-          start: 'top 80%',
+      const stats = statsRef.current.children;
+      gsap.set(stats, { opacity: 0, y: 30, force3D: true, willChange: 'transform, opacity' });
+      ScrollTrigger.create({
+        trigger: statsRef.current,
+        start: 'top 80%',
+        once: true,
+        onEnter: () => {
+          gsap.to(stats, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power2.out',
+            ...sharedProps,
+          });
         },
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power2.out',
       });
     }
   }, []);
@@ -83,7 +97,7 @@ export default function Home() {
 
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
           <div ref={heroRef} className='text-center max-w-4xl mx-auto'>
-            <div className='inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6'>
+            <div className='inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-4 py-2 rounded-full mb-6'>
               <Sparkles size={18} className='text-accent' />
               <span className='text-sm font-medium'>{t.home.heroBadge}</span>
             </div>
@@ -105,7 +119,7 @@ export default function Home() {
               </Link>
               <Link
                 href='/contact'
-                className='inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all border border-white/20'
+                className='inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold hover:bg-white/30 transition-all border border-white/40'
               >
                 {t.home.ctaTalk}
               </Link>
@@ -205,7 +219,7 @@ export default function Home() {
           <div className='absolute bottom-0 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl'></div>
         </div>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10'>
-          <div className='inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6'>
+          <div className='inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-4 py-2 rounded-full mb-6'>
             <Zap size={18} className='text-accent' />
             <span className='text-sm font-medium'>{t.home.finalCtaBadge}</span>
           </div>
@@ -225,7 +239,7 @@ export default function Home() {
             </Link>
             <Link
               href='/contact'
-              className='inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all border border-white/20'
+              className='inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold hover:bg-white/30 transition-all border border-white/40'
             >
               {t.home.finalCtaContact}
             </Link>

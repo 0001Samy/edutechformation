@@ -77,6 +77,9 @@ export default function RootLayout({
   return (
     <html lang='fr' data-scroll-behavior='smooth'>
       <head>
+        {/* Preconnect aux origines critiques — économise les RTT de DNS/TLS */}
+        <link rel='preconnect' href='https://cdn.sanity.io' crossOrigin='anonymous' />
+        <link rel='dns-prefetch' href='https://cdn.sanity.io' />
         <JsonLd id='ld-organization' data={organizationSchema} />
       </head>
       <body
