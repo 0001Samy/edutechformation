@@ -76,7 +76,7 @@ export async function POST(request: Request) {
     const subjectLabel = SUBJECT_LABELS[subject] ?? 'Autre';
 
     const { error } = await resend.emails.send({
-      from: 'EduTech Formation <contact@edutechformations.com>',
+      from: 'Edutech Formations <contact@edutechformations.com>',
       to,
       replyTo: email,
       subject: `[Contact site] ${subjectLabel} — ${name}`,

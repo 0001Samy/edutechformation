@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { Clock, Users, Star, ArrowRight, Phone } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage, useTranslation } from '@/lib/i18n/LanguageContext';
@@ -201,11 +202,17 @@ function PriceTabs({
 }
 
 // ─── Page principale ─────────────────────────────────────────────────────────
-export default function FormationsPage() {
+function FormationsPageContent() {
   const t = useTranslation();
   const { locale } = useLanguage();
+  const searchParams = useSearchParams();
+  const initialPole = (() => {
+    const p = searchParams.get('pole');
+    if (p === 'droit' || p === 'mediation' || p === 'ia') return p as PoleValue;
+    return 'all';
+  })();
   const [formations, setFormations] = useState<any[]>([]);
-  const [selectedPole, setSelectedPole] = useState<PoleValue>('all');
+  const [selectedPole, setSelectedPole] = useState<PoleValue>(initialPole);
   const heroRef = useRef<HTMLDivElement>(null);
   const filtersRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -512,5 +519,14 @@ export default function FormationsPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+// Wrapper avec Suspense — useSearchParams a besoin d'un boundary en Next 16
+export default function FormationsPage() {
+  return (
+    <Suspense fallback={null}>
+      <FormationsPageContent />
+    </Suspense>
   );
 }

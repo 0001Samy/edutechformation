@@ -82,10 +82,10 @@ export default function MentionsLegalesPage() {
                 <p>
                   {tr.phoneLabel}{' '}
                   <a
-                    href='tel:+33633247764'
+                    href='tel:+33662091892'
                     className='text-primary hover:underline'
                   >
-                    06 33 24 77 64
+                    06 62 09 18 92
                   </a>
                 </p>
               </div>

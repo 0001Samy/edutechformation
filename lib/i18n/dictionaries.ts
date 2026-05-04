@@ -35,7 +35,7 @@ export const dictionaries: Record<Locale, Translations> = {
       backToFormations: '← Retour aux formations',
       loading: 'Chargement…',
       translating: 'Traduction en cours…',
-      siteName: 'EduTech Formation',
+      siteName: 'Edutech Formations',
       siteTagline: 'Formations professionnelles certifiées Qualiopi',
     },
 
@@ -48,30 +48,45 @@ export const dictionaries: Record<Locale, Translations> = {
 
     // ─── Footer ────────────────────────────────────────────────────────────
     footer: {
-      tagline:
-        'Formations professionnelles de qualité pour développer vos compétences.',
+      tagline: 'Formations professionnelles certifiées Qualiopi',
+      qualiopiBadgeLabel: 'Certifié Qualiopi',
+      qualiopiBadgeSub: 'Actions de formation',
+      colTrainingTitle: 'Nos formations',
+      poleDroit: 'Droit',
+      poleMediation: 'Médiation',
+      poleIA: 'IA en entreprise',
+      colDiscoverTitle: 'Découvrir Edutech',
+      navAbout: 'À propos',
+      navFinancement: 'Financement',
+      navTestimonials: 'Témoignages',
+      navQualiopi: 'Certification Qualiopi',
+      navContact: 'Contact',
+      colLegalTitle: 'Mentions',
+      mentionsLegales: 'Mentions légales',
+      cgv: 'CGV',
+      privacy: 'Confidentialité',
+      reglement: 'Règlement intérieur',
+      accessibility: 'Accessibilité et handicap',
+      copyright:
+        '© {year} Edutech Formations · SAS · SIRET 977 619 089 00021 · Organisme de formation enregistré sous le numéro NDA 11 94 12031 94 auprès du Préfet de la région Île-de-France. Cet enregistrement ne vaut pas agrément de l’État.',
+      // Anciennes clés (utilisées ailleurs, on les garde)
       navigation: 'Navigation',
       contact: 'Contact',
       legalInfo: 'Informations légales',
       followUs: 'Suivez-nous',
       contactForm: 'Formulaire de contact',
-      mentionsLegales: 'Mentions légales',
-      cgv: 'CGV',
-      privacy: 'Confidentialité',
-      reglement: 'Règlement intérieur',
       qualiopi: 'Certification Qualiopi',
       financement: 'Financement',
-      accessibility: 'Accessibilité',
     },
 
     // ─── Home page ─────────────────────────────────────────────────────────
     home: {
-      heroBadge: 'Formations certifiantes 2025',
+      heroBadge: 'Organisme de formation certifié Qualiopi',
       heroTitle1: 'Transformez votre',
       heroTitleAccent: 'carrière',
-      heroTitle2: 'avec nos formations',
+      heroTitle2: 'avec nos formations professionnelles',
       heroSubtitle:
-        'Rejoignez plus de 10 000 professionnels qui ont accéléré leur carrière grâce à nos formations expertes',
+        'Organisme de formation certifié Qualiopi, Edutech Formations propose des formations en droit, médiation et IA en entreprise. Toutes nos formations sont éligibles aux financements OPCO et France Travail.',
       ctaDiscover: 'Découvrir nos formations',
       ctaTalk: 'Parler à un conseiller',
       stat1Value: '10K+',
@@ -358,7 +373,7 @@ export const dictionaries: Record<Locale, Translations> = {
       backToFormations: '← Back to training',
       loading: 'Loading…',
       translating: 'Translating…',
-      siteName: 'EduTech Formation',
+      siteName: 'Edutech Formations',
       siteTagline: 'Qualiopi-certified professional training',
     },
 
@@ -369,20 +384,35 @@ export const dictionaries: Record<Locale, Translations> = {
     },
 
     footer: {
-      tagline:
-        'High-quality professional training to develop your skills.',
+      tagline: 'Qualiopi-certified professional training',
+      qualiopiBadgeLabel: 'Qualiopi-certified',
+      qualiopiBadgeSub: 'Training actions',
+      colTrainingTitle: 'Our training',
+      poleDroit: 'Law',
+      poleMediation: 'Mediation',
+      poleIA: 'AI for business',
+      colDiscoverTitle: 'Discover Edutech',
+      navAbout: 'About',
+      navFinancement: 'Funding',
+      navTestimonials: 'Testimonials',
+      navQualiopi: 'Qualiopi certification',
+      navContact: 'Contact',
+      colLegalTitle: 'Legal',
+      mentionsLegales: 'Legal notice',
+      cgv: 'Terms & Conditions',
+      privacy: 'Privacy policy',
+      reglement: 'Internal regulations',
+      accessibility: 'Accessibility & disability',
+      copyright:
+        '© {year} Edutech Formations · SAS · SIRET 977 619 089 00021 · Training organisation registered under NDA number 11 94 12031 94 with the Île-de-France regional prefect. This registration does not constitute State approval.',
+      // Legacy keys (kept for compatibility)
       navigation: 'Navigation',
       contact: 'Contact',
       legalInfo: 'Legal information',
       followUs: 'Follow us',
       contactForm: 'Contact form',
-      mentionsLegales: 'Legal notice',
-      cgv: 'Terms of sale',
-      privacy: 'Privacy policy',
-      reglement: 'Internal regulations',
       qualiopi: 'Qualiopi certification',
-      financement: 'Financing',
-      accessibility: 'Accessibility',
+      financement: 'Funding',
     },
 
     home: {

@@ -27,7 +27,7 @@ export default function Header() {
           <Link href='/' className='hover:opacity-80 transition-opacity'>
             <Image
               src='/edutech-logo.svg'
-              alt='EduTech Formation'
+              alt='Edutech Formations'
               width={180}
               height={50}
               className='h-16 w-auto'

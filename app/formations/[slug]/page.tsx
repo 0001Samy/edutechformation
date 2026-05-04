@@ -3,6 +3,7 @@ import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
 import Link from 'next/link';
 import FormationDetailClient from './FormationDetailClient';
+import JsonLd, { buildCourseSchema, buildBreadcrumbList } from '@/components/JsonLd';
 
 // Génération des pages statiques
 export async function generateStaticParams() {
@@ -45,7 +46,7 @@ export async function generateMetadata({
   const title = course.titre ?? 'Formation';
   const description =
     course.description?.slice(0, 160) ??
-    `Découvrez la formation ${title} proposée par EduTech Formation, organisme certifié Qualiopi.`;
+    `Découvrez la formation ${title} proposée par Edutech Formations, organisme certifié Qualiopi.`;
   const url = `https://edutechformations.com/formations/${slug}`;
 
   return {
@@ -53,7 +54,7 @@ export async function generateMetadata({
     description,
     alternates: { canonical: `/formations/${slug}` },
     openGraph: {
-      title: `${title} | EduTech Formation`,
+      title: `${title} | Edutech Formations`,
       description,
       url,
       type: 'article',
@@ -63,7 +64,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | EduTech Formation`,
+      title: `${title} | Edutech Formations`,
       description,
       images: course.imageUrl ? [course.imageUrl] : undefined,
     },
@@ -127,5 +128,27 @@ export default async function Page({
     );
   }
 
-  return <FormationDetailClient course={course} />;
+  // Données structurées schema.org
+  const courseSchema = buildCourseSchema({
+    slug: course.slug?.current ?? slug,
+    title: course.titre,
+    description: course.description,
+    durationHours: course.duree,
+    imageUrl: course.imageUrl,
+    priceInter: course.prixInter,
+    priceIntra: course.prixIntra,
+  });
+  const breadcrumbSchema = buildBreadcrumbList([
+    { name: 'Accueil', url: '/' },
+    { name: 'Formations', url: '/formations' },
+    { name: course.titre, url: `/formations/${course.slug?.current ?? slug}` },
+  ]);
+
+  return (
+    <>
+      <JsonLd id='ld-course' data={courseSchema} />
+      <JsonLd id='ld-breadcrumb' data={breadcrumbSchema} />
+      <FormationDetailClient course={course} />
+    </>
+  );
 }

@@ -218,10 +218,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className='font-semibold mb-1'>{t.contact.phoneLabel}</h3>
                       <a
-                        href='tel:+33633247764'
+                        href='tel:+33662091892'
                         className='text-primary hover:underline'
                       >
-                        +33 6 33 24 77 64
+                        +33 6 62 09 18 92
                       </a>
                     </div>
                   </div>

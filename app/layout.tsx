@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/lib/i18n/LanguageContext';
+import JsonLd, { organizationSchema } from '@/components/JsonLd';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -18,8 +19,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://edutechformations.com'),
   title: {
-    default: 'EduTech Formation — Organisme de formation certifié Qualiopi',
-    template: '%s | EduTech Formation',
+    default: 'Edutech Formations — Organisme de formation certifié Qualiopi',
+    template: '%s | Edutech Formations',
   },
   description:
     "Organisme de formation professionnelle certifié Qualiopi. Formations droit, médiation et IA — éligibles OPCO et financements publics.",
@@ -31,22 +32,22 @@ export const metadata: Metadata = {
     'formation droit',
     'formation médiation',
     'formation IA',
-    'EduTech Formation',
+    'Edutech Formations',
   ],
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://edutechformations.com',
-    siteName: 'EduTech Formation',
-    title: 'EduTech Formation — Organisme de formation certifié Qualiopi',
+    siteName: 'Edutech Formations',
+    title: 'Edutech Formations — Organisme de formation certifié Qualiopi',
     description:
       "Formations professionnelles certifiées Qualiopi : droit, médiation, IA. Éligibles OPCO et financements publics.",
-    images: [{ url: '/edutech-logo.svg', width: 1200, height: 630, alt: 'EduTech Formation' }],
+    images: [{ url: '/edutech-logo.svg', width: 1200, height: 630, alt: 'Edutech Formations' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EduTech Formation — Organisme de formation certifié Qualiopi',
+    title: 'Edutech Formations — Organisme de formation certifié Qualiopi',
     description:
       "Formations professionnelles certifiées Qualiopi, éligibles OPCO et financements publics.",
     images: ['/edutech-logo.svg'],
@@ -73,6 +74,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr' data-scroll-behavior='smooth'>
+      <head>
+        <JsonLd id='ld-organization' data={organizationSchema} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

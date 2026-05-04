@@ -32,7 +32,7 @@ const PROTECTED_TERMS = [
   'IA Act',
   'Cap Emploi', 'MDPH', 'Agefiph', 'FIPHFP',
   // Marque & raison sociale
-  'Edutech Formations', 'Edutech Formation', 'EduTech Formation', 'EduTech Formations',
+  'Edutech Formations',
   // Personnes
   'Saïda BENOUARI', 'Olivier Gil', 'Mme Saïda BENOUARI',
   // Lieux

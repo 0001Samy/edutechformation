@@ -6,9 +6,9 @@ export const metadata: Metadata = {
     'Politique de confidentialité du site edutechformations.com : données collectées, finalités, durée de conservation et exercice de vos droits RGPD.',
   alternates: { canonical: '/confidentialite' },
   openGraph: {
-    title: 'Politique de confidentialité | EduTech Formation',
+    title: 'Politique de confidentialité | Edutech Formations',
     description:
-      'Protection des données personnelles et conformité RGPD chez EduTech Formation.',
+      'Protection des données personnelles et conformité RGPD chez Edutech Formations.',
     url: 'https://edutechformations.com/confidentialite',
   },
 };

@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Conditions Générales de Vente',
   description:
-    "Conditions générales de vente applicables aux formations EduTech : modalités d'inscription, paiement, annulation et réclamations.",
+    "Conditions générales de vente applicables aux formations Edutech Formations : modalités d'inscription, paiement, annulation et réclamations.",
   alternates: { canonical: '/cgv' },
   openGraph: {
-    title: 'CGV | EduTech Formation',
-    description: 'Conditions générales de vente des formations EduTech Formation.',
+    title: 'CGV | Edutech Formations',
+    description: 'Conditions générales de vente des formations Edutech Formations.',
     url: 'https://edutechformations.com/cgv',
   },
 };

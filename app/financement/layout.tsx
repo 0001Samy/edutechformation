@@ -3,10 +3,10 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Financer votre formation : OPCO, France Travail',
   description:
-    'Comment financer votre formation professionnelle ? OPCO, France Travail, plan de développement des compétences : tous les dispositifs expliqués par EduTech Formation.',
+    'Comment financer votre formation professionnelle ? OPCO, France Travail, plan de développement des compétences : tous les dispositifs expliqués par Edutech Formations.',
   alternates: { canonical: '/financement' },
   openGraph: {
-    title: 'Financer votre formation | EduTech Formation',
+    title: 'Financer votre formation | Edutech Formations',
     description:
       'Tous les dispositifs de financement pour votre formation professionnelle : OPCO, France Travail.',
     url: 'https://edutechformations.com/financement',

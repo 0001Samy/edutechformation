@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     'Mentions légales du site edutechformations.com : éditeur, hébergeur, propriété intellectuelle et coordonnées de contact.',
   alternates: { canonical: '/mentions-legales' },
   openGraph: {
-    title: 'Mentions légales | EduTech Formation',
+    title: 'Mentions légales | Edutech Formations',
     description: 'Mentions légales du site edutechformations.com.',
     url: 'https://edutechformations.com/mentions-legales',
   },

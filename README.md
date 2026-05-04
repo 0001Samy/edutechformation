@@ -1,147 +1,210 @@
-# EduTech Formation Remake
+# Edutech Formations — Site web
 
-A modern remake of the EduTech Formation website built with Next.js, TypeScript, Tailwind CSS, and GSAP.
+Site officiel d'**Edutech Formations**, organisme de formation professionnelle certifié Qualiopi.
+Formations dispensées dans les pôles **Droit**, **Médiation** et **IA en entreprise**, éligibles aux financements OPCO et France Travail.
 
-## 🚀 Technologies Used
+🌐 Production : [https://edutechformations.com](https://edutechformations.com)
 
-- **Next.js 16** with App Router
-- **TypeScript** for type safety
-- **Tailwind CSS v4** for styling
-- **GSAP** for animations
-- **Lucide React** for icons
+---
 
-## 📁 Project Structure
+## Stack technique
+
+| Couche | Technologie |
+|--------|-------------|
+| Framework | **Next.js 16** (App Router) |
+| Language | **TypeScript 5** |
+| UI | **React 19**, **Tailwind CSS v4**, **Lucide React** (icônes) |
+| Animations | **GSAP** + ScrollTrigger |
+| CMS | **Sanity v3** (formations, modules, etc.) |
+| Email transactionnel | **Resend** (formulaire de contact) |
+| Traduction FR/EN | **DeepL API** (free tier) |
+| Hébergement | **Vercel** |
+
+---
+
+## Architecture
 
 ```
 edutech-formation-remake/
-├── app/                          # Next.js App Router pages
-│   ├── layout.tsx               # Root layout with Header & Footer
-│   ├── page.tsx                 # Homepage with GSAP animations
-│   ├── about/                   # About page
-│   ├── cours/                   # Courses listing
-│   │   └── [slug]/             # Individual course detail
-│   ├── temoignages/            # Testimonials page
-│   ├── blog/                    # Blog listing
-│   │   └── [slug]/             # Individual blog post
-│   └── contact/                 # Contact page with form
-├── components/                  # Reusable components
-│   ├── Header.tsx              # Navigation header
-│   ├── Footer.tsx              # Site footer
-│   ├── Button.tsx              # Button component
-│   ├── Card.tsx                # Card component
-│   └── SectionHeading.tsx      # Section heading component
-├── lib/                         # Utility functions
-│   └── gsap-utils.ts           # GSAP animation helpers
-└── public/                      # Static assets
+├── app/                              # Next.js App Router
+│   ├── layout.tsx                    # Layout racine (LanguageProvider, JSON-LD Organization)
+│   ├── page.tsx                      # Accueil
+│   ├── about/                        # À propos
+│   ├── formations/
+│   │   ├── page.tsx                  # Liste avec filtres ?pole=droit|mediation|ia
+│   │   └── [slug]/                   # Détail formation (SSG via Sanity)
+│   ├── temoignages/                  # Témoignages
+│   ├── contact/                      # Formulaire de contact (Resend)
+│   ├── qualiopi/                     # Page Qualiopi
+│   ├── financement/                  # OPCO / France Travail
+│   ├── accessibilite/                # Référent handicap
+│   ├── mentions-legales/             # Mentions légales
+│   ├── cgv/                          # Conditions générales de vente
+│   ├── confidentialite/              # Politique RGPD
+│   ├── reglement/                    # Règlement intérieur
+│   ├── studio/[[...tool]]/           # Sanity Studio embarqué (route /studio)
+│   ├── api/
+│   │   ├── contact/route.ts          # POST → envoi email Resend
+│   │   ├── formations/route.ts       # GET → liste formations Sanity
+│   │   └── translate/route.ts        # POST → DeepL avec cache + termes protégés
+│   ├── sitemap.ts                    # /sitemap.xml généré dynamiquement
+│   └── robots.ts                     # /robots.txt
+│
+├── components/
+│   ├── Header.tsx                    # Nav + toggle FR/EN
+│   ├── Footer.tsx                    # Footer 3 colonnes + badge Qualiopi
+│   └── JsonLd.tsx                    # Schémas schema.org (Organization, Course, BreadcrumbList)
+│
+├── lib/
+│   ├── i18n/
+│   │   ├── dictionaries.ts           # Strings FR/EN (UI statique)
+│   │   ├── LanguageContext.tsx       # Context React + persistance localStorage
+│   │   ├── useTranslatedContent.ts   # Hook pour traduire le contenu Sanity (DeepL + cache)
+│   │   └── TranslatedText.tsx        # Helper <T> pour textes individuels
+│   └── gsap-utils.ts                 # Helpers GSAP
+│
+├── sanity/
+│   ├── lib/client.ts                 # Sanity client
+│   └── schemaTypes/                  # Schémas Sanity (formation, moduleDetaille)
+│
+├── scripts/                          # Scripts d'import en bulk dans Sanity
+│   ├── import-formations-ia.ndjson
+│   ├── import-formations-ia.mjs
+│   ├── import-formations-mediation.ndjson
+│   └── import-formations-mediation.mjs
+│
+└── public/                           # Assets statiques (logo, favicon, certificat Qualiopi)
 ```
 
-## 🎨 Design Features
+---
 
-### Brand Colors
+## Identité visuelle
 
-- **Primary**: `#274bec` (Blue)
-- **Accent**: `#fad02e` (Yellow)
+Couleurs définies dans `app/globals.css` :
 
-These colors are configured in `app/globals.css` and can be used with Tailwind classes:
+- **`--primary`** : `#08b0a0` (teal du logo)
+- **`--accent`** : `#fbba00` (jaune du logo)
+- **`--foreground`** : `#272a5f` (bleu foncé du logo)
 
-- `text-primary`, `bg-primary`, `border-primary`
-- `text-accent`, `bg-accent`, `border-accent`
+Disponibles via Tailwind : `bg-primary`, `text-accent`, `border-foreground`, etc.
 
-### Pages Included
+---
 
-1. **Homepage** (`/`) - Hero section with GSAP animations, features, and CTA
-2. **About** (`/about`) - Company mission, vision, and values
-3. **Courses** (`/cours`) - List of all available courses
-4. **Course Detail** (`/cours/[slug]`) - Detailed course information and enrollment
-5. **Testimonials** (`/temoignages`) - Student reviews and ratings
-6. **Blog** (`/blog`) - Blog articles listing
-7. **Blog Post** (`/blog/[slug]`) - Individual blog post
-8. **Contact** (`/contact`) - Contact form and information
-
-### Components
-
-- **Header**: Responsive navigation with mobile menu
-- **Footer**: Multi-column footer with links and social media
-- **Button**: Reusable button with variants
-- **Card**: Card container component
-- **SectionHeading**: Consistent section headings
-
-## 🚀 Getting Started
+## Démarrage local
 
 ### Installation
 
 ```bash
-cd edutech-formation-remake
 npm install
 ```
 
-### Development
+### Variables d'environnement (`.env.local`)
+
+```env
+# Sanity CMS (obligatoire)
+NEXT_PUBLIC_SANITY_PROJECT_ID=b60x0124
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=sk...                    # token Editor pour les imports
+
+# Resend (formulaire de contact)
+RESEND_API_KEY=re_...
+CONTACT_EMAIL_TO=contact@edutechformations.com
+
+# DeepL (traduction EN — optionnel, fallback FR si absent)
+DEEPL_API_KEY=...:fx
+```
+
+### Développement
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+→ [http://localhost:3000](http://localhost:3000)
+→ Sanity Studio : [http://localhost:3000/studio](http://localhost:3000/studio)
 
-### Build for Production
+### Build production
 
 ```bash
 npm run build
 npm start
 ```
 
-## 📝 Notes
+---
 
-### GSAP Animations
+## Internationalisation (FR / EN)
 
-Pages that use GSAP animations are marked with `"use client"` directive. Example animations are implemented on the homepage:
+Toggle **🇫🇷 / 🇬🇧** dans le header. La langue choisie est persistée dans `localStorage`.
 
-- Hero section fade-in with stagger
-- Scroll-triggered animations available in `lib/gsap-utils.ts`
+- **Chaînes UI statiques** → dictionnaire `lib/i18n/dictionaries.ts`
+- **Contenu dynamique Sanity** (titres formations, modules, descriptions…) → traduit à la volée via DeepL avec :
+  - cache mémoire serveur
+  - cache localStorage côté client
+  - protection des acronymes (OPCO, Qualiopi, RGPD, France Travail, ChatGPT, etc.) via balises `<keep>` ignorées par DeepL
+  - cible `EN-GB` pour un ton plus formel
 
-### Adding Content
+---
 
-To add real content:
+## Sanity CMS
 
-1. **Courses**: Edit the `formations` array in `app/cours/page.tsx`
-2. **Blog**: Edit the `articles` array in `app/blog/page.tsx`
-3. **Testimonials**: Edit the `testimonials` array in `app/temoignages/page.tsx`
+Les formations sont gérées via le studio embarqué à `/studio`.
 
-For dynamic content, consider integrating a CMS like:
+### Schéma `formation`
 
-- Sanity
-- Contentful
-- Strapi
-- Or a database (PostgreSQL, MongoDB, etc.)
+Champs principaux : `titre`, `slug`, `pole` (droit/mediation/ia), `description`, `duree`, `horaires`, `prixInter`, `prixIntra`, `participantsMin/Max`, `objectifs[]`, `prerequis[]`, `modules[]` (titre + sous-points), `modalitesEvaluation[]`, `suiviExecution[]`, `appreciationResultats[]`, `moyensPedagogiques`, `profilFormateur`, `modalitesAcces`, `image`.
 
-### Images
+### Import en bulk
 
-Replace placeholder images in the `public/` directory and update image references in components.
+Pour importer des formations depuis un fichier NDJSON :
 
-## 🔧 Customization
-
-### Tailwind Configuration
-
-The project uses Tailwind CSS v4 with the new `@theme` inline syntax in `app/globals.css`. To add custom styles:
-
-```css
-@theme inline {
-  --color-custom: #yourcolor;
-}
+```bash
+node --env-file=.env.local scripts/import-formations-mediation.mjs
 ```
 
-### Fonts
+---
 
-The project uses Geist Sans and Geist Mono fonts. To change fonts, edit `app/layout.tsx`.
+## SEO
 
-## 📦 Key Dependencies
+- **Métadonnées par page** : chaque route a son `layout.tsx` ou `generateMetadata` avec title, description, canonical, openGraph et Twitter cards
+- **Sitemap dynamique** : `app/sitemap.ts` (priorités, formations Sanity incluses)
+- **Robots** : `app/robots.ts` (bloque `/api` et `/studio`)
+- **JSON-LD schema.org** :
+  - `EducationalOrganization` injecté dans le `<head>` global (avec SIREN, SIRET, NDA, adresse, certifications)
+  - `Course` + `BreadcrumbList` injectés sur chaque page formation
 
-```json
-{
-  "next": "^16.0.1",
-  "react": "^18.3.1",
-  "tailwindcss": "^4.0.0",
-  "gsap": "^3.12.5",
-  "lucide-react": "^0.460.0"
-}
-```
+---
+
+## Déploiement
+
+Hébergé sur **Vercel** avec déploiement automatique sur push vers `main`.
+
+Variables d'environnement à configurer sur Vercel (Settings → Environment Variables) :
+
+- `SANITY_API_TOKEN`
+- `RESEND_API_KEY`
+- `CONTACT_EMAIL_TO`
+- `DEEPL_API_KEY`
+- (les `NEXT_PUBLIC_SANITY_*` ont des valeurs par défaut dans le code)
+
+---
+
+## Scripts npm
+
+| Commande | Description |
+|----------|-------------|
+| `npm run dev` | Serveur de dev avec hot reload |
+| `npm run build` | Build production |
+| `npm start` | Lance le build de prod |
+| `npm run lint` | Lint ESLint |
+
+---
+
+## Mentions légales
+
+- **Edutech Formations** — SAS au capital de 1 000 €
+- **SIREN** : 977 619 089 — **SIRET (siège)** : 977 619 089 00021
+- **NAF** : 85.59A — Formation continue d'adultes
+- **NDA** : 11 94 12031 94 (Préfet de la région Île-de-France)
+- **Certifié Qualiopi** depuis 2024 — Catégorie « Actions de formation »
+- **Siège** : 52 rue Montesquieu, 92600 Asnières-sur-Seine
+- **Contact** : contact@edutechformations.com — 06 62 09 18 92

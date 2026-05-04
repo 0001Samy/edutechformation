@@ -1,118 +1,156 @@
 'use client';
 
 import Link from 'next/link';
-import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import Image from 'next/image';
+import { Linkedin, Instagram, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Footer() {
   const { t } = useLanguage();
+  const year = new Date().getFullYear();
+  const copyright = t.footer.copyright.replace('{year}', String(year));
 
   return (
-    <footer className='bg-gray-900 text-white'>
+    <footer className='bg-gray-900 text-gray-300'>
+      {/* ─── Bandeau haut : Logo + tagline + badge Qualiopi ─────────────── */}
+      <div className='border-b border-white/10'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10'>
+          <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-6'>
+            <div className='flex items-center gap-5'>
+              <Link
+                href='/'
+                aria-label={t.common.siteName}
+                className='shrink-0 hover:opacity-80 transition-opacity'
+              >
+                <Image
+                  src='/edutech-logo-dark.svg'
+                  alt={t.common.siteName}
+                  width={160}
+                  height={48}
+                  className='h-12 w-auto brightness-0 invert'
+                />
+              </Link>
+              <p className='text-sm md:text-base text-gray-400 leading-snug max-w-md'>
+                {t.footer.tagline}
+              </p>
+            </div>
+
+            {/* Badge Qualiopi */}
+            <Link
+              href='/qualiopi'
+              className='inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-4 py-3 transition-colors group'
+            >
+              <div className='w-10 h-10 bg-gradient-to-br from-primary to-teal-700 rounded-lg flex items-center justify-center shrink-0 shadow-md'>
+                <ShieldCheck className='text-white' size={22} />
+              </div>
+              <div>
+                <p className='font-bold text-white text-sm leading-tight'>
+                  {t.footer.qualiopiBadgeLabel}
+                </p>
+                <p className='text-xs text-gray-400 leading-tight'>
+                  {t.footer.qualiopiBadgeSub}
+                </p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── 3 colonnes ─────────────────────────────────────────────────── */}
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-          {/* About */}
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
+          {/* Colonne 1 : Nos formations */}
           <div>
-            <h3 className='text-xl font-bold mb-4 text-accent'>
-              {t.common.siteName}
+            <h3 className='font-bold text-white mb-4 text-base'>
+              {t.footer.colTrainingTitle}
             </h3>
-            <p className='text-gray-400 mb-4'>{t.footer.tagline}</p>
+            <ul className='space-y-2.5'>
+              <li>
+                <Link
+                  href='/formations?pole=droit'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
+                >
+                  {t.footer.poleDroit}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/formations?pole=mediation'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
+                >
+                  {t.footer.poleMediation}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/formations?pole=ia'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
+                >
+                  {t.footer.poleIA}
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Navigation */}
+          {/* Colonne 2 : Découvrir Edutech */}
           <div>
-            <h4 className='font-semibold mb-4'>{t.footer.navigation}</h4>
-            <ul className='space-y-2'>
+            <h3 className='font-bold text-white mb-4 text-base'>
+              {t.footer.colDiscoverTitle}
+            </h3>
+            <ul className='space-y-2.5'>
               <li>
                 <Link
                   href='/about'
-                  className='text-gray-400 hover:text-white transition-colors'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
-                  {t.common.about}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/formations'
-                  className='text-gray-400 hover:text-white transition-colors'
-                >
-                  {t.common.formations}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/temoignages'
-                  className='text-gray-400 hover:text-white transition-colors'
-                >
-                  {t.common.testimonials}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/qualiopi'
-                  className='text-gray-400 hover:text-white transition-colors'
-                >
-                  {t.footer.qualiopi}
+                  {t.footer.navAbout}
                 </Link>
               </li>
               <li>
                 <Link
                   href='/financement'
-                  className='text-gray-400 hover:text-white transition-colors'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
-                  {t.footer.financement}
+                  {t.footer.navFinancement}
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/accessibilite'
-                  className='text-gray-400 hover:text-white transition-colors'
+                  href='/temoignages'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
-                  {t.footer.accessibility}
+                  {t.footer.navTestimonials}
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className='font-semibold mb-4'>{t.footer.contact}</h4>
-            <ul className='space-y-2 text-gray-400'>
               <li>
-                <a
-                  href='mailto:contact@edutechformations.com'
-                  className='hover:text-white transition-colors'
+                <Link
+                  href='/qualiopi'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
-                  contact@edutechformations.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href='tel:+33633247764'
-                  className='hover:text-white transition-colors'
-                >
-                  06 33 24 77 64
-                </a>
+                  {t.footer.navQualiopi}
+                </Link>
               </li>
               <li>
                 <Link
                   href='/contact'
-                  className='hover:text-white transition-colors'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
-                  {t.footer.contactForm}
+                  {t.footer.navContact}
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Légal + Social */}
+          {/* Colonne 3 : Mentions */}
           <div>
-            <h4 className='font-semibold mb-4'>{t.footer.legalInfo}</h4>
-            <ul className='space-y-2 mb-6'>
+            <h3 className='font-bold text-white mb-4 text-base'>
+              {t.footer.colLegalTitle}
+            </h3>
+            <ul className='space-y-2.5'>
               <li>
                 <Link
                   href='/mentions-legales'
-                  className='text-gray-400 hover:text-white transition-colors'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
                   {t.footer.mentionsLegales}
                 </Link>
@@ -120,7 +158,7 @@ export default function Footer() {
               <li>
                 <Link
                   href='/cgv'
-                  className='text-gray-400 hover:text-white transition-colors'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
                   {t.footer.cgv}
                 </Link>
@@ -128,7 +166,7 @@ export default function Footer() {
               <li>
                 <Link
                   href='/confidentialite'
-                  className='text-gray-400 hover:text-white transition-colors'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
                   {t.footer.privacy}
                 </Link>
@@ -136,50 +174,52 @@ export default function Footer() {
               <li>
                 <Link
                   href='/reglement'
-                  className='text-gray-400 hover:text-white transition-colors'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
                 >
                   {t.footer.reglement}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href='/accessibilite'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
+                >
+                  {t.footer.accessibility}
+                </Link>
+              </li>
             </ul>
-            <h4 className='font-semibold mb-4'>{t.footer.followUs}</h4>
-            <div className='flex space-x-4'>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── Bandeau bas : copyright + réseaux ─────────────────────────── */}
+      <div className='border-t border-white/10'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
+          <div className='flex flex-col md:flex-row md:items-center gap-4 md:gap-8'>
+            <p className='text-xs text-gray-500 leading-relaxed flex-1'>
+              {copyright}
+            </p>
+            <div className='flex items-center gap-3 shrink-0'>
               <a
-                href='#'
-                className='text-gray-400 hover:text-white transition-colors'
-                aria-label='Facebook'
-              >
-                <Facebook size={24} />
-              </a>
-              <a
-                href='#'
-                className='text-gray-400 hover:text-white transition-colors'
-                aria-label='Twitter'
-              >
-                <Twitter size={24} />
-              </a>
-              <a
-                href='#'
-                className='text-gray-400 hover:text-white transition-colors'
+                href='https://www.linkedin.com/company/edutech-formations'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='w-9 h-9 bg-white/5 hover:bg-primary border border-white/10 rounded-lg flex items-center justify-center text-gray-300 hover:text-white transition-all'
                 aria-label='LinkedIn'
               >
-                <Linkedin size={24} />
+                <Linkedin size={18} />
               </a>
               <a
-                href='#'
-                className='text-gray-400 hover:text-white transition-colors'
+                href='https://www.instagram.com/edutechformations'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='w-9 h-9 bg-white/5 hover:bg-primary border border-white/10 rounded-lg flex items-center justify-center text-gray-300 hover:text-white transition-all'
                 aria-label='Instagram'
               >
-                <Instagram size={24} />
+                <Instagram size={18} />
               </a>
             </div>
           </div>
-        </div>
-
-        <div className='border-t border-gray-800 mt-8 pt-8 text-center text-gray-400'>
-          <p>
-            &copy; {new Date().getFullYear()} Edutech Formations
-          </p>
         </div>
       </div>
     </footer>
