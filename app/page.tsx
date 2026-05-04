@@ -1,8 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// useLayoutEffect côté client, useEffect côté serveur (évite le warning SSR)
+const useIsoLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 import {
   ArrowRight,
   BookOpen,
@@ -25,17 +29,27 @@ export default function Home() {
   const featuresRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  // useLayoutEffect → s'exécute après l'hydratation mais AVANT le browser paint
+  // → gsap.set() est appliqué avant que l'utilisateur ne voie le contenu à sa
+  //   position finale, donc PAS de yo-yo (CLS = 0)
+  useIsoLayoutEffect(() => {
     const sharedProps = {
       force3D: true, // GPU layer → évite les forced reflows
       clearProps: 'transform,willChange', // libère après l'anim
     };
 
-    // Hero animation
+    // Hero animation — gsap.set() AVANT le paint → pas de CLS
     if (heroRef.current) {
-      gsap.from(heroRef.current.children, {
+      const heroChildren = heroRef.current.children;
+      gsap.set(heroChildren, {
         opacity: 0,
         y: 50,
+        force3D: true,
+        willChange: 'transform, opacity',
+      });
+      gsap.to(heroChildren, {
+        opacity: 1,
+        y: 0,
         duration: 1.2,
         stagger: 0.15,
         ease: 'power3.out',
@@ -43,10 +57,15 @@ export default function Home() {
       });
     }
 
-    // Features scroll animation — ScrollTrigger.batch + force3D pour éviter les reflows
+    // Features scroll animation — ScrollTrigger.batch + force3D
     if (featuresRef.current) {
       const features = featuresRef.current.querySelectorAll<HTMLElement>('.feature-card');
-      gsap.set(features, { opacity: 0, y: 50, force3D: true, willChange: 'transform, opacity' });
+      gsap.set(features, {
+        opacity: 0,
+        y: 50,
+        force3D: true,
+        willChange: 'transform, opacity',
+      });
       ScrollTrigger.batch(features, {
         start: 'top 85%',
         once: true,
@@ -66,7 +85,12 @@ export default function Home() {
     // Stats scroll animation
     if (statsRef.current) {
       const stats = statsRef.current.children;
-      gsap.set(stats, { opacity: 0, y: 30, force3D: true, willChange: 'transform, opacity' });
+      gsap.set(stats, {
+        opacity: 0,
+        y: 30,
+        force3D: true,
+        willChange: 'transform, opacity',
+      });
       ScrollTrigger.create({
         trigger: statsRef.current,
         start: 'top 80%',

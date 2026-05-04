@@ -4,13 +4,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { Clock, Users, Star, ArrowRight, Phone } from 'lucide-react';
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Suspense,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage, useTranslation } from '@/lib/i18n/LanguageContext';
 import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// useLayoutEffect côté client (avant paint), useEffect côté serveur
+const useIsoLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 type PoleValue = 'all' | 'droit' | 'mediation' | 'ia';
 type PriceTab = 'inter' | 'intra' | 'sur-mesure';
@@ -261,36 +272,47 @@ function FormationsPageContent() {
   const [translatedSanityTexts] = useTranslatedContent(sanityTexts);
 
   // ─── Animation d'apparition du hero + filtres (au mount, une seule fois) ───
-  // Garde useRef contre le double-mount du Strict Mode en dev qui cassait
-  // l'animation (les filtres restaient invisibles après revert).
+  // useLayoutEffect → s'exécute APRÈS l'hydratation mais AVANT le browser paint
+  // → gsap.set() applique l'état initial avant que l'utilisateur ne voie le contenu
+  // → pas de "flash" / saut visible.
+  // Guard useRef contre le double-mount du Strict Mode en dev.
   const introAnimated = useRef(false);
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     if (introAnimated.current) return;
     introAnimated.current = true;
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     if (heroRef.current) {
-      tl.from(heroRef.current.children, {
-        opacity: 0,
-        y: 30,
+      const heroChildren = heroRef.current.children;
+      gsap.set(heroChildren, { opacity: 0, y: 30, force3D: true });
+      tl.to(heroChildren, {
+        opacity: 1,
+        y: 0,
         duration: 0.8,
         stagger: 0.12,
-        clearProps: 'all',
+        clearProps: 'transform,willChange',
       });
     }
 
     if (filtersRef.current) {
-      tl.from(
-        filtersRef.current.children,
+      const filtersChildren = filtersRef.current.children;
+      gsap.set(filtersChildren, {
+        opacity: 0,
+        y: 15,
+        scale: 0.9,
+        force3D: true,
+      });
+      tl.to(
+        filtersChildren,
         {
-          opacity: 0,
-          y: 15,
-          scale: 0.9,
+          opacity: 1,
+          y: 0,
+          scale: 1,
           duration: 0.5,
           stagger: 0.06,
           ease: 'back.out(1.7)',
-          clearProps: 'all', // libère les styles inline une fois l'anim terminée
+          clearProps: 'transform,willChange',
         },
         '-=0.4'
       );
@@ -298,10 +320,9 @@ function FormationsPageContent() {
   }, []);
 
   // ─── Animation des cartes au scroll (ScrollTrigger.batch) ──────────────────
-  // Batch = anime ENSEMBLE les cartes qui entrent dans le viewport, avec un
-  // stagger naturel basé sur leur ordre d'apparition (et non leur index global).
-  // → la carte n°9 ne traîne plus 0.9s avant d'apparaître.
-  useEffect(() => {
+  // useLayoutEffect → gsap.set() avant le paint → pas de "flash" des cartes
+  // qui s'affichent puis disparaissent puis réapparaissent.
+  useIsoLayoutEffect(() => {
     if (!cardsRef.current) return;
     const cards = cardsRef.current.querySelectorAll<HTMLElement>('.course-card');
     if (cards.length === 0) return;
