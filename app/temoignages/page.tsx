@@ -11,54 +11,31 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// ─── 3 témoignages — 1 par pôle (Droit / Médiation / IA) ────────────────────
 const testimonials = [
   {
-    name: 'Sophie Martin',
-    role: 'Développeuse Web',
-    formation: 'Développement Web Complet',
+    name: 'Camille Lefèvre',
+    role: 'Responsable conformité',
+    formation: 'La loi Sapin II, mise en pratique en entreprise',
     rating: 5,
-    text: "Cette formation a complètement changé ma carrière. Les cours sont clairs, les projets pratiques et l'accompagnement excellent. Je recommande vivement !",
-    avatar: 'SM',
+    text: "Une formation extrêmement claire sur un sujet juridique souvent perçu comme complexe. Les cas pratiques nous ont permis de comprendre concrètement comment déployer un dispositif anticorruption dans notre groupe.",
+    avatar: 'CL',
   },
   {
-    name: 'Thomas Dubois',
-    role: 'Data Analyst',
-    formation: 'Data Science & IA',
+    name: 'Hélène Bonnet',
+    role: 'Responsable RH',
+    formation: 'La pratique de la médiation en entreprise',
     rating: 5,
-    text: "Une formation complète et structurée. J'ai pu monter en compétences rapidement et décrocher un poste dans le domaine de la data science.",
-    avatar: 'TD',
+    text: "Les jeux de rôle et mises en situation rendent la formation vraiment opérationnelle. Je suis ressortie avec une vision claire du processus et les outils pour gérer les tensions dans mon équipe.",
+    avatar: 'HB',
   },
   {
-    name: 'Marie Petit',
-    role: 'Responsable Marketing',
-    formation: 'Marketing Digital',
-    rating: 4,
-    text: "Excellent contenu et formateurs très compétents. Les techniques apprises m'ont permis d'améliorer significativement les résultats de mes campagnes.",
-    avatar: 'MP',
-  },
-  {
-    name: 'Lucas Bernard',
-    role: 'Chef de Projet',
-    formation: 'Gestion de Projet Agile',
+    name: 'Pierre-Louis Aubert',
+    role: 'DPO',
+    formation: "Les réglementations applicables à l'IA",
     rating: 5,
-    text: "Formation très pratique avec des cas concrets. J'ai pu appliquer immédiatement les méthodologies agiles dans mon entreprise.",
-    avatar: 'LB',
-  },
-  {
-    name: 'Emma Rousseau',
-    role: 'Designer UX/UI',
-    formation: 'Développement Web Complet',
-    rating: 5,
-    text: "Passer du design au code était un défi, mais cette formation m'a donné toutes les clés pour y arriver. Merci à toute l'équipe !",
-    avatar: 'ER',
-  },
-  {
-    name: 'Julien Moreau',
-    role: 'Entrepreneur',
-    formation: 'Marketing Digital',
-    rating: 4,
-    text: "Grâce à cette formation, j'ai pu développer la visibilité de mon entreprise en ligne. Un investissement vraiment rentable.",
-    avatar: 'JM',
+    text: "Formation très complète sur l'IA Act et l'articulation avec le RGPD. La grille de classification des systèmes IA est un outil que j'utilise déjà au quotidien dans mes audits.",
+    avatar: 'PA',
   },
 ];
 
@@ -118,20 +95,6 @@ export default function TemoignagesPage() {
 
       <section className='py-20'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='text-center mb-16'>
-            <div className='flex justify-center items-center gap-2 mb-4'>
-              <Star className='fill-accent text-accent' size={40} />
-              <Star className='fill-accent text-accent' size={40} />
-              <Star className='fill-accent text-accent' size={40} />
-              <Star className='fill-accent text-accent' size={40} />
-              <Star className='fill-accent text-accent' size={40} />
-            </div>
-            <p className='text-3xl font-bold text-gray-900 mb-2'>
-              {t.testimonials.ratingValue}
-            </p>
-            <p className='text-gray-600'>{t.testimonials.ratingSubtitle}</p>
-          </div>
-
           <div
             ref={testimonialsRef}
             className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'

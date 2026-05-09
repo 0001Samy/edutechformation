@@ -152,33 +152,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section — un seul indicateur de satisfaction, centré */}
       <section className='py-16 bg-white'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div ref={statsRef} className='grid grid-cols-2 md:grid-cols-4 gap-8'>
-            <div className='text-center'>
-              <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
-                {t.home.stat1Value}
-              </div>
-              <div className='text-gray-600'>{t.home.stat1Label}</div>
+        <div className='max-w-3xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <div ref={statsRef} className='text-center'>
+            <div className='text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-3'>
+              {t.home.stat2Value}
             </div>
-            <div className='text-center'>
-              <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
-                {t.home.stat2Value}
-              </div>
-              <div className='text-gray-600'>{t.home.stat2Label}</div>
-            </div>
-            <div className='text-center'>
-              <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
-                {t.home.stat3Value}
-              </div>
-              <div className='text-gray-600'>{t.home.stat3Label}</div>
-            </div>
-            <div className='text-center'>
-              <div className='text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary to-teal-800 mb-2'>
-                {t.home.stat4Value}
-              </div>
-              <div className='text-gray-600'>{t.home.stat4Label}</div>
+            <div className='text-lg md:text-xl text-gray-600 font-medium'>
+              {t.home.stat2Label}
             </div>
           </div>
         </div>
