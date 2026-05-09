@@ -92,6 +92,7 @@ export default async function Page({
         prix,
         prixIntra,
         prixInter,
+        pole,
         participantsMin,
         participantsMax,
         modules,
@@ -112,6 +113,32 @@ export default async function Page({
     `,
     { slug }
   );
+
+  // Cross-linking SEO : autres formations du même pôle (max 3)
+  const relatedCourses = course
+    ? await client.fetch<
+        {
+          _id: string;
+          titre: string;
+          description?: string;
+          duree?: number;
+          slug: { current: string };
+          imageUrl?: string;
+        }[]
+      >(
+        groq`
+          *[_type == "formation" && pole == $pole && slug.current != $slug][0...3]{
+            _id,
+            titre,
+            description,
+            duree,
+            slug,
+            "imageUrl": image.asset->url
+          }
+        `,
+        { pole: course.pole, slug }
+      )
+    : [];
 
   if (!course) {
     return (
@@ -149,6 +176,42 @@ export default async function Page({
       <JsonLd id='ld-course' data={courseSchema} />
       <JsonLd id='ld-breadcrumb' data={breadcrumbSchema} />
       <FormationDetailClient course={course} />
+
+      {/* Cross-linking SEO : autres formations du même pôle */}
+      {relatedCourses.length > 0 && (
+        <section className='py-16 bg-white border-t border-gray-100'>
+          <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-8'>
+              Découvrez aussi
+            </h2>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+              {relatedCourses.map((rc) => (
+                <Link
+                  key={rc._id}
+                  href={`/formations/${rc.slug.current}`}
+                  className='group bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-lg border border-transparent hover:border-primary/20 transition-all'
+                >
+                  <h3 className='font-bold text-gray-900 group-hover:text-primary transition-colors leading-snug line-clamp-2 mb-2'>
+                    {rc.titre}
+                  </h3>
+                  {rc.description && (
+                    <p className='text-sm text-gray-600 line-clamp-3 mb-3'>
+                      {rc.description}
+                    </p>
+                  )}
+                  {rc.duree && (
+                    <p className='text-xs text-primary font-semibold uppercase tracking-wider'>
+                      {rc.duree % 7 === 0 && rc.duree >= 7
+                        ? `${rc.duree / 7} jour${rc.duree / 7 > 1 ? 's' : ''}`
+                        : `${rc.duree} h`}
+                    </p>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

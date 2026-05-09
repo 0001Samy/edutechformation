@@ -114,6 +114,23 @@ export const dictionaries: Record<Locale, Translations> = {
         'Rejoignez des milliers de professionnels qui ont donné un nouvel élan à leur parcours',
       finalCtaButton: 'Voir les formations',
       finalCtaContact: 'Contactez-nous',
+      faqTitle: 'Questions fréquentes',
+      faqSubtitle: 'Tout ce que vous devez savoir sur nos formations',
+      faq1Q: 'Edutech Formations est-il un organisme de formation certifié ?',
+      faq1A:
+        "Oui, Edutech Formations est certifié Qualiopi depuis 2024 au titre de la catégorie « Actions de formation ». Cette certification nationale, reconnue par l'État, garantit la qualité de notre processus pédagogique.",
+      faq2Q: 'Vos formations sont-elles éligibles aux financements OPCO et France Travail ?',
+      faq2A:
+        "Oui, en tant qu'organisme certifié Qualiopi, toutes nos formations sont éligibles aux dispositifs publics et mutualisés : OPCO, France Travail (AIF, POEI), plan de développement des compétences. Nous vous accompagnons gratuitement dans le montage du dossier.",
+      faq3Q: 'Dans quels domaines proposez-vous des formations ?',
+      faq3A:
+        "Nous proposons des formations professionnelles dans trois pôles d'expertise : Droit (loi Sapin II, responsabilité pénale, harcèlement, secret professionnel), Médiation (initiation, gestion des conflits, médiation en entreprise) et IA en entreprise (utilisation, productivité, IA Act et réglementations).",
+      faq4Q: 'Quels sont les formats de formation proposés ?',
+      faq4A:
+        "Nous proposons trois formats : INTER (sessions inter-entreprises en présentiel ou à distance), INTRA (formations dans vos locaux ou à distance pour votre équipe) et SUR-MESURE (programme adapté à vos besoins spécifiques).",
+      faq5Q: 'Comment se déroule une formation Edutech ?',
+      faq5A:
+        "Nos formations alternent apports théoriques et ateliers pratiques. Chaque session inclut des cas concrets, des mises en situation et un suivi individuel. Une attestation de fin de formation et une évaluation des acquis sont délivrées à chaque participant.",
     },
 
     // ─── About page ────────────────────────────────────────────────────────
@@ -449,6 +466,23 @@ export const dictionaries: Record<Locale, Translations> = {
         'Join thousands of professionals who have given their careers fresh momentum.',
       finalCtaButton: 'View all courses',
       finalCtaContact: 'Contact us',
+      faqTitle: 'Frequently asked questions',
+      faqSubtitle: 'Everything you need to know about our training',
+      faq1Q: 'Is Edutech Formations a certified training organisation?',
+      faq1A:
+        'Yes, Edutech Formations has been Qualiopi-certified since 2024 under the "Training actions" category. This national certification, recognised by the French government, guarantees the quality of our pedagogical process.',
+      faq2Q: 'Are your courses eligible for OPCO and France Travail funding?',
+      faq2A:
+        'Yes, as a Qualiopi-certified provider, all our courses are eligible for public and pooled funding schemes: OPCO, France Travail (AIF, POEI), and corporate skills development plans. We support you free of charge in preparing your application.',
+      faq3Q: 'What subjects do you offer training in?',
+      faq3A:
+        'We offer professional training across three expertise areas: Law (Sapin II, criminal liability, harassment, professional secrecy), Mediation (introduction, conflict management, workplace mediation) and AI for business (usage, productivity, AI Act and regulations).',
+      faq4Q: 'What training formats do you offer?',
+      faq4A:
+        'We offer three formats: INTER (inter-company sessions, in-person or remote), INTRA (training at your premises or remote for your team), and BESPOKE (programme tailored to your specific needs).',
+      faq5Q: 'How does an Edutech training session work?',
+      faq5A:
+        'Our sessions combine theory and practical workshops. Each session includes real-world cases, role-play and individual follow-up. A training completion certificate and skills assessment are provided to every participant.',
     },
 
     about: {

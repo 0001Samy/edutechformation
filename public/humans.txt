@@ -1,0 +1,21 @@
+/* TEAM */
+
+Responsable de publication : Olivier Gil
+Référent pédagogique : Mme Saïda BENOUARI
+Contact : contact@edutechformations.com
+
+/* SITE */
+
+Site : Edutech Formations — Organisme de formation certifié Qualiopi
+Localisation : Asnières-sur-Seine, Île-de-France, France
+Stack : Next.js 16, React 19, TypeScript, Tailwind CSS v4, Sanity CMS
+Hébergement : Vercel
+Contact : contact@edutechformations.com
+
+/* MENTIONS LÉGALES */
+
+SAS Edutech Formations
+SIREN : 977 619 089
+SIRET : 977 619 089 00021
+Code NAF : 85.59A
+NDA : 11 94 12031 94 (Préfet de la région Île-de-France)

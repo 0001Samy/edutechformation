@@ -20,7 +20,7 @@ export default function MentionsLegalesPage() {
       phoneLabel: 'Téléphone :',
       sectionHosting: 'Hébergement',
       hostingText:
-        "Le site est hébergé par : [Nom de l'hébergeur, adresse, téléphone — à compléter]",
+        "Le site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis. Téléphone : +1 (559) 288-7060. Site : vercel.com",
       sectionIP: 'Propriété intellectuelle',
       ipText:
         "L'ensemble du contenu de ce site (textes, images, vidéos, logo, charte graphique) est la propriété exclusive d'Edutech Formations, sauf mention contraire. Toute reproduction, distribution, modification ou utilisation de ces contenus sans autorisation préalable est interdite.",

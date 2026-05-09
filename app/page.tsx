@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslation } from '@/lib/i18n/LanguageContext';
+import JsonLd, { homepageFaqSchema } from '@/components/JsonLd';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -217,6 +218,44 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section — boost SEO + featured snippets Google */}
+      <section className='py-20 bg-white border-t border-gray-100'>
+        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <div className='text-center mb-12'>
+            <h2 className='text-3xl md:text-4xl font-bold mb-3'>
+              {t.home.faqTitle}
+            </h2>
+            <p className='text-lg text-gray-600'>{t.home.faqSubtitle}</p>
+          </div>
+          <div className='space-y-4'>
+            {[
+              { q: t.home.faq1Q, a: t.home.faq1A },
+              { q: t.home.faq2Q, a: t.home.faq2A },
+              { q: t.home.faq3Q, a: t.home.faq3A },
+              { q: t.home.faq4Q, a: t.home.faq4A },
+              { q: t.home.faq5Q, a: t.home.faq5A },
+            ].map((item, i) => (
+              <details
+                key={i}
+                className='group bg-gray-50 rounded-xl border border-gray-200 hover:border-primary/40 transition-colors'
+              >
+                <summary className='cursor-pointer list-none p-5 flex items-center justify-between gap-4 font-semibold text-gray-900'>
+                  <span>{item.q}</span>
+                  <span className='text-primary text-2xl leading-none transition-transform group-open:rotate-45'>
+                    +
+                  </span>
+                </summary>
+                <div className='px-5 pb-5 text-gray-700 leading-relaxed'>
+                  {item.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <JsonLd id='ld-faq-home' data={homepageFaqSchema} />
 
       {/* CTA Section */}
       <section className='relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-24 overflow-hidden'>
