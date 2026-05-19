@@ -17,6 +17,7 @@ import {
   Target,
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslation } from '@/lib/i18n/LanguageContext';
 import JsonLd, { homepageFaqSchema } from '@/components/JsonLd';
 
@@ -163,6 +164,30 @@ export default function Home() {
             <div className='text-lg md:text-xl text-gray-600 font-medium'>
               {t.home.stat2Label}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Approche / méthodologie — illustration arbre + 4 piliers */}
+      <section className='py-20 md:py-24 bg-gradient-to-b from-white via-teal-50/30 to-white'>
+        <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <div className='text-center mb-10'>
+            <h2 className='text-4xl md:text-5xl font-bold mb-4'>
+              {t.home.approachTitle}
+            </h2>
+            <p className='text-lg md:text-xl text-gray-600 max-w-2xl mx-auto'>
+              {t.home.approachSubtitle}
+            </p>
+          </div>
+          <div className='relative w-full aspect-[3/2] max-w-4xl mx-auto'>
+            <Image
+              src='/approach-tree.jpg'
+              alt={t.home.approachTitle}
+              fill
+              sizes='(max-width: 1024px) 100vw, 1024px'
+              className='object-contain'
+              priority={false}
+            />
           </div>
         </div>
       </section>
