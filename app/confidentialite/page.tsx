@@ -6,47 +6,39 @@ import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
 export default function ConfidentialitePage() {
   const strings = useMemo(
     () => ({
-      title: 'Politique de confidentialité',
-      introTitle: 'Introduction',
-      introText:
-        "Edutech Formations s'engage à protéger la vie privée des utilisateurs de son site. La présente politique de confidentialité décrit les données personnelles que nous collectons, pourquoi nous les collectons et comment nous les utilisons.",
-      controllerTitle: 'Responsable du traitement',
-      controllerIntro: 'Le responsable du traitement des données est :',
-      controllerOrg: 'EDUTECH FORMATIONS — SAS au capital de 1 000 €',
-      contactLabel: 'Contact :',
-      collectedTitle: 'Données collectées',
-      formsSubTitle: 'Via les formulaires de contact',
-      formsText:
-        'Lorsque vous nous contactez via le site, nous collectons : nom, adresse email, numéro de téléphone (facultatif) et le contenu de votre message. Ces données sont utilisées uniquement pour répondre à votre demande.',
-      analyticsSubTitle: 'Via Google Analytics',
-      analyticsText:
-        "Nous utilisons Google Analytics pour analyser la fréquentation de notre site. Cet outil collecte des données anonymisées : pages visitées, durée de la visite, type d'appareil, zone géographique approximative. Aucune donnée personnelle identifiable n'est collectée par cet outil.",
-      purposeTitle: 'Finalité du traitement',
-      purposeIntro: 'Vos données sont collectées pour :',
-      purpose1: "Répondre à vos demandes d'information ou d'inscription",
-      purpose2: 'Assurer le suivi administratif des formations',
-      purpose3:
-        'Améliorer notre site et nos services grâce aux statistiques de fréquentation',
-      retentionTitle: 'Durée de conservation',
-      retentionText:
-        'Les données issues des formulaires de contact sont conservées pendant 3 ans à compter de votre dernière interaction. Les données de Google Analytics sont conservées 14 mois.',
-      rightsTitle: 'Vos droits',
-      rightsIntro:
-        'Conformément au RGPD, vous disposez des droits suivants sur vos données personnelles :',
-      right1Bold: "Droit d'accès :",
-      right1Text: 'obtenir une copie de vos données',
-      right2Bold: 'Droit de rectification :',
-      right2Text: 'corriger des données inexactes',
-      right3Bold: "Droit à l'effacement :",
-      right3Text: 'demander la suppression de vos données',
-      right4Bold: "Droit d'opposition :",
-      right4Text: 'vous opposer au traitement de vos données',
-      right5Bold: 'Droit à la portabilité :',
-      right5Text: 'récupérer vos données dans un format lisible',
-      rightsContact: 'Pour exercer ces droits, contactez-nous à',
-      cookiesTitle: 'Cookies',
-      cookiesText:
-        "Ce site utilise uniquement les cookies nécessaires au fonctionnement de Google Analytics. Vous pouvez désactiver ces cookies via les paramètres de votre navigateur ou en utilisant l'extension de navigateur proposée par Google.",
+      title: "Politique de confidentialité",
+      s1Title: "1. Responsable du traitement",
+      s1Text: "La société EDUTECH FORMATIONS (SASU), SIRET 977 619 089 00021, dont le siège est situé 52 Rue Montesquieu – 92600 Asnières-sur-Seine, est responsable du traitement des données personnelles collectées dans le cadre de ses activités. Contact : contact@edutechformation.com – 06 33 24 77 64.",
+      s2Title: "2. Données collectées et modalités de collecte",
+      s2Sub1: "Données collectées",
+      s2Text1: "Les données susceptibles d'être collectées sont : données d'identification (nom, prénom), coordonnées (email, téléphone, adresse postale), données professionnelles (fonction, entreprise, CV, diplômes), données administratives et financières (devis, factures), données liées à la formation (suivi, évaluations, participation).",
+      s2Sub2: "Modalités de collecte",
+      s2Text2: "Les données sont collectées via le site internet (formulaires, cookies, Google Analytics), lors des échanges avec EDUTECH FORMATIONS (email, téléphone, rendez-vous) et dans le cadre de la relation contractuelle (inscriptions, conventions, suivi pédagogique).",
+      s3Title: "3. Finalités du traitement",
+      s3Text: "Les données sont collectées pour : gestion et organisation des formations, communication avec les clients et participants, établissement des documents contractuels et administratifs, suivi des formations et amélioration continue, gestion des litiges et obligations légales.",
+      s4Title: "4. Base légale",
+      s4Text: "Les traitements sont fondés sur l'exécution contractuelle, les obligations légales et l'intérêt légitime de l'organisme de formation.",
+      s5Title: "5. Durée de conservation",
+      s5Text: "Les données personnelles sont conservées pendant une durée maximale de cinq (5) ans, sauf obligation légale contraire ou demande de suppression par la personne concernée.",
+      s6Title: "6. Destinataires des données",
+      s6Text: "Les données sont accessibles uniquement aux personnes habilitées au sein d'EDUTECH FORMATIONS et peuvent être transmises à des tiers dans les cas suivants : sous-traitants intervenant dans l'exécution des prestations, obligations légales ou réglementaires, partenaires impliqués dans la réalisation de la formation.",
+      s7Title: "7. Sécurité des données",
+      s7Text: "EDUTECH FORMATIONS met en œuvre des mesures techniques et organisationnelles afin de garantir la sécurité et la confidentialité des données personnelles.",
+      s8Title: "8. Droits des personnes",
+      s8Intro: "Conformément au RGPD, vous disposez des droits suivants :",
+      s8Right1: "Droit d'accès",
+      s8Right1Text: " : obtenir une copie de vos données",
+      s8Right2: "Droit de rectification",
+      s8Right2Text: " : corriger des données inexactes",
+      s8Right3: "Droit à l'effacement",
+      s8Right3Text: " : demander la suppression de vos données",
+      s8Right4: "Droit d'opposition",
+      s8Right4Text: " : vous opposer au traitement de vos données",
+      s8Right5: "Droit à la portabilité",
+      s8Right5Text: " : récupérer vos données dans un format lisible",
+      s8Contact: "Pour exercer ces droits, contactez-nous à",
+      s9Title: "9. Cookies",
+      s9Text: "Ce site utilise Google Analytics à des fins de mesure d'audience. Les données collectées sont anonymisées. Vous pouvez désactiver ces cookies via les paramètres de votre navigateur.",
     }),
     []
   );
@@ -62,126 +54,81 @@ export default function ConfidentialitePage() {
     [keys, translated, strings]
   );
 
+  const pClass = "text-gray-700 leading-relaxed text-justify hyphens-auto";
+
   return (
-    <div className='bg-gradient-to-b from-gray-50 to-white'>
-      <section className='bg-gradient-to-r from-primary via-teal-700 to-teal-900 text-white py-16 shadow-inner'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h1 className='text-5xl font-bold mb-4'>{tr.title}</h1>
+    <div className="bg-gradient-to-b from-gray-50 to-white">
+      <section className="bg-gradient-to-r from-primary via-teal-700 to-teal-900 text-white py-16 shadow-inner">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-bold mb-4">{tr.title}</h1>
         </div>
       </section>
 
-      <section className='py-16'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='bg-white rounded-2xl shadow-lg p-8 md:p-12 space-y-10'>
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 space-y-8">
+
             <div>
-              <h2 className='text-2xl font-bold mb-4 text-gray-900'>
-                {tr.introTitle}
-              </h2>
-              <p className='text-gray-700 leading-relaxed text-justify hyphens-auto'>
-                {tr.introText}
-              </p>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s1Title}</h2>
+              <p className={pClass}>{tr.s1Text}</p>
             </div>
 
             <div>
-              <h2 className='text-2xl font-bold mb-4 text-gray-900'>
-                {tr.controllerTitle}
-              </h2>
-              <p className='text-gray-700 mb-3'>{tr.controllerIntro}</p>
-              <div className='bg-gray-50 rounded-xl p-6 space-y-2 text-gray-700'>
-                <p className='font-bold text-gray-900'>{tr.controllerOrg}</p>
-                <p>
-                  {tr.contactLabel}{' '}
-                  <a
-                    href='mailto:contact@edutechformations.com'
-                    className='text-primary hover:underline'
-                  >
-                    contact@edutechformations.com
-                  </a>
-                </p>
-              </div>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s2Title}</h2>
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">{tr.s2Sub1}</h3>
+              <p className={`${pClass} mb-4`}>{tr.s2Text1}</p>
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">{tr.s2Sub2}</h3>
+              <p className={pClass}>{tr.s2Text2}</p>
             </div>
 
             <div>
-              <h2 className='text-2xl font-bold mb-4 text-gray-900'>
-                {tr.collectedTitle}
-              </h2>
-              <h3 className='text-xl font-semibold mb-3 text-gray-800'>
-                {tr.formsSubTitle}
-              </h3>
-              <p className='text-gray-700 leading-relaxed mb-6 text-justify hyphens-auto'>
-                {tr.formsText}
-              </p>
-              <h3 className='text-xl font-semibold mb-3 text-gray-800'>
-                {tr.analyticsSubTitle}
-              </h3>
-              <p className='text-gray-700 leading-relaxed text-justify hyphens-auto'>
-                {tr.analyticsText}
-              </p>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s3Title}</h2>
+              <p className={pClass}>{tr.s3Text}</p>
             </div>
 
             <div>
-              <h2 className='text-2xl font-bold mb-4 text-gray-900'>
-                {tr.purposeTitle}
-              </h2>
-              <p className='text-gray-700 mb-3'>{tr.purposeIntro}</p>
-              <ul className='list-disc list-inside space-y-2 text-gray-700 ml-4'>
-                <li>{tr.purpose1}</li>
-                <li>{tr.purpose2}</li>
-                <li>{tr.purpose3}</li>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s4Title}</h2>
+              <p className={pClass}>{tr.s4Text}</p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s5Title}</h2>
+              <p className={pClass}>{tr.s5Text}</p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s6Title}</h2>
+              <p className={pClass}>{tr.s6Text}</p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s7Title}</h2>
+              <p className={pClass}>{tr.s7Text}</p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s8Title}</h2>
+              <p className="text-gray-700 mb-3">{tr.s8Intro}</p>
+              <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 mb-4">
+                <li><strong>{tr.s8Right1}</strong>{tr.s8Right1Text}</li>
+                <li><strong>{tr.s8Right2}</strong>{tr.s8Right2Text}</li>
+                <li><strong>{tr.s8Right3}</strong>{tr.s8Right3Text}</li>
+                <li><strong>{tr.s8Right4}</strong>{tr.s8Right4Text}</li>
+                <li><strong>{tr.s8Right5}</strong>{tr.s8Right5Text}</li>
               </ul>
-            </div>
-
-            <div>
-              <h2 className='text-2xl font-bold mb-4 text-gray-900'>
-                {tr.retentionTitle}
-              </h2>
-              <p className='text-gray-700 leading-relaxed text-justify hyphens-auto'>
-                {tr.retentionText}
+              <p className="text-gray-700">
+                {tr.s8Contact}{' '}
+                <a href="mailto:contact@edutechformation.com" className="text-primary hover:underline">
+                  contact@edutechformation.com
+                </a>.
               </p>
             </div>
 
             <div>
-              <h2 className='text-2xl font-bold mb-4 text-gray-900'>
-                {tr.rightsTitle}
-              </h2>
-              <p className='text-gray-700 mb-3'>{tr.rightsIntro}</p>
-              <ul className='list-disc list-inside space-y-2 text-gray-700 ml-4'>
-                <li>
-                  <strong>{tr.right1Bold}</strong> {tr.right1Text}
-                </li>
-                <li>
-                  <strong>{tr.right2Bold}</strong> {tr.right2Text}
-                </li>
-                <li>
-                  <strong>{tr.right3Bold}</strong> {tr.right3Text}
-                </li>
-                <li>
-                  <strong>{tr.right4Bold}</strong> {tr.right4Text}
-                </li>
-                <li>
-                  <strong>{tr.right5Bold}</strong> {tr.right5Text}
-                </li>
-              </ul>
-              <p className='text-gray-700 mt-3'>
-                {tr.rightsContact}{' '}
-                <a
-                  href='mailto:contact@edutechformations.com'
-                  className='text-primary hover:underline'
-                >
-                  contact@edutechformations.com
-                </a>
-                .
-              </p>
+              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s9Title}</h2>
+              <p className={pClass}>{tr.s9Text}</p>
             </div>
 
-            <div>
-              <h2 className='text-2xl font-bold mb-4 text-gray-900'>
-                {tr.cookiesTitle}
-              </h2>
-              <p className='text-gray-700 leading-relaxed text-justify hyphens-auto'>
-                {tr.cookiesText}
-              </p>
-            </div>
           </div>
         </div>
       </section>

@@ -61,6 +61,7 @@ export const dictionaries: Record<Locale, Translations> = {
       navTestimonials: 'Témoignages',
       navQualiopi: 'Certification Qualiopi',
       navContact: 'Contact',
+      navNousRejoindre: 'Nous rejoindre',
       colLegalTitle: 'Mentions',
       mentionsLegales: 'Mentions légales',
       cgv: 'CGV',
@@ -121,6 +122,13 @@ export const dictionaries: Record<Locale, Translations> = {
         'Rejoignez des milliers de professionnels qui ont donné un nouvel élan à leur parcours',
       finalCtaButton: 'Voir les formations',
       finalCtaContact: 'Contactez-nous',
+      qualiopiSectionTitle: 'Une qualité certifiée : Qualiopi',
+      qualiopiSectionText:
+        "Edutech Formations est certifié Qualiopi, gage de qualité et de sérieux. Cette certification vous garantit :",
+      qualiopiItem1: 'Des processus rigoureux',
+      qualiopiItem2: 'Des formations conformes aux exigences nationales',
+      qualiopiItem3: "L'accès à des dispositifs de financement (OPCO, FAF…)",
+      qualiopiSectionLink: 'En savoir plus sur notre certification',
       faqTitle: 'Questions fréquentes',
       faqSubtitle: 'Tout ce que vous devez savoir sur nos formations',
       faq1Q: 'Edutech Formations est-il un organisme de formation certifié ?',
@@ -332,8 +340,7 @@ export const dictionaries: Record<Locale, Translations> = {
     // ─── Financement page ──────────────────────────────────────────────────
     financement: {
       heroTitle: 'Financer votre formation',
-      heroSubtitle:
-        'Plusieurs dispositifs permettent de prendre en charge tout ou partie du coût de votre formation. Nous vous accompagnons dans vos démarches.',
+      heroSubtitle: '',
       intro: "En tant qu'organisme certifié",
       introQualiopiLink: 'Qualiopi',
       introEnd:
@@ -360,7 +367,7 @@ export const dictionaries: Record<Locale, Translations> = {
     // ─── Accessibilité page ────────────────────────────────────────────────
     accessibility: {
       heroTitle: 'Accessibilité et Handicap',
-      heroSubtitle: "Notre engagement pour l'accueil de tous les apprenants.",
+      heroSubtitle: '',
       commitTitle: 'Notre engagement',
       commitText:
         "Edutech Formations s'engage à favoriser l'accès à la formation professionnelle pour tous, y compris les personnes en situation de handicap. Nous adaptons nos modalités pédagogiques dans la mesure du possible pour répondre aux besoins spécifiques de chaque apprenant.",
@@ -421,6 +428,7 @@ export const dictionaries: Record<Locale, Translations> = {
       navTestimonials: 'Testimonials',
       navQualiopi: 'Qualiopi certification',
       navContact: 'Contact',
+      navNousRejoindre: 'Join our team',
       colLegalTitle: 'Legal',
       mentionsLegales: 'Legal notice',
       cgv: 'Terms & Conditions',
@@ -480,6 +488,13 @@ export const dictionaries: Record<Locale, Translations> = {
         'Join thousands of professionals who have given their careers fresh momentum.',
       finalCtaButton: 'View all courses',
       finalCtaContact: 'Contact us',
+      qualiopiSectionTitle: 'Quality certified: Qualiopi',
+      qualiopiSectionText:
+        'Edutech Formations is Qualiopi-certified, a guarantee of quality and reliability. This certification ensures:',
+      qualiopiItem1: 'Rigorous processes',
+      qualiopiItem2: 'Training programmes compliant with national standards',
+      qualiopiItem3: 'Access to public funding schemes (OPCO, FAF…)',
+      qualiopiSectionLink: 'Learn more about our certification',
       faqTitle: 'Frequently asked questions',
       faqSubtitle: 'Everything you need to know about our training',
       faq1Q: 'Is Edutech Formations a certified training organisation?',
@@ -682,8 +697,7 @@ export const dictionaries: Record<Locale, Translations> = {
 
     financement: {
       heroTitle: 'Funding your training',
-      heroSubtitle:
-        'Several schemes can cover all or part of your training costs. We support you through the process.',
+      heroSubtitle: '',
       intro: 'As a',
       introQualiopiLink: 'Qualiopi-certified',
       introEnd:
@@ -709,7 +723,7 @@ export const dictionaries: Record<Locale, Translations> = {
 
     accessibility: {
       heroTitle: 'Accessibility & Disability',
-      heroSubtitle: 'Our commitment to welcoming every learner.',
+      heroSubtitle: '',
       commitTitle: 'Our commitment',
       commitText:
         'Edutech Formations is committed to making professional training accessible to everyone, including people with disabilities. We adapt our teaching methods wherever possible to meet the specific needs of each learner.',

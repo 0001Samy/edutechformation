@@ -244,6 +244,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section Qualiopi */}
+      <section className='py-20 bg-gradient-to-br from-teal-50 to-white border-t border-teal-100'>
+        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <div className='flex flex-col md:flex-row items-center gap-10'>
+            <div className='flex-shrink-0'>
+              <Image
+                src='/Logo_Qualiopi.png'
+                alt='Certification Qualiopi'
+                width={200}
+                height={100}
+                className='object-contain'
+              />
+            </div>
+            <div>
+              <h2 className='text-3xl md:text-4xl font-bold mb-4'>
+                {t.home.qualiopiSectionTitle}
+              </h2>
+              <p className='text-lg text-gray-700 mb-5 leading-relaxed'>
+                {t.home.qualiopiSectionText}
+              </p>
+              <ul className='space-y-2 mb-6'>
+                {[
+                  t.home.qualiopiItem1,
+                  t.home.qualiopiItem2,
+                  t.home.qualiopiItem3,
+                ].map((item, i) => (
+                  <li key={i} className='flex items-center gap-2 text-gray-700'>
+                    <span className='w-2 h-2 rounded-full bg-primary flex-shrink-0'></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href='/qualiopi'
+                className='inline-flex items-center gap-2 text-primary font-semibold hover:underline'
+              >
+                {t.home.qualiopiSectionLink}
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section — boost SEO + featured snippets Google */}
       <section className='py-20 bg-white border-t border-gray-100'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>

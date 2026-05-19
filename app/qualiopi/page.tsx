@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  ShieldCheck,
   CheckCircle,
   Building2,
   Briefcase,
@@ -10,6 +9,7 @@ import {
   Download,
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslation } from '@/lib/i18n/LanguageContext';
 import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
 import { useMemo } from 'react';
@@ -77,8 +77,14 @@ export default function QualiopiPage() {
       <section className='py-12'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 text-center border border-gray-100'>
-            <div className='w-20 h-20 bg-gradient-to-br from-primary to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4'>
-              <ShieldCheck className='text-white' size={40} />
+            <div className='flex items-center justify-center mx-auto mb-6'>
+              <Image
+                src='/Logo_Qualiopi.png'
+                alt='Certification Qualiopi'
+                width={220}
+                height={110}
+                className='object-contain'
+              />
             </div>
             <h2 className='text-2xl font-bold text-gray-900 mb-1'>
               {t.qualiopi.badgeCertified}

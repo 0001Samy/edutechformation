@@ -138,6 +138,14 @@ export default function Footer() {
                   {t.footer.navContact}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href='/nous-rejoindre'
+                  className='text-gray-400 hover:text-white transition-colors text-sm'
+                >
+                  {t.footer.navNousRejoindre}
+                </Link>
+              </li>
             </ul>
           </div>
 
