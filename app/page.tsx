@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const useIsoLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from '@/lib/i18n/LanguageContext';
@@ -20,6 +20,30 @@ if (typeof window !== 'undefined') {
 export default function Home() {
   const t = useTranslation();
   const heroRef = useRef<HTMLDivElement>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slidesContainerRef = useRef<HTMLDivElement>(null);
+  const activeSlideRef = useRef(0);
+  const TOTAL_SLIDES = 5;
+
+  const goToSlide = (index: number) => {
+    if (slidesContainerRef.current) {
+      gsap.to(slidesContainerRef.current, {
+        x: `-${index * 100}%`,
+        duration: 0.5,
+        ease: 'power2.inOut',
+      });
+    }
+    activeSlideRef.current = index;
+    setActiveSlide(index);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const next = (activeSlideRef.current + 1) % TOTAL_SLIDES;
+      goToSlide(next);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useIsoLayoutEffect(() => {
     if (heroRef.current) {
@@ -126,98 +150,130 @@ export default function Home() {
         </div>
       </section>
 
-      {/* La formation au service de votre performance */}
+      {/* Slider — 5 sections condensées */}
       <section className='py-20 bg-gradient-to-b from-gray-50 to-white'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-5 text-gray-900'>
-            {t.home.perfTitle}
-          </h2>
-          <p className='text-lg text-gray-700 mb-4 leading-relaxed'>
-            {t.home.perfIntro}
-          </p>
-          <p className='text-gray-700 mb-4'>{t.home.perfLead}</p>
-          <ul className='space-y-2 ml-4 mb-6'>
-            {[t.home.perfItem1, t.home.perfItem2, t.home.perfItem3].map((item, i) => (
-              <li key={i} className='flex items-start gap-2'>
-                <span className='text-primary mt-1 flex-shrink-0'>•</span>
-                <span className='text-gray-700'>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className='text-gray-700 font-medium'>🎯 {t.home.perfNote}</p>
-        </div>
-      </section>
+          <div className='overflow-hidden'>
+            <div ref={slidesContainerRef} className='flex will-change-transform'>
 
-      {/* Une pédagogie centrée sur l'efficacité */}
-      <section className='py-20 bg-white'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-5 text-gray-900'>
-            {t.home.pedaTitle}
-          </h2>
-          <p className='text-gray-700 mb-4'>{t.home.pedaIntro}</p>
-          <ul className='space-y-3 ml-2 mb-6'>
-            {[t.home.pedaItem1, t.home.pedaItem2, t.home.pedaItem3, t.home.pedaItem4].map((item, i) => (
-              <li key={i} className='flex items-start gap-3'>
-                <CheckCircle className='text-primary flex-shrink-0 mt-0.5' size={18} />
-                <span className='text-gray-700'>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className='text-gray-600 italic'>👉 {t.home.pedaNote}</p>
-        </div>
-      </section>
+              {/* Slide 1 — Performance */}
+              <div className='w-full flex-shrink-0 min-h-[340px]'>
+                <h2 className='text-3xl md:text-4xl font-bold mb-5 text-gray-900'>{t.home.perfTitle}</h2>
+                <p className='text-lg text-gray-700 mb-5 leading-relaxed'>{t.home.perfIntro}</p>
+                <ul className='space-y-3 mb-6'>
+                  {[t.home.perfItem1, t.home.perfItem2, t.home.perfItem3].map((item, i) => (
+                    <li key={i} className='flex items-start gap-3'>
+                      <CheckCircle className='text-primary flex-shrink-0 mt-0.5' size={18} />
+                      <span className='text-gray-700'>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className='text-gray-600 font-medium'>{t.home.perfNote}</p>
+              </div>
 
-      {/* Des formations adaptées à vos besoins */}
-      <section className='py-20 bg-gradient-to-b from-gray-50 to-white'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-5 text-gray-900'>
-            {t.home.adaptTitle}
-          </h2>
-          <p className='text-gray-700 mb-3'>{t.home.adaptIntro}</p>
-          <ul className='space-y-1 ml-4 mb-6'>
-            {[t.home.adaptType1, t.home.adaptType2, t.home.adaptType3, t.home.adaptType4].map((item, i) => (
-              <li key={i} className='flex items-start gap-2'>
-                <span className='text-primary mt-1 flex-shrink-0'>•</span>
-                <span className='text-gray-700'>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className='text-gray-700 mb-3'>{t.home.adaptLead}</p>
-          <ul className='space-y-1 ml-4 mb-6'>
-            {[t.home.adaptItem1, t.home.adaptItem2, t.home.adaptItem3].map((item, i) => (
-              <li key={i} className='flex items-start gap-2'>
-                <span className='text-primary mt-1 flex-shrink-0'>•</span>
-                <span className='text-gray-700'>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className='text-gray-600 mb-8'>📍 {t.home.adaptNote}</p>
-          <Link
-            href='/formations'
-            className='inline-flex items-center gap-2 bg-gradient-to-r from-primary to-teal-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105'
-          >
-            {t.home.ctaDiscover}
-            <ArrowRight size={20} />
-          </Link>
-        </div>
-      </section>
+              {/* Slide 2 — Pédagogie */}
+              <div className='w-full flex-shrink-0 min-h-[340px]'>
+                <h2 className='text-3xl md:text-4xl font-bold mb-5 text-gray-900'>{t.home.pedaTitle}</h2>
+                <p className='text-gray-700 mb-5'>{t.home.pedaIntro}</p>
+                <ul className='space-y-3 mb-6'>
+                  {[t.home.pedaItem1, t.home.pedaItem2, t.home.pedaItem3, t.home.pedaItem4].map((item, i) => (
+                    <li key={i} className='flex items-start gap-3'>
+                      <CheckCircle className='text-primary flex-shrink-0 mt-0.5' size={18} />
+                      <span className='text-gray-700'>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className='text-gray-600 italic'>{t.home.pedaNote}</p>
+              </div>
 
-      {/* Pourquoi choisir Edutech Formations */}
-      <section className='py-20 bg-white'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-6 text-gray-900'>
-            {t.home.whyTitle}
-          </h2>
-          <ul className='space-y-3 mb-6'>
-            {[t.home.whyItem1, t.home.whyItem2, t.home.whyItem3, t.home.whyItem4, t.home.whyItem5].map((item, i) => (
-              <li key={i} className='flex items-start gap-3'>
-                <CheckCircle className='text-primary flex-shrink-0 mt-0.5' size={18} />
-                <span className='text-gray-700 font-medium'>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className='text-gray-600 italic mb-2'>👉 {t.home.whyNote1}</p>
-          <p className='text-gray-600 italic'>👉 {t.home.whyNote2}</p>
+              {/* Slide 3 — Formations adaptées */}
+              <div className='w-full flex-shrink-0 min-h-[340px]'>
+                <h2 className='text-3xl md:text-4xl font-bold mb-5 text-gray-900'>{t.home.adaptTitle}</h2>
+                <p className='text-gray-700 mb-3'>{t.home.adaptIntro}</p>
+                <ul className='space-y-1 ml-4 mb-4'>
+                  {[t.home.adaptType1, t.home.adaptType2, t.home.adaptType3, t.home.adaptType4].map((item, i) => (
+                    <li key={i} className='flex items-start gap-2'>
+                      <span className='text-primary mt-1 flex-shrink-0'>•</span>
+                      <span className='text-gray-700'>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className='text-gray-700 mb-3'>{t.home.adaptLead}</p>
+                <ul className='space-y-1 ml-4 mb-4'>
+                  {[t.home.adaptItem1, t.home.adaptItem2, t.home.adaptItem3].map((item, i) => (
+                    <li key={i} className='flex items-start gap-2'>
+                      <span className='text-primary mt-1 flex-shrink-0'>•</span>
+                      <span className='text-gray-700'>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className='text-gray-600 text-sm'>{t.home.adaptNote}</p>
+              </div>
+
+              {/* Slide 4 — Pourquoi nous */}
+              <div className='w-full flex-shrink-0 min-h-[340px]'>
+                <h2 className='text-3xl md:text-4xl font-bold mb-6 text-gray-900'>{t.home.whyTitle}</h2>
+                <ul className='space-y-3 mb-6'>
+                  {[t.home.whyItem1, t.home.whyItem2, t.home.whyItem3, t.home.whyItem4, t.home.whyItem5].map((item, i) => (
+                    <li key={i} className='flex items-start gap-3'>
+                      <CheckCircle className='text-primary flex-shrink-0 mt-0.5' size={18} />
+                      <span className='text-gray-700 font-medium'>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className='text-gray-600 italic'>{t.home.whyNote1}</p>
+              </div>
+
+              {/* Slide 5 — Partenaire */}
+              <div className='w-full flex-shrink-0 min-h-[340px]'>
+                <h2 className='text-3xl md:text-4xl font-bold mb-5 text-gray-900'>{t.home.partnerTitle}</h2>
+                <p className='text-lg text-gray-700 mb-4'>{t.home.partnerIntro}</p>
+                <p className='text-gray-700 mb-4'>{t.home.partnerLead}</p>
+                <ul className='space-y-3 mb-6'>
+                  {[t.home.partnerItem1, t.home.partnerItem2, t.home.partnerItem3].map((item, i) => (
+                    <li key={i} className='flex items-start gap-3'>
+                      <CheckCircle className='text-primary flex-shrink-0 mt-0.5' size={18} />
+                      <span className='text-gray-700'>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className='text-gray-600 italic'>{t.home.partnerNote}</p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className='flex items-center justify-between mt-10'>
+            <button
+              onClick={() => goToSlide((activeSlide - 1 + TOTAL_SLIDES) % TOTAL_SLIDES)}
+              className='p-2 rounded-full border border-gray-200 hover:border-primary hover:text-primary transition-colors'
+              aria-label='Précédent'
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            <div className='flex items-center gap-2'>
+              {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goToSlide(i)}
+                  aria-label={`Slide ${i + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === activeSlide ? 'bg-primary w-8' : 'bg-gray-300 w-2 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={() => goToSlide((activeSlide + 1) % TOTAL_SLIDES)}
+              className='p-2 rounded-full border border-gray-200 hover:border-primary hover:text-primary transition-colors'
+              aria-label='Suivant'
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -257,26 +313,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Un partenaire pour faire évoluer vos compétences */}
-      <section className='py-20 bg-white'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-5 text-gray-900'>
-            {t.home.partnerTitle}
-          </h2>
-          <p className='text-lg text-gray-700 mb-4'>{t.home.partnerIntro}</p>
-          <p className='text-gray-700 mb-4'>{t.home.partnerLead}</p>
-          <ul className='space-y-2 ml-4 mb-6'>
-            {[t.home.partnerItem1, t.home.partnerItem2, t.home.partnerItem3].map((item, i) => (
-              <li key={i} className='flex items-start gap-2'>
-                <span className='text-primary mt-1 flex-shrink-0'>•</span>
-                <span className='text-gray-700'>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className='text-gray-600 italic'>👉 {t.home.partnerNote}</p>
         </div>
       </section>
 
