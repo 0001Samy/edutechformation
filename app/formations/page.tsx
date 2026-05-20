@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { Clock, Users, Star, ArrowRight, Phone } from 'lucide-react';
+import { Clock, Users, Star, ArrowRight, Phone, Scale, Handshake, Bot } from 'lucide-react';
 import {
   Suspense,
   useEffect,
@@ -412,14 +412,16 @@ function FormationsPageContent() {
           </p>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
             {[
-              { icon: '⚖️', title: t.formations.poleDroitTitle, text: t.formations.poleDroitText },
-              { icon: '🤝', title: t.formations.poleMediationTitle, text: t.formations.poleMediationText },
-              { icon: '🤖', title: t.formations.poleIATitle, text: t.formations.poleIAText },
-            ].map((pole, i) => (
+              { Icon: Scale, title: t.formations.poleDroitTitle, text: t.formations.poleDroitText },
+              { Icon: Handshake, title: t.formations.poleMediationTitle, text: t.formations.poleMediationText },
+              { Icon: Bot, title: t.formations.poleIATitle, text: t.formations.poleIAText },
+            ].map(({ Icon, title, text }, i) => (
               <div key={i} className='bg-gray-50 rounded-2xl p-6 border border-gray-100'>
-                <div className='text-3xl mb-3'>{pole.icon}</div>
-                <h3 className='text-lg font-bold text-gray-900 mb-2'>{pole.title}</h3>
-                <p className='text-gray-600 text-sm leading-relaxed'>{pole.text}</p>
+                <div className='w-12 h-12 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center mb-4'>
+                  <Icon className='text-white' size={24} />
+                </div>
+                <h3 className='text-lg font-bold text-gray-900 mb-2'>{title}</h3>
+                <p className='text-gray-600 text-sm leading-relaxed'>{text}</p>
               </div>
             ))}
           </div>
