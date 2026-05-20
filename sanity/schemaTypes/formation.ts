@@ -168,14 +168,6 @@ export default defineType({
     }),
 
     defineField({
-      name: "contenuFormation",
-      title: "Contenu de la formation",
-      type: "text",
-      group: "pedagogie",
-      description: "Description détaillée du contenu de la formation",
-    }),
-
-    defineField({
       name: "modules",
       title: "Modules du programme",
       type: "array",
