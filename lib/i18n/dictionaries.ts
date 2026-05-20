@@ -48,7 +48,8 @@ export const dictionaries: Record<Locale, Translations> = {
 
     // ─── Footer ────────────────────────────────────────────────────────────
     footer: {
-      tagline: 'Formations professionnelles certifiées Qualiopi',
+      tagline: 'Organisme de Formation certifié Qualiopi au titre de la catégorie ACTION DE FORMATION',
+      footerDesc: "Organisme de formation qui accompagne les entreprises, institutions et professionnels dans l'acquisition de compétences adaptées aux transformations juridiques, humaines et technologiques contemporaines.",
       qualiopiBadgeLabel: 'Certifié Qualiopi',
       qualiopiBadgeSub: 'Actions de formation',
       colTrainingTitle: 'Nos formations',
@@ -446,7 +447,8 @@ export const dictionaries: Record<Locale, Translations> = {
     },
 
     footer: {
-      tagline: 'Qualiopi-certified professional training',
+      tagline: 'Qualiopi-certified training organisation — Training actions category',
+      footerDesc: 'Training organisation supporting companies, institutions and professionals in acquiring skills adapted to contemporary legal, human and technological transformations.',
       qualiopiBadgeLabel: 'Qualiopi-certified',
       qualiopiBadgeSub: 'Training actions',
       colTrainingTitle: 'Our training',
