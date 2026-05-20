@@ -416,12 +416,17 @@ function FormationsPageContent() {
               { Icon: Handshake, title: t.formations.poleMediationTitle, text: t.formations.poleMediationText },
               { Icon: Bot, title: t.formations.poleIATitle, text: t.formations.poleIAText },
             ].map(({ Icon, title, text }, i) => (
-              <div key={i} className='bg-gray-50 rounded-2xl p-6 border border-gray-100'>
-                <div className='w-12 h-12 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center mb-4'>
-                  <Icon className='text-white' size={24} />
+              <div key={i} className='relative bg-gradient-to-br from-primary to-teal-700 rounded-2xl p-6 overflow-hidden shadow-md hover:shadow-xl transition-shadow'>
+                {/* Cercle décoratif en fond */}
+                <div className='absolute -top-6 -right-6 w-32 h-32 bg-white/10 rounded-full' />
+                <div className='absolute -bottom-8 -left-4 w-24 h-24 bg-white/5 rounded-full' />
+                <div className='relative z-10'>
+                  <div className='w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4'>
+                    <Icon className='text-white' size={24} />
+                  </div>
+                  <h3 className='text-lg font-bold text-white mb-2'>{title}</h3>
+                  <p className='text-teal-100 text-sm leading-relaxed'>{text}</p>
                 </div>
-                <h3 className='text-lg font-bold text-gray-900 mb-2'>{title}</h3>
-                <p className='text-gray-600 text-sm leading-relaxed'>{text}</p>
               </div>
             ))}
           </div>
