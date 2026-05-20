@@ -319,10 +319,10 @@ export const dictionaries: Record<Locale, Translations> = {
     testimonials: {
       heroTitle: 'Témoignages',
       heroSubtitle:
-        'Découvrez ce que nos étudiants pensent de nos formations et comment elles ont transformé leur carrière',
+        'Découvrez ce que nos participants pensent de nos formations et comment elles ont transformé leur carrière',
       ratingValue: '4.8/5 sur plus de 5000 avis',
-      ratingSubtitle: 'La satisfaction de nos étudiants est notre priorité',
-      finalCtaTitle: 'Rejoignez nos étudiants satisfaits',
+      ratingSubtitle: 'La satisfaction de nos participants est notre priorité',
+      finalCtaTitle: 'Rejoignez nos participants satisfaits',
       finalCtaSubtitle:
         "Commencez votre formation dès aujourd'hui et transformez votre avenir professionnel",
       finalCtaButton: 'Voir nos formations',
