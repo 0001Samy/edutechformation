@@ -254,6 +254,17 @@ export default defineType({
       description: "Ex: 4.8",
       validation: (Rule) => Rule.min(0).max(5),
     }),
+
+    defineField({
+      name: "programmePdf",
+      title: "Programme PDF",
+      type: "file",
+      group: "autre",
+      description: "Fichier PDF du programme de la formation (téléchargeable par les visiteurs)",
+      options: {
+        accept: ".pdf,application/pdf",
+      },
+    }),
   ],
 
   preview: {
