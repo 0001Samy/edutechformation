@@ -12,47 +12,53 @@ export default function Footer() {
 
   return (
     <footer className='bg-gray-900 text-gray-300'>
-      {/* ─── Badge Qualiopi bandeau haut ─────────────────────────────────── */}
+
+      {/* ─── Bandeau identité : logo + description + badge Qualiopi ─────── */}
       <div className='border-b border-white/10'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-end'>
-          <Link
-            href='/qualiopi'
-            className='inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-4 py-3 transition-colors'
-          >
-            <div className='w-10 h-10 bg-gradient-to-br from-primary to-teal-700 rounded-lg flex items-center justify-center shrink-0 shadow-md'>
-              <ShieldCheck className='text-white' size={22} />
-            </div>
-            <div>
-              <p className='font-bold text-white text-sm leading-tight'>
-                {t.footer.qualiopiBadgeLabel}
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10'>
+          <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-6'>
+
+            {/* Logo + description */}
+            <div className='flex flex-col gap-4 max-w-lg'>
+              <Link href='/' className='inline-block hover:opacity-80 transition-opacity'>
+                <Image
+                  src='/edutech-logo-dark.svg'
+                  alt={t.common.siteName}
+                  width={160}
+                  height={48}
+                  className='h-12 w-auto brightness-0 invert'
+                />
+              </Link>
+              <p className='text-sm text-gray-400 leading-relaxed'>
+                {t.footer.footerDesc}
               </p>
-              <p className='text-xs text-gray-400 leading-tight'>
-                {t.footer.qualiopiBadgeSub}
-              </p>
             </div>
-          </Link>
+
+            {/* Badge Qualiopi */}
+            <Link
+              href='/qualiopi'
+              className='inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-4 py-3 transition-colors shrink-0'
+            >
+              <div className='w-10 h-10 bg-gradient-to-br from-primary to-teal-700 rounded-lg flex items-center justify-center shrink-0 shadow-md'>
+                <ShieldCheck className='text-white' size={22} />
+              </div>
+              <div>
+                <p className='font-bold text-white text-sm leading-tight'>
+                  {t.footer.qualiopiBadgeLabel}
+                </p>
+                <p className='text-xs text-gray-400 leading-tight'>
+                  {t.footer.qualiopiBadgeSub}
+                </p>
+              </div>
+            </Link>
+
+          </div>
         </div>
       </div>
 
-      {/* ─── 4 colonnes ─────────────────────────────────────────────────── */}
+      {/* ─── 3 colonnes de navigation ───────────────────────────────────── */}
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-10'>
-
-          {/* Colonne 0 : Logo + description */}
-          <div className='md:col-span-1'>
-            <Link href='/' className='inline-block mb-5 hover:opacity-80 transition-opacity'>
-              <Image
-                src='/edutech-logo-dark.svg'
-                alt={t.common.siteName}
-                width={150}
-                height={44}
-                className='h-11 w-auto brightness-0 invert'
-              />
-            </Link>
-            <p className='text-sm text-gray-400 leading-relaxed'>
-              {t.footer.footerDesc}
-            </p>
-          </div>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
 
           {/* Colonne 1 : Nos formations */}
           <div>
@@ -61,26 +67,17 @@ export default function Footer() {
             </h3>
             <ul className='space-y-2.5'>
               <li>
-                <Link
-                  href='/formations?pole=droit'
-                  className='text-gray-400 hover:text-white transition-colors text-sm'
-                >
+                <Link href='/formations?pole=droit' className='text-gray-400 hover:text-white transition-colors text-sm'>
                   {t.footer.poleDroit}
                 </Link>
               </li>
               <li>
-                <Link
-                  href='/formations?pole=mediation'
-                  className='text-gray-400 hover:text-white transition-colors text-sm'
-                >
+                <Link href='/formations?pole=mediation' className='text-gray-400 hover:text-white transition-colors text-sm'>
                   {t.footer.poleMediation}
                 </Link>
               </li>
               <li>
-                <Link
-                  href='/formations?pole=ia'
-                  className='text-gray-400 hover:text-white transition-colors text-sm'
-                >
+                <Link href='/formations?pole=ia' className='text-gray-400 hover:text-white transition-colors text-sm'>
                   {t.footer.poleIA}
                 </Link>
               </li>
@@ -193,6 +190,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
     </footer>
   );
 }
