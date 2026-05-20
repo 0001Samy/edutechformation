@@ -1,251 +1,207 @@
 'use client';
 
-import {
-  CheckCircle,
-  Building2,
-  Briefcase,
-  ArrowRight,
-  Sparkles,
-  Download,
-} from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTranslation } from '@/lib/i18n/LanguageContext';
 import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
 import { useMemo } from 'react';
 
 export default function QualiopiPage() {
-  const t = useTranslation();
+  const s1Items = useMemo(() => [
+    "L'information claire et accessible des publics",
+    "L'identification précise des objectifs de formation",
+    "L'adaptation des dispositifs aux besoins des apprenants",
+    "La qualité des moyens pédagogiques et techniques",
+    "La qualification des formateurs",
+    "L'inscription dans une démarche d'amélioration continue",
+  ], []);
 
-  // Listes longues — traduites via DeepL pour ne pas saturer le dictionnaire
-  const guarantees = useMemo(
-    () => [
-      'Des objectifs pédagogiques clairs, adaptés à vos besoins et à votre contexte professionnel',
-      'Des programmes structurés avec des méthodes pédagogiques éprouvées',
-      'Des formateurs qualifiés dont les compétences sont régulièrement mises à jour',
-      'Un suivi individuel tout au long de la formation et une évaluation des acquis',
-      'Une prise en compte des situations de handicap et des besoins spécifiques',
-      "Une démarche d'amélioration continue basée sur les retours des stagiaires",
-    ],
-    []
+  const s2Items = useMemo(() => [
+    "Nos processus sont structurés et conformes aux exigences réglementaires",
+    "Nos formations sont conçues de manière rigoureuse et adaptée aux besoins",
+    "Les compétences des formateurs sont évaluées et maintenues",
+    "Les retours des participants sont pris en compte dans une logique d'amélioration continue",
+  ], []);
+
+  const s3Items = useMemo(() => [
+    "L'évaluation des acquis des participants",
+    "La mesure de la satisfaction",
+    "Le suivi de la mise en application en situation professionnelle",
+    "L'analyse des retours et des axes d'amélioration",
+  ], []);
+
+  const s4Items = useMemo(() => [
+    "Les objectifs et contenus des formations",
+    "Les modalités pédagogiques",
+    "Les modalités d'évaluation",
+    "Les indicateurs de résultats",
+  ], []);
+
+  const strings = useMemo(() => ({
+    heroTitle: "La certification Qualiopi",
+    intro1: "Edutech Formations est certifié Qualiopi au titre des actions de formation.",
+    intro2: "La certification Qualiopi est une marque de qualité délivrée par des organismes certificateurs accrédités, sur la base du Référentiel National Qualité.",
+
+    s1Title: "Une certification fondée sur des exigences qualité",
+    s1Intro: "La certification Qualiopi repose sur plusieurs critères visant à garantir la qualité des actions de formation, notamment :",
+    s1Closing: "Ces exigences encadrent l'ensemble de nos pratiques, de la conception des formations jusqu'à l'évaluation des résultats.",
+
+    s2Title: "Ce que cela garantit pour nos clients",
+    s2Intro: "La certification Qualiopi atteste que :",
+    s2Note: "Elle constitue un gage de sérieux, de transparence et de qualité dans la réalisation de nos actions de formation.",
+
+    s3Title: "Une démarche d'amélioration continue",
+    s3Intro1: "Chez Edutech Formations, la qualité ne se limite pas à l'obtention de la certification.",
+    s3Intro2: "Nous mettons en œuvre une démarche d'amélioration continue basée sur :",
+    s3Closing: "Cette démarche nous permet d'adapter en permanence nos formations aux évolutions des besoins et des pratiques professionnelles.",
+
+    s4Title: "Une information transparente",
+    s4Intro: "Conformément aux exigences du référentiel Qualiopi, nous mettons à disposition des informations claires concernant :",
+    s4Note: "Ces éléments sont accessibles sur nos pages de formation ou sur demande.",
+
+    s5Title: "Certification et financements",
+    s5Text: "La certification Qualiopi permet l'accès à des financements publics ou mutualisés, sous réserve des conditions définies par les organismes financeurs.",
+    s5Link: "En savoir plus sur les financements",
+  }), []);
+
+  const arr = useMemo(() => Object.values(strings), [strings]);
+  const allDynamic = useMemo(() => [
+    ...arr,
+    ...s1Items, ...s2Items, ...s3Items, ...s4Items,
+  ], [arr, s1Items, s2Items, s3Items, s4Items]);
+
+  const [translated] = useTranslatedContent(allDynamic);
+  const keys = Object.keys(strings) as (keyof typeof strings)[];
+
+  const tr = useMemo(
+    () =>
+      Object.fromEntries(
+        keys.map((k, i) => [k, translated[i] || strings[k]])
+      ) as Record<keyof typeof strings, string>,
+    [keys, translated, strings]
   );
 
-  const referentialItems = useMemo(
-    () => [
-      "L'information du public sur les prestations, les délais d'accès et les résultats obtenus",
-      "L'identification précise des objectifs et l'adaptation des prestations",
-      "L'adaptation des moyens pédagogiques, techniques et d'encadrement",
-      'La qualification et le développement des compétences des formateurs',
-      "L'inscription dans l'environnement professionnel et socio-économique",
-      'Le recueil et la prise en compte des appréciations et réclamations',
-      "La démarche d'amélioration continue",
-    ],
-    []
-  );
+  const sl = arr.length;
+  const l0 = s1Items.length;
+  const l1 = s2Items.length;
+  const l2 = s3Items.length;
 
-  // Concaténation pour un seul appel API
-  const allDynamic = useMemo(
-    () => [...guarantees, ...referentialItems],
-    [guarantees, referentialItems]
-  );
-  const [translatedDynamic] = useTranslatedContent(allDynamic);
+  const tList = (items: string[], offset: number) =>
+    items.map((s, i) => translated[sl + offset + i] || s);
 
-  const tGuarantees = guarantees.map((g, i) => translatedDynamic[i] || g);
-  const tReferential = referentialItems.map(
-    (r, i) => translatedDynamic[guarantees.length + i] || r
-  );
+  const tS1 = tList(s1Items, 0);
+  const tS2 = tList(s2Items, l0);
+  const tS3 = tList(s3Items, l0 + l1);
+  const tS4 = tList(s4Items, l0 + l1 + l2);
+
+  const pClass = "text-gray-700 leading-relaxed text-justify hyphens-auto";
+  const h2Class = "text-2xl font-bold mb-4 text-gray-900";
+  const liClass = "flex items-start gap-3";
+  const checkClass = "text-primary flex-shrink-0 mt-1";
 
   return (
-    <div className='bg-gradient-to-b from-gray-50 to-white'>
+    <div className="bg-gradient-to-b from-gray-50 to-white">
       {/* Hero */}
-      <section className='relative bg-gradient-to-br from-primary via-teal-600 to-teal-800 text-white py-24 overflow-hidden'>
-        <div className='absolute inset-0 opacity-10'>
-          <div className='absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl'></div>
-          <div className='absolute bottom-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl'></div>
-        </div>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
-          <h1 className='text-5xl md:text-6xl font-bold mb-6'>
-            {t.qualiopi.heroTitle}
-          </h1>
-          <p className='text-xl md:text-2xl text-teal-50 max-w-2xl'>
-            {t.qualiopi.heroSubtitle}
-          </p>
+      <section className="bg-gradient-to-r from-primary via-teal-700 to-teal-900 text-white py-16 shadow-inner">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-bold mb-4">{tr.heroTitle}</h1>
         </div>
       </section>
 
-      {/* Badge */}
-      <section className='py-12'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 text-center border border-gray-100'>
-            <div className='flex items-center justify-center mx-auto mb-6'>
-              <Image
-                src='/Logo_Qualiopi.png'
-                alt='Certification Qualiopi'
-                width={220}
-                height={110}
-                className='object-contain'
-              />
-            </div>
-            <h2 className='text-2xl font-bold text-gray-900 mb-1'>
-              {t.qualiopi.badgeCertified}
-            </h2>
-            <p className='text-primary font-medium mb-4'>
-              {t.qualiopi.badgeCategory}
-            </p>
-            <p className='text-sm text-gray-500 mb-6'>
-              {t.qualiopi.badgeYear}
-              <br />
-              {t.qualiopi.badgeDeclaration}
-            </p>
-            <a
-              href='/certificat-qualiopi.pdf'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='inline-flex items-center gap-2 bg-gradient-to-r from-primary to-teal-600 text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition-all hover:scale-105'
-            >
-              <Download size={18} />
-              {t.qualiopi.downloadCertificate}
-            </a>
-          </div>
-        </div>
-      </section>
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 space-y-10">
 
-      {/* What is Qualiopi */}
-      <section className='py-16'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-6'>
-            {t.qualiopi.whatIsTitle}
-          </h2>
-          <div className='space-y-4 text-lg text-gray-700 leading-relaxed text-justify hyphens-auto'>
-            <p>{t.qualiopi.whatIs1}</p>
-            <p>{t.qualiopi.whatIs2}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Guarantees */}
-      <section className='py-16 bg-white'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-4'>
-            {t.qualiopi.guaranteesTitle}
-          </h2>
-          <p className='text-lg text-gray-700 mb-8'>
-            {t.qualiopi.guaranteesIntro}
-          </p>
-          <div className='space-y-4'>
-            {tGuarantees.map((item, i) => (
-              <div key={i} className='flex items-start gap-3'>
-                <CheckCircle
-                  className='text-primary flex-shrink-0 mt-1'
-                  size={22}
+            {/* Intro + logo */}
+            <div>
+              <p className={`${pClass} mb-3`}>{tr.intro1}</p>
+              <p className={pClass}>{tr.intro2}</p>
+              <div className="flex justify-center mt-8">
+                <Image
+                  src="/Logo_Qualiopi.png"
+                  alt="Certification Qualiopi"
+                  width={220}
+                  height={110}
+                  className="object-contain"
                 />
-                <p className='text-gray-700 text-justify hyphens-auto flex-1'>
-                  {item}
-                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Financing access */}
-      <section className='py-16'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-4'>
-            {t.qualiopi.financingTitle}
-          </h2>
-          <p className='text-lg text-gray-700 mb-8'>
-            {t.qualiopi.financingIntro}
-          </p>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-            <div className='bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100'>
-              <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center mb-4'>
-                <Building2 className='text-white' size={28} />
-              </div>
-              <h3 className='text-xl font-bold mb-2'>{t.qualiopi.opcoCardTitle}</h3>
-              <p className='text-gray-600'>{t.qualiopi.opcoCardText}</p>
             </div>
-            <div className='bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100'>
-              <div className='w-14 h-14 bg-gradient-to-br from-primary to-teal-600 rounded-xl flex items-center justify-center mb-4'>
-                <Briefcase className='text-white' size={28} />
-              </div>
-              <h3 className='text-xl font-bold mb-2'>{t.qualiopi.ftCardTitle}</h3>
-              <p className='text-gray-600'>{t.qualiopi.ftCardText}</p>
+
+            {/* Section 1 */}
+            <div>
+              <h2 className={h2Class}>{tr.s1Title}</h2>
+              <p className="text-gray-700 mb-4">{tr.s1Intro}</p>
+              <ul className="space-y-2 ml-2 mb-4">
+                {tS1.map((item, i) => (
+                  <li key={i} className={liClass}>
+                    <CheckCircle className={checkClass} size={18} />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className={pClass}>{tr.s1Closing}</p>
             </div>
-          </div>
-          <p className='mt-6 text-gray-700'>
-            {t.qualiopi.financingMore}{' '}
-            <Link
-              href='/financement'
-              className='text-primary font-semibold hover:underline'
-            >
-              {t.qualiopi.financingPage}
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
 
-      {/* Referential */}
-      <section className='py-16 bg-white'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-4'>
-            {t.qualiopi.referentialTitle}
-          </h2>
-          <p className='text-lg text-gray-700 mb-8'>
-            {t.qualiopi.referentialIntro}
-          </p>
-          <div className='space-y-4'>
-            {tReferential.map((item, i) => (
-              <div key={i} className='flex items-start gap-3'>
-                <CheckCircle
-                  className='text-primary flex-shrink-0 mt-1'
-                  size={22}
-                />
-                <p className='text-gray-700 text-justify hyphens-auto flex-1'>
-                  {item}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            {/* Section 2 */}
+            <div>
+              <h2 className={h2Class}>{tr.s2Title}</h2>
+              <p className="text-gray-700 mb-4">{tr.s2Intro}</p>
+              <ul className="space-y-2 ml-2 mb-4">
+                {tS2.map((item, i) => (
+                  <li key={i} className={liClass}>
+                    <CheckCircle className={checkClass} size={18} />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-600 italic">{tr.s2Note}</p>
+            </div>
 
-      {/* Quality process */}
-      <section className='py-16'>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <h2 className='text-3xl md:text-4xl font-bold mb-6'>
-            {t.qualiopi.processTitle}
-          </h2>
-          <p className='text-lg text-gray-700 leading-relaxed text-justify hyphens-auto'>
-            {t.qualiopi.processText}
-          </p>
-        </div>
-      </section>
+            {/* Section 3 */}
+            <div>
+              <h2 className={h2Class}>{tr.s3Title}</h2>
+              <p className={`${pClass} mb-3`}>{tr.s3Intro1}</p>
+              <p className="text-gray-700 mb-4">{tr.s3Intro2}</p>
+              <ul className="space-y-2 ml-2 mb-4">
+                {tS3.map((item, i) => (
+                  <li key={i} className={liClass}>
+                    <CheckCircle className={checkClass} size={18} />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className={pClass}>{tr.s3Closing}</p>
+            </div>
 
-      {/* CTA */}
-      <section className='relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 overflow-hidden'>
-        <div className='absolute inset-0 opacity-5'>
-          <div className='absolute bottom-0 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl'></div>
-        </div>
-        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10'>
-          <div className='inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-4 py-2 rounded-full mb-6'>
-            <Sparkles size={18} className='text-accent' />
-            <span className='text-sm font-medium'>{t.qualiopi.ctaBadge}</span>
+            {/* Section 4 */}
+            <div>
+              <h2 className={h2Class}>{tr.s4Title}</h2>
+              <p className="text-gray-700 mb-4">{tr.s4Intro}</p>
+              <ul className="space-y-2 ml-2 mb-4">
+                {tS4.map((item, i) => (
+                  <li key={i} className={liClass}>
+                    <CheckCircle className={checkClass} size={18} />
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-600 italic">{tr.s4Note}</p>
+            </div>
+
+            {/* Section 5 */}
+            <div>
+              <h2 className={h2Class}>{tr.s5Title}</h2>
+              <p className={`${pClass} mb-6`}>{tr.s5Text}</p>
+              <Link
+                href="/financement"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all hover:scale-105"
+              >
+                {tr.s5Link}
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+
           </div>
-          <h2 className='text-4xl md:text-5xl font-bold mb-6'>
-            {t.qualiopi.ctaTitle}
-          </h2>
-          <p className='text-xl text-gray-300 mb-10 leading-relaxed'>
-            {t.qualiopi.ctaSubtitle}
-          </p>
-          <Link
-            href='/contact'
-            className='inline-flex items-center justify-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg'
-          >
-            {t.common.contactUs}
-            <ArrowRight size={20} />
-          </Link>
         </div>
       </section>
     </div>

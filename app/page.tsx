@@ -129,12 +129,21 @@ export default function Home() {
             </div>
             <h1 className='text-5xl md:text-7xl font-bold mb-6 leading-tight'>
               {t.home.heroTitle1}{' '}
-              <span className='text-accent'>{t.home.heroTitleAccent}</span>{' '}
-              {t.home.heroTitle2}
+              <span className='text-accent'>{t.home.heroTitleAccent}</span>
             </h1>
-            <p className='text-xl md:text-2xl mb-10 text-teal-50 leading-relaxed'>
+            <p className='text-xl md:text-2xl mb-6 text-teal-50 leading-relaxed'>
               {t.home.heroSubtitle}
             </p>
+            <div className='flex flex-col sm:flex-row gap-3 justify-center mb-8 text-teal-100 text-base'>
+              <span className='flex items-center gap-2'>
+                <ArrowRight size={16} className='text-accent' />
+                {t.home.heroBullet1}
+              </span>
+              <span className='flex items-center gap-2'>
+                <ArrowRight size={16} className='text-accent' />
+                {t.home.heroBullet2}
+              </span>
+            </div>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
               <Link
                 href='/formations'

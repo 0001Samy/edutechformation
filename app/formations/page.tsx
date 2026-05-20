@@ -404,6 +404,28 @@ function FormationsPageContent() {
         </div>
       </section>
 
+      {/* Nos domaines */}
+      <section className='py-16 bg-white'>
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <p className='text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto mb-10'>
+            {t.formations.domainesIntro}
+          </p>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+            {[
+              { icon: '⚖️', title: t.formations.poleDroitTitle, text: t.formations.poleDroitText },
+              { icon: '🤝', title: t.formations.poleMediationTitle, text: t.formations.poleMediationText },
+              { icon: '🤖', title: t.formations.poleIATitle, text: t.formations.poleIAText },
+            ].map((pole, i) => (
+              <div key={i} className='bg-gray-50 rounded-2xl p-6 border border-gray-100'>
+                <div className='text-3xl mb-3'>{pole.icon}</div>
+                <h3 className='text-lg font-bold text-gray-900 mb-2'>{pole.title}</h3>
+                <p className='text-gray-600 text-sm leading-relaxed'>{pole.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Filtres + cartes */}
       <section className='py-20'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -541,6 +563,28 @@ function FormationsPageContent() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Résultats */}
+      <section className='py-16 bg-white'>
+        <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <h2 className='text-2xl font-bold mb-2 text-gray-900'>{t.formations.statsTitle}</h2>
+          <p className='text-sm text-gray-500 mb-8'>{t.formations.statsSubtitle}</p>
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
+            {[
+              { label: t.formations.statFormes, value: t.formations.statFormesValue },
+              { label: t.formations.statSatisfaction, value: t.formations.statSatisfactionValue },
+              { label: t.formations.statRecommandation, value: t.formations.statRecommandationValue },
+              { label: t.formations.statAssiduite, value: t.formations.statAssiduiteValue },
+            ].map((stat, i) => (
+              <div key={i} className='bg-gray-50 rounded-2xl p-6 text-center border border-gray-100'>
+                <p className='text-3xl font-bold text-primary mb-1'>{stat.value}</p>
+                <p className='text-sm text-gray-600'>{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          <p className='text-xs text-gray-400 mt-4 italic'>{t.formations.statsNote}</p>
         </div>
       </section>
     </div>

@@ -4,48 +4,101 @@ import { useMemo } from 'react';
 import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
 
 export default function ConfidentialitePage() {
-  const strings = useMemo(
-    () => ({
-      title: "Politique de confidentialité",
-      s1Title: "1. Responsable du traitement",
-      s1Text: "La société EDUTECH FORMATIONS (SASU), SIRET 977 619 089 00021, dont le siège est situé 52 Rue Montesquieu – 92600 Asnières-sur-Seine, est responsable du traitement des données personnelles collectées dans le cadre de ses activités. Contact : contact@edutechformation.com – 06 33 24 77 64.",
-      s2Title: "2. Données collectées et modalités de collecte",
-      s2Sub1: "Données collectées",
-      s2Text1: "Les données susceptibles d'être collectées sont : données d'identification (nom, prénom), coordonnées (email, téléphone, adresse postale), données professionnelles (fonction, entreprise, CV, diplômes), données administratives et financières (devis, factures), données liées à la formation (suivi, évaluations, participation).",
-      s2Sub2: "Modalités de collecte",
-      s2Text2: "Les données sont collectées via le site internet (formulaires, cookies, Google Analytics), lors des échanges avec EDUTECH FORMATIONS (email, téléphone, rendez-vous) et dans le cadre de la relation contractuelle (inscriptions, conventions, suivi pédagogique).",
-      s3Title: "3. Finalités du traitement",
-      s3Text: "Les données sont collectées pour : gestion et organisation des formations, communication avec les clients et participants, établissement des documents contractuels et administratifs, suivi des formations et amélioration continue, gestion des litiges et obligations légales.",
-      s4Title: "4. Base légale",
-      s4Text: "Les traitements sont fondés sur l'exécution contractuelle, les obligations légales et l'intérêt légitime de l'organisme de formation.",
-      s5Title: "5. Durée de conservation",
-      s5Text: "Les données personnelles sont conservées pendant une durée maximale de cinq (5) ans, sauf obligation légale contraire ou demande de suppression par la personne concernée.",
-      s6Title: "6. Destinataires des données",
-      s6Text: "Les données sont accessibles uniquement aux personnes habilitées au sein d'EDUTECH FORMATIONS et peuvent être transmises à des tiers dans les cas suivants : sous-traitants intervenant dans l'exécution des prestations, obligations légales ou réglementaires, partenaires impliqués dans la réalisation de la formation.",
-      s7Title: "7. Sécurité des données",
-      s7Text: "EDUTECH FORMATIONS met en œuvre des mesures techniques et organisationnelles afin de garantir la sécurité et la confidentialité des données personnelles.",
-      s8Title: "8. Droits des personnes",
-      s8Intro: "Conformément au RGPD, vous disposez des droits suivants :",
-      s8Right1: "Droit d'accès",
-      s8Right1Text: " : obtenir une copie de vos données",
-      s8Right2: "Droit de rectification",
-      s8Right2Text: " : corriger des données inexactes",
-      s8Right3: "Droit à l'effacement",
-      s8Right3Text: " : demander la suppression de vos données",
-      s8Right4: "Droit d'opposition",
-      s8Right4Text: " : vous opposer au traitement de vos données",
-      s8Right5: "Droit à la portabilité",
-      s8Right5Text: " : récupérer vos données dans un format lisible",
-      s8Contact: "Pour exercer ces droits, contactez-nous à",
-      s9Title: "9. Cookies",
-      s9Text: "Ce site utilise Google Analytics à des fins de mesure d'audience. Les données collectées sont anonymisées. Vous pouvez désactiver ces cookies via les paramètres de votre navigateur.",
-    }),
-    []
-  );
+  const s2DataItems = useMemo(() => [
+    "Données d'identification : nom, prénom",
+    "Coordonnées : adresse email, numéro de téléphone, adresse postale",
+    "Données professionnelles : fonction, entreprise, CV, diplômes",
+    "Données administratives et financières : devis, factures, coordonnées bancaires",
+    "Données liées à la formation : suivi, évaluations, participation",
+  ], []);
+
+  const s2ViaWebItems = useMemo(() => [
+    "Formulaires de contact ou de demande de devis",
+    "Navigation sur le site (cookies, outils de mesure d'audience)",
+    "Outils d'analyse tels que Google Analytics",
+  ], []);
+
+  const s2ViaEchangeItems = useMemo(() => [
+    "Par email",
+    "Par téléphone",
+    "Lors de rendez-vous (présentiel ou visioconférence)",
+    "Lors de la transmission de documents (devis, conventions, CV, etc.)",
+  ], []);
+
+  const s2ViaContratItems = useMemo(() => [
+    "Inscription à une formation",
+    "Signature de devis ou conventions",
+    "Suivi administratif et pédagogique",
+  ], []);
+
+  const s3Items = useMemo(() => [
+    "Gestion et organisation des formations",
+    "Communication avec les clients et participants",
+    "Établissement des documents contractuels et administratifs",
+    "Suivi des formations et amélioration continue",
+    "Gestion des litiges et obligations légales",
+  ], []);
+
+  const s6Items = useMemo(() => [
+    "Sous-traitants intervenant dans l'exécution des prestations",
+    "Obligations légales ou réglementaires",
+    "Partenaires impliqués dans la réalisation de la formation",
+  ], []);
+
+  const strings = useMemo(() => ({
+    title: "Politique de confidentialité",
+
+    s1Title: "1. Responsable du traitement",
+    s1Text: "La société EDUTECH FORMATIONS (SASU), SIRET 977 619 089 00021, dont le siège est situé 52 Rue Montesquieu – 92600 Asnières-sur-Seine, est responsable du traitement des données personnelles collectées dans le cadre de ses activités. Contact : contact@edutechformation.com – 06 33 24 77 64.",
+
+    s2Title: "2. Données collectées et modalités de collecte",
+    s2Intro: "Dans le cadre de ses activités, EDUTECH FORMATIONS est amené à collecter des données à caractère personnel par différents moyens.",
+    s2DataTitle: "🔸 Données collectées",
+    s2DataIntro: "Les données susceptibles d'être collectées sont notamment :",
+    s2CollectTitle: "🔸 Modalités de collecte",
+    s2CollectIntro: "Les données personnelles peuvent être collectées :",
+    s2Web: "✔ Via le site internet",
+    s2Echange: "✔ Lors des échanges avec EDUTECH FORMATIONS",
+    s2Contrat: "✔ Dans le cadre de la relation contractuelle",
+    s2Note: "👉 Important : Les données sont collectées directement auprès des personnes concernées ou transmises par leur employeur dans le cadre de l'inscription à une formation.",
+
+    s3Title: "3. Finalités du traitement",
+    s3Intro: "Les données sont collectées pour les finalités suivantes :",
+
+    s4Title: "4. Base légale",
+    s4Text: "Les traitements sont fondés sur l'exécution contractuelle, les obligations légales et l'intérêt légitime de l'organisme de formation.",
+
+    s5Title: "5. Durée de conservation",
+    s5Text: "Les données personnelles sont conservées pendant une durée maximale de cinq (5) ans, sauf obligation légale contraire ou demande de suppression par la personne concernée.",
+
+    s6Title: "6. Destinataires des données",
+    s6Intro: "Les données sont accessibles uniquement aux personnes habilitées au sein d'EDUTECH FORMATIONS et peuvent être transmises à des tiers dans les cas suivants :",
+
+    s7Title: "7. Sécurité des données",
+    s7Text: "EDUTECH FORMATIONS met en œuvre des mesures techniques et organisationnelles afin de garantir la sécurité et la confidentialité des données personnelles.",
+
+    s8Title: "8. Droits des personnes",
+    s8Text1: "Conformément à la réglementation en vigueur (RGPD), vous disposez des droits suivants : accès, rectification, effacement, limitation, opposition et portabilité.",
+    s8Text2: "Vous pouvez exercer vos droits en contactant : contact@edutechformation.com",
+    s8Text3: "Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).",
+
+    s9Title: "9. Cookies",
+    s9Text: "Ce site utilise uniquement les cookies nécessaires au fonctionnement de Google Analytics. Vous pouvez désactiver ces cookies via les paramètres de votre navigateur ou en utilisant l'extension de navigateur proposée par Google.",
+
+    s10Title: "10. Modification de la politique",
+    s10Text: "EDUTECH FORMATIONS se réserve le droit de modifier la présente politique à tout moment. Les modifications entrent en vigueur dès leur publication.",
+  }), []);
 
   const arr = useMemo(() => Object.values(strings), [strings]);
-  const [translated] = useTranslatedContent(arr);
+  const allDynamic = useMemo(() => [
+    ...arr,
+    ...s2DataItems, ...s2ViaWebItems, ...s2ViaEchangeItems, ...s2ViaContratItems,
+    ...s3Items, ...s6Items,
+  ], [arr, s2DataItems, s2ViaWebItems, s2ViaEchangeItems, s2ViaContratItems, s3Items, s6Items]);
+
+  const [translated] = useTranslatedContent(allDynamic);
   const keys = Object.keys(strings) as (keyof typeof strings)[];
+
   const tr = useMemo(
     () =>
       Object.fromEntries(
@@ -54,7 +107,27 @@ export default function ConfidentialitePage() {
     [keys, translated, strings]
   );
 
+  const sl = arr.length;
+  const l0 = s2DataItems.length;
+  const l1 = s2ViaWebItems.length;
+  const l2 = s2ViaEchangeItems.length;
+  const l3 = s2ViaContratItems.length;
+  const l4 = s3Items.length;
+
+  const tList = (items: string[], offset: number) =>
+    items.map((s, i) => translated[sl + offset + i] || s);
+
+  const tData     = tList(s2DataItems,      0);
+  const tWeb      = tList(s2ViaWebItems,    l0);
+  const tEchange  = tList(s2ViaEchangeItems,l0+l1);
+  const tContrat  = tList(s2ViaContratItems,l0+l1+l2);
+  const tS3       = tList(s3Items,          l0+l1+l2+l3);
+  const tS6       = tList(s6Items,          l0+l1+l2+l3+l4);
+
   const pClass = "text-gray-700 leading-relaxed text-justify hyphens-auto";
+  const h2Class = "text-2xl font-bold mb-3 text-gray-900";
+  const liClass = "flex items-start gap-2";
+  const dot = "text-primary mt-1 flex-shrink-0";
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white">
@@ -68,65 +141,139 @@ export default function ConfidentialitePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 space-y-8">
 
+            {/* 1 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s1Title}</h2>
+              <h2 className={h2Class}>{tr.s1Title}</h2>
               <p className={pClass}>{tr.s1Text}</p>
             </div>
 
+            {/* 2 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s2Title}</h2>
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">{tr.s2Sub1}</h3>
-              <p className={`${pClass} mb-4`}>{tr.s2Text1}</p>
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">{tr.s2Sub2}</h3>
-              <p className={pClass}>{tr.s2Text2}</p>
+              <h2 className={h2Class}>{tr.s2Title}</h2>
+              <p className="text-gray-700 mb-4">{tr.s2Intro}</p>
+
+              <p className="font-semibold text-gray-800 mb-2">{tr.s2DataTitle}</p>
+              <p className="text-gray-700 mb-2">{tr.s2DataIntro}</p>
+              <ul className="space-y-1 mb-5 ml-4">
+                {tData.map((item, i) => (
+                  <li key={i} className={liClass}>
+                    <span className={dot}>•</span>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="font-semibold text-gray-800 mb-2">{tr.s2CollectTitle}</p>
+              <p className="text-gray-700 mb-3">{tr.s2CollectIntro}</p>
+
+              <div className="ml-4 space-y-3 mb-4">
+                <div>
+                  <p className="font-medium text-gray-700 mb-1">{tr.s2Web}</p>
+                  <ul className="space-y-1 ml-4">
+                    {tWeb.map((item, i) => (
+                      <li key={i} className={liClass}>
+                        <span className={dot}>•</span>
+                        <span className="text-gray-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-medium text-gray-700 mb-1">{tr.s2Echange}</p>
+                  <ul className="space-y-1 ml-4">
+                    {tEchange.map((item, i) => (
+                      <li key={i} className={liClass}>
+                        <span className={dot}>•</span>
+                        <span className="text-gray-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-medium text-gray-700 mb-1">{tr.s2Contrat}</p>
+                  <ul className="space-y-1 ml-4">
+                    {tContrat.map((item, i) => (
+                      <li key={i} className={liClass}>
+                        <span className={dot}>•</span>
+                        <span className="text-gray-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <p className="text-gray-600 italic text-sm">{tr.s2Note}</p>
             </div>
 
+            {/* 3 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s3Title}</h2>
-              <p className={pClass}>{tr.s3Text}</p>
+              <h2 className={h2Class}>{tr.s3Title}</h2>
+              <p className="text-gray-700 mb-3">{tr.s3Intro}</p>
+              <ul className="space-y-2 ml-4">
+                {tS3.map((item, i) => (
+                  <li key={i} className={liClass}>
+                    <span className={dot}>•</span>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
+            {/* 4 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s4Title}</h2>
+              <h2 className={h2Class}>{tr.s4Title}</h2>
               <p className={pClass}>{tr.s4Text}</p>
             </div>
 
+            {/* 5 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s5Title}</h2>
+              <h2 className={h2Class}>{tr.s5Title}</h2>
               <p className={pClass}>{tr.s5Text}</p>
             </div>
 
+            {/* 6 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s6Title}</h2>
-              <p className={pClass}>{tr.s6Text}</p>
+              <h2 className={h2Class}>{tr.s6Title}</h2>
+              <p className="text-gray-700 mb-3">{tr.s6Intro}</p>
+              <ul className="space-y-2 ml-4">
+                {tS6.map((item, i) => (
+                  <li key={i} className={liClass}>
+                    <span className={dot}>•</span>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
+            {/* 7 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s7Title}</h2>
+              <h2 className={h2Class}>{tr.s7Title}</h2>
               <p className={pClass}>{tr.s7Text}</p>
             </div>
 
+            {/* 8 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s8Title}</h2>
-              <p className="text-gray-700 mb-3">{tr.s8Intro}</p>
-              <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 mb-4">
-                <li><strong>{tr.s8Right1}</strong>{tr.s8Right1Text}</li>
-                <li><strong>{tr.s8Right2}</strong>{tr.s8Right2Text}</li>
-                <li><strong>{tr.s8Right3}</strong>{tr.s8Right3Text}</li>
-                <li><strong>{tr.s8Right4}</strong>{tr.s8Right4Text}</li>
-                <li><strong>{tr.s8Right5}</strong>{tr.s8Right5Text}</li>
-              </ul>
-              <p className="text-gray-700">
-                {tr.s8Contact}{' '}
+              <h2 className={h2Class}>{tr.s8Title}</h2>
+              <p className="text-gray-700 mb-2">{tr.s8Text1}</p>
+              <p className="text-gray-700 mb-2">
+                {tr.s8Text2}{' '}
                 <a href="mailto:contact@edutechformation.com" className="text-primary hover:underline">
                   contact@edutechformation.com
-                </a>.
+                </a>
               </p>
+              <p className="text-gray-700">{tr.s8Text3}</p>
             </div>
 
+            {/* 9 */}
             <div>
-              <h2 className="text-2xl font-bold mb-3 text-gray-900">{tr.s9Title}</h2>
+              <h2 className={h2Class}>{tr.s9Title}</h2>
               <p className={pClass}>{tr.s9Text}</p>
+            </div>
+
+            {/* 10 */}
+            <div>
+              <h2 className={h2Class}>{tr.s10Title}</h2>
+              <p className={pClass}>{tr.s10Text}</p>
             </div>
 
           </div>

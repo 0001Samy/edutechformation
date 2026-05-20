@@ -78,7 +78,8 @@ export default function NousRejoindre() {
     "Capacité à transmettre de manière claire et structurée",
     "Compétences pédagogiques et goût pour l'animation",
     "Autonomie, rigueur et sens de l'adaptation",
-    "Statut d'indépendant — titulaire d'un numéro de déclaration d'activité (NDA)",
+    "Statut d'indépendant",
+    "Être titulaire d'un numéro de déclaration d'activité (NDA)",
   ];
 
   return (
@@ -102,8 +103,11 @@ export default function NousRejoindre() {
       {/* Intro */}
       <section className='py-16'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <p className='text-lg text-gray-700 leading-relaxed text-justify hyphens-auto mb-4'>
+            Edutech Formations développe régulièrement son réseau de formateurs indépendants afin de répondre aux besoins de ses clients et d'accompagner la montée en compétences des professionnels.
+          </p>
           <p className='text-lg text-gray-700 leading-relaxed text-justify hyphens-auto'>
-            Edutech Formations développe régulièrement son réseau de formateurs indépendants afin de répondre aux besoins de ses clients et d'accompagner la montée en compétences des professionnels. Nous recherchons des intervenants capables de concevoir et d'animer des formations concrètes, opérationnelles et adaptées aux réalités du terrain.
+            Nous recherchons des intervenants capables de concevoir et d'animer des formations concrètes, opérationnelles et adaptées aux réalités du terrain.
           </p>
         </div>
       </section>
