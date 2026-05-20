@@ -19,6 +19,8 @@ export default function Header() {
     { href: '/contact', label: t.common.contact },
   ];
 
+  const joinLink = { href: '/nous-rejoindre', label: t.common.navNousRejoindre };
+
   return (
     <header className='bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100'>
       <nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -46,6 +48,13 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+
+            <Link
+              href={joinLink.href}
+              className='ml-2 inline-flex items-center px-4 py-2 rounded-full bg-primary text-white font-semibold text-sm hover:bg-teal-700 transition-all shadow-sm hover:shadow-md'
+            >
+              {joinLink.label}
+            </Link>
 
             {/* Bouton FR / EN — affiche le drapeau de la langue cible */}
             <button
@@ -99,6 +108,13 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href={joinLink.href}
+              className='block py-3 px-4 text-primary font-semibold rounded-lg bg-primary/8 hover:bg-primary/15 transition-all'
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {joinLink.label}
+            </Link>
           </div>
         )}
       </nav>
