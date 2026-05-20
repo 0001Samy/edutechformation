@@ -108,7 +108,8 @@ export default async function Page({
         profilFormateur,
         lien,
         slug,
-        "imageUrl": image.asset->url
+        "imageUrl": image.asset->url,
+        "programmePdfUrl": programmePdf.asset->url
       }
     `,
     { slug }

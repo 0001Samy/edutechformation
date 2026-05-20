@@ -16,6 +16,7 @@ import {
   FileText,
   CalendarClock,
   Info,
+  Download,
 } from 'lucide-react';
 import { useTranslation } from '@/lib/i18n/LanguageContext';
 import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
@@ -98,6 +99,7 @@ interface Course {
   profilFormateur?: string;
   lien?: string;
   imageUrl?: string;
+  programmePdfUrl?: string;
 }
 
 // ─── Page principale ──────────────────────────────────────────────────────────
@@ -243,13 +245,27 @@ export default function FormationDetailClient({ course }: { course: Course }) {
                 )}
               </div>
 
-              <Link
-                href={course.lien || '/contact'}
-                className='inline-flex items-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-colors shadow-lg'
-              >
-                {t.formationDetail.inscribeNow}
-                <ArrowRight size={20} />
-              </Link>
+              <div className='flex flex-wrap gap-3'>
+                <Link
+                  href={course.lien || '/contact'}
+                  className='inline-flex items-center gap-2 bg-accent text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-500 transition-colors shadow-lg'
+                >
+                  {t.formationDetail.inscribeNow}
+                  <ArrowRight size={20} />
+                </Link>
+                {course.programmePdfUrl && (
+                  <a
+                    href={course.programmePdfUrl}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    download
+                    className='inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-6 py-4 rounded-full font-semibold hover:bg-white/30 transition-colors border border-white/40'
+                  >
+                    <Download size={18} />
+                    Télécharger le programme
+                  </a>
+                )}
+              </div>
             </div>
 
             {/* Encadré tarif */}
