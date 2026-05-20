@@ -19,7 +19,7 @@ export default function Header() {
     { href: '/contact', label: t.common.contact },
   ];
 
-  const joinLink = { href: '/nous-rejoindre', label: t.common.navNousRejoindre };
+  const joinLink = { href: '/nous-rejoindre', label: t.footer.navNousRejoindre };
 
   return (
     <header className='bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100'>
