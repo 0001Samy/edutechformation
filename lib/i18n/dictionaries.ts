@@ -103,6 +103,9 @@ export const dictionaries: Record<Locale, Translations> = {
       iaTitle: 'Intelligence artificielle',
       iaDesc: "Intégrez l'IA, améliorez votre efficacité et anticipez les transformations.",
 
+      approachTitle: 'Une formation qui prend racine',
+      approachSubtitle: 'Notre méthode allie expertise humaine et outils modernes pour faire grandir vos compétences durablement.',
+
       perfTitle: 'La formation au service de votre performance',
       perfIntro: 'Dans un monde en constante évolution, les compétences sont votre meilleur levier de réussite.',
       perfLead: 'Chez Edutech Formations, nous concevons des parcours pédagogiques qui permettent :',
@@ -500,6 +503,9 @@ export const dictionaries: Record<Locale, Translations> = {
       mediationDesc: 'Develop your interpersonal skills and manage complex situations.',
       iaTitle: 'Artificial intelligence',
       iaDesc: 'Integrate AI, improve your efficiency and anticipate transformations.',
+
+      approachTitle: 'Training that takes root',
+      approachSubtitle: 'Our method combines human expertise and modern tools to grow your skills sustainably.',
 
       perfTitle: 'Training that drives performance',
       perfIntro: 'In a constantly evolving world, skills are your greatest lever for success.',

@@ -277,6 +277,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Notre approche */}
+      <section className='py-20 md:py-24 bg-gradient-to-b from-white via-teal-50/30 to-white'>
+        <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <div className='text-center mb-10'>
+            <h2 className='text-4xl md:text-5xl font-bold mb-4 text-gray-900'>
+              {t.home.approachTitle}
+            </h2>
+            <p className='text-lg md:text-xl text-gray-600 max-w-2xl mx-auto'>
+              {t.home.approachSubtitle}
+            </p>
+          </div>
+          <div className='relative w-full aspect-[3/2] max-w-4xl mx-auto'>
+            <Image
+              src='/approach-tree.jpg'
+              alt={t.home.approachTitle}
+              fill
+              sizes='(max-width: 1024px) 100vw, 1024px'
+              className='object-contain'
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Une qualité certifiée : Qualiopi */}
       <section className='py-20 bg-gradient-to-br from-teal-50 to-white border-t border-teal-100'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
