@@ -513,7 +513,7 @@ function FormationsPageContent() {
                       {/* Badge certification */}
                       <div className='absolute top-4 left-4 flex items-center gap-1.5 bg-accent text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-md'>
                         <Award size={13} />
-                        Formation professionnelle en médiation (200 heures)
+                        L'art et la pratique de la médiation professionnelle — 200h
                       </div>
                     </Link>
 
