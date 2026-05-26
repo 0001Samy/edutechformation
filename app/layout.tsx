@@ -7,6 +7,7 @@ import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import JsonLd, { organizationSchema } from '@/components/JsonLd';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -96,6 +97,18 @@ export default function RootLayout({
           <main className='min-h-screen'>{children}</main>
           <Footer />
         </LanguageProvider>
+        <Script
+          src='https://www.googletagmanager.com/gtag/js?id=G-27VP1JDZV9'
+          strategy='afterInteractive'
+        />
+        <Script id='google-analytics' strategy='afterInteractive'>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-27VP1JDZV9');
+          `}
+        </Script>
         <Analytics />
         <SpeedInsights />
       </body>

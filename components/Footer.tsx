@@ -169,7 +169,7 @@ export default function Footer() {
             </p>
             <div className='flex items-center gap-3 shrink-0'>
               <a
-                href='https://www.linkedin.com/company/edutech-formations'
+                href='https://www.linkedin.com/company/edutech-formations/'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='w-9 h-9 bg-white/5 hover:bg-primary border border-white/10 rounded-lg flex items-center justify-center text-gray-300 hover:text-white transition-all'

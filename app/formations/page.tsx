@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { Clock, Users, Star, ArrowRight, Phone, Scale, Handshake, Bot } from 'lucide-react';
+import { Clock, Users, Star, ArrowRight, Phone, Scale, Handshake, Bot, Award } from 'lucide-react';
 import {
   Suspense,
   useEffect,
@@ -254,9 +254,15 @@ function FormationsPageContent() {
     loadFormations();
   }, []);
 
+  const FEATURED_SLUG = 'certificat-formation-mediation-200-heures';
+
   const filteredFormations = useMemo(() => {
-    if (selectedPole === 'all') return formations;
-    return formations.filter((f) => f.pole === selectedPole);
+    const base = selectedPole === 'all' ? formations : formations.filter((f) => f.pole === selectedPole);
+    return [...base].sort((a, b) => {
+      if (a.slug?.current === FEATURED_SLUG) return -1;
+      if (b.slug?.current === FEATURED_SLUG) return 1;
+      return 0;
+    });
   }, [formations, selectedPole]);
 
   // ─── Traduction du contenu Sanity (titres + descriptions) ──────────────────
@@ -477,10 +483,99 @@ function FormationsPageContent() {
             {filteredFormations.map((formation: any, idx: number) => {
               if (!formation.slug?.current) return null;
 
-              // Les 3 premières images sont au-dessus de la ligne de flottaison
-              // (LCP) → on les charge en priorité.
               const isAboveTheFold = idx < 3;
+              const isFeatured = formation.slug.current === FEATURED_SLUG;
 
+              // ── Carte mise en avant (certificat 200h) ──────────────────────
+              if (isFeatured) {
+                return (
+                  <div
+                    key={formation._id}
+                    className='course-card col-span-1 md:col-span-2 lg:col-span-3 group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 border-2 border-primary/20 flex flex-col md:flex-row'
+                  >
+                    {/* Image — pleine hauteur à gauche sur desktop */}
+                    <Link
+                      href={`/formations/${formation.slug.current}`}
+                      className='relative md:w-2/5 h-56 md:h-auto overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 shrink-0 flex items-center justify-center'
+                    >
+                      {formation.imageUrl ? (
+                        <Image
+                          src={formation.imageUrl}
+                          alt={formation.titre}
+                          fill
+                          sizes='(max-width: 768px) 100vw, 40vw'
+                          className='object-cover group-hover:scale-105 transition-transform duration-500'
+                          priority
+                        />
+                      ) : null}
+                      {/* Overlay sombre pour lisibilité du badge */}
+                      <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:bg-gradient-to-r' />
+                      {/* Badge certification */}
+                      <div className='absolute top-4 left-4 flex items-center gap-1.5 bg-accent text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-md'>
+                        <Award size={13} />
+                        Certification professionnelle
+                      </div>
+                    </Link>
+
+                    {/* Contenu — droite */}
+                    <div className='flex flex-col flex-1'>
+                      <Link
+                        href={`/formations/${formation.slug.current}`}
+                        className='flex flex-col flex-1 p-6 md:p-8'
+                      >
+                        {/* Label pôle */}
+                        <span className='text-xs font-semibold text-primary uppercase tracking-wider mb-2'>
+                          Formation phare — Médiation
+                        </span>
+
+                        <h2 className='text-xl md:text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors leading-snug mb-3'>
+                          {translatedSanityTexts[idx * 2] || formation.titre}
+                        </h2>
+
+                        <p className='text-gray-500 text-sm leading-relaxed line-clamp-3 mb-5'>
+                          {translatedSanityTexts[idx * 2 + 1] || formation.description || ' '}
+                        </p>
+
+                        {/* Méta */}
+                        <div className='flex flex-wrap items-center gap-4 text-xs text-gray-500 pt-4 border-t border-gray-100 mt-auto'>
+                          <div className='flex items-center gap-1.5'>
+                            <Clock size={14} className='text-primary' />
+                            <span>{formation.duree ? formatDuree(formation.duree, locale) : '—'}</span>
+                          </div>
+                          <div className='flex items-center gap-1.5'>
+                            <Users size={14} className='text-primary' />
+                            <span>
+                              {formation.etudiants
+                                ? `${formation.etudiants} ${t.formations.formed}`
+                                : t.formations.newLabel}
+                            </span>
+                          </div>
+                          <div className='flex items-center gap-1.5'>
+                            <Star
+                              size={14}
+                              className={formation.note ? 'fill-accent text-accent' : 'text-gray-300'}
+                            />
+                            <span className='font-semibold text-gray-600'>
+                              {formation.note ? `${formation.note}/5` : '—'}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+
+                      {/* Prix */}
+                      <PriceTabs
+                        prixInter={formation.prixInter}
+                        prixIntra={formation.prixIntra}
+                        duree={formation.duree}
+                        slug={formation.slug.current}
+                        lien={formation.lien}
+                      />
+                    </div>
+                  </div>
+                );
+              }
+
+              // ── Carte standard ─────────────────────────────────────────────
               return (
                 <div
                   key={formation._id}

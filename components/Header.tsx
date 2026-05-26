@@ -14,6 +14,7 @@ export default function Header() {
     { href: '/', label: t.common.home },
     { href: '/about', label: t.common.about },
     { href: '/formations', label: t.common.formations },
+    { href: '/blog', label: t.common.blog },
     { href: '/financement', label: t.footer.financement },
     { href: '/temoignages', label: t.common.testimonials },
     { href: '/contact', label: t.common.contact },

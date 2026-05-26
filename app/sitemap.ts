@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
+import { ARTICLES } from './blog/articles';
 
 const BASE_URL = 'https://edutechformations.com';
 
@@ -8,6 +9,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: '', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/formations', priority: 0.9, changeFrequency: 'weekly' },
+  { path: '/blog', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/financement', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/temoignages', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/contact', priority: 0.7, changeFrequency: 'yearly' },
@@ -44,5 +46,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap: failed to fetch formations from Sanity', err);
   }
 
-  return [...staticEntries, ...formationEntries];
+  const blogEntries: MetadataRoute.Sitemap = ARTICLES.map((a) => ({
+    url: `${BASE_URL}/blog/${a.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...formationEntries, ...blogEntries];
 }
