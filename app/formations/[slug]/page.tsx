@@ -5,6 +5,9 @@ import Link from 'next/link';
 import FormationDetailClient from './FormationDetailClient';
 import JsonLd, { buildCourseSchema, buildBreadcrumbList } from '@/components/JsonLd';
 
+// ISR : régénère la page au plus toutes les 60 s pour refléter les modifs du Studio
+export const revalidate = 60;
+
 // Génération des pages statiques
 export async function generateStaticParams() {
   const slugs = await client.fetch(
