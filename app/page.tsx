@@ -304,13 +304,14 @@ export default function Home() {
       <section className='py-20 bg-gradient-to-br from-teal-50 to-white border-t border-teal-100'>
         <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex flex-col md:flex-row items-center gap-10'>
-            <div className='flex-shrink-0'>
+            <div className='flex-shrink-0 w-full max-w-[280px] rounded-2xl border border-teal-100 bg-white p-5 shadow-md'>
               <Image
                 src='/Logo_Qualiopi.png'
-                alt='Certification Qualiopi'
-                width={200}
-                height={100}
-                className='object-contain'
+                alt='Logo Qualiopi – processus certifié, catégorie actions de formation'
+                width={669}
+                height={306}
+                sizes='280px'
+                className='h-auto w-full object-contain'
               />
             </div>
             <div>

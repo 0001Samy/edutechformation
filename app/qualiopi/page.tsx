@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, FileText } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslatedContent } from '@/lib/i18n/useTranslatedContent';
@@ -41,6 +41,7 @@ export default function QualiopiPage() {
     heroTitle: "La certification Qualiopi",
     intro1: "Edutech Formations est certifié Qualiopi au titre des actions de formation.",
     intro2: "La certification Qualiopi est une marque de qualité délivrée par des organismes certificateurs accrédités, sur la base du Référentiel National Qualité.",
+    certLink: "Consulter notre certificat",
 
     s1Title: "Une certification fondée sur des exigences qualité",
     s1Intro: "La certification Qualiopi repose sur plusieurs critères visant à garantir la qualité des actions de formation, notamment :",
@@ -116,14 +117,27 @@ export default function QualiopiPage() {
             <div>
               <p className={`${pClass} mb-3`}>{tr.intro1}</p>
               <p className={pClass}>{tr.intro2}</p>
-              <div className="flex justify-center mt-8">
-                <Image
-                  src="/Logo_Qualiopi.png"
-                  alt="Certification Qualiopi"
-                  width={220}
-                  height={110}
-                  className="object-contain"
-                />
+              <div className="mt-8 flex flex-col items-center gap-4">
+                <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-md ring-1 ring-gray-900/5">
+                  <Image
+                    src="/Logo_Qualiopi.png"
+                    alt="Logo Qualiopi – processus certifié, République française, catégorie actions de formation"
+                    width={669}
+                    height={306}
+                    sizes="(max-width: 640px) 90vw, 400px"
+                    className="h-auto w-full object-contain"
+                    priority
+                  />
+                </div>
+                <a
+                  href="/certificat-qualiopi.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+                >
+                  <FileText size={18} />
+                  {tr.certLink}
+                </a>
               </div>
             </div>
 
